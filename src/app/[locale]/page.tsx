@@ -4,6 +4,13 @@ import { Services } from "@/components/home/services"
 import { Projects } from "@/components/home/projects"
 import { Contact } from "@/components/home/contact"
 
+export function generateStaticParams() {
+  return [
+    { locale: 'el' },
+    { locale: 'en' }
+  ];
+}
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">

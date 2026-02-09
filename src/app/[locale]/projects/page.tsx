@@ -1,9 +1,16 @@
-import { Projects } from "@/components/home/projects"
+import { getTranslations } from "next-intl/server"
 import { SectionHeader } from "@/components/ui/section"
-import { useTranslations } from "next-intl"
 
-export default function ProjectsPage() {
-    const t = useTranslations('Projects')
+export function generateStaticParams() {
+    return [
+        { locale: 'el' },
+        { locale: 'en' }
+    ];
+}
+
+export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Projects' });
 
     return (
         <main className="pt-24 min-h-screen bg-brand-black">

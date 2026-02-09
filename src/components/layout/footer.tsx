@@ -118,7 +118,7 @@ export function Footer() {
                             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
                         </div>
                         <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                            © {currentYear} George Apostolidis. All rights reserved.
+                            {t('rights', { year: currentYear })}
                         </p>
                     </div>
                 </div>
@@ -126,8 +126,8 @@ export function Footer() {
 
             {/* 3. MONUMENTAL WATERMARK */}
             <div className="absolute bottom-[-5vw] left-0 right-0 pointer-events-none select-none overflow-hidden flex justify-center opacity-[0.03]">
-                <span className="text-[18vw] font-bold leading-none tracking-tighter text-white whitespace-nowrap">
-                    APOSTOLIDIS
+                <span className="text-[18vw] font-bold leading-none tracking-tighter text-white whitespace-nowrap uppercase">
+                    {useTranslations('About')('lastName')}
                 </span>
             </div>
         </footer>

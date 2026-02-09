@@ -18,6 +18,8 @@ export const EASE = {
     sharp: [0.4, 0, 0.2, 1] as const,
     /** Quick snap for HUD elements */
     snap: [0.87, 0, 0.13, 1] as const,
+    /** Mechanical precision for "locking" elements into place */
+    mechanicalSnap: [0.2, 0, 0, 1] as const,
 };
 
 // ============================================================================
@@ -213,3 +215,48 @@ export const withDelay = <T extends { visible: { transition?: object } }>(
         },
     },
 });
+
+// ============================================================================
+// DRAFTING ANIMATION VARIANTS (for "Draft to Reality" narrative)
+// ============================================================================
+
+/** Horizontal line draw - for borders animating left-to-right */
+export const drawHorizontal = {
+    hidden: { scaleX: 0 },
+    visible: {
+        scaleX: 1,
+        transition: { duration: DURATION.reveal, ease: EASE.sharp },
+    },
+};
+
+/** Vertical line draw - for borders animating top-to-bottom */
+export const drawVertical = {
+    hidden: { scaleY: 0 },
+    visible: {
+        scaleY: 1,
+        transition: { duration: DURATION.reveal, ease: EASE.sharp },
+    },
+};
+
+/** Marker pop - for corner brackets snapping into place */
+export const markerPop = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: DURATION.fast, ease: EASE.mechanicalSnap },
+    },
+};
+
+/** Image reveal with grayscale-to-color transition */
+export const imageReality = {
+    hidden: {
+        filter: "grayscale(100%) contrast(1.2)",
+        opacity: 0.8
+    },
+    visible: {
+        filter: "grayscale(0%) contrast(1)",
+        opacity: 1,
+        transition: { duration: 1.2, ease: EASE.smooth, delay: 0.3 },
+    },
+};

@@ -9,17 +9,35 @@
     },
     "Hero": {
         "eyebrow": "TECHNICAL OFFICE ATHENS",
+        "badge": "01 // Architectural Engineering",
         "title": "Building spaces\nthat stand the test of time",
         "subtitle": "From design to delivery.\nRenovations and new construction with expertise and aesthetics.",
+        "word1": "Build",
+        "word2": "For",
+        "word3": "Legacy",
+        "initiate": "Initiate Project",
+        "explore": "Explore Archives",
+        "scroll": "Scroll to Explore",
+        "status": "Rendering Real-time",
         "cta": "View our projects",
         "ctaSecondary": "Get in touch"
     },
     "About": {
         "sectionLabel": "ABOUT",
+        "badge": "02 // Personnel Dossier",
+        "firstName": "George",
+        "lastName": "Apostolidis",
         "heading": "George Apostolidis",
         "description1": "Based in Athens, George Apostolidis Technical Office provides comprehensive design, supervision, and construction services for over a decade.",
         "description2": "Our philosophy combines technical excellence with contemporary aesthetics. Every project receives the same attention to detail—whether it's a complete apartment renovation or new building construction.",
         "description3": "As a licensed civil engineer, George Apostolidis personally oversees every stage of the project, ensuring regulatory compliance and high construction standards.",
+        "roleLabel": "Role ID",
+        "roleValue": "Project Lead",
+        "specLabel": "Specialization",
+        "specValue": "Civil Engineer",
+        "figLabel": "FIG. 02-A // REF. PORTRAIT",
+        "scale": "Scale 1:50",
+        "endSection": "// END OF SECTION",
         "stats": {
             "projects": "Completed\nProjects",
             "years": "Years of\nExperience",
@@ -28,7 +46,12 @@
     },
     "Services": {
         "sectionLabel": "SERVICES",
+        "badge": "SEC.02 // CAPABILITIES",
         "heading": "Comprehensive Solutions",
+        "heading1": "Engineering",
+        "heading2": "Capabilities",
+        "status": "SYS.STATUS: OPERATIONAL",
+        "initiate": "INITIATE",
         "renovation": {
             "title": "Renovation",
             "description": "Complete renovation of residential and commercial spaces. From design study and material selection to final turnkey delivery.",
@@ -39,6 +62,12 @@
                 "Material selection & finishes",
                 "Crew coordination",
                 "Project supervision"
+            ],
+            "specs": [
+                "Structural Assessment",
+                "Space Optimization",
+                "MEP Integration",
+                "High-Fidelity Finishes"
             ],
             "cta": "Learn more"
         },
@@ -53,19 +82,47 @@
                 "Mechanical & electrical installations",
                 "Energy certification"
             ],
+            "specs": [
+                "Site Analysis",
+                "Regulatory Compliance",
+                "Concrete Framework",
+                "Energy Efficiency A+"
+            ],
             "cta": "Learn more"
         }
     },
     "Projects": {
         "label": "SELECTED PROJECTS",
+        "badge": "03 // Project Index",
         "heading": "Spaces brought to life",
+        "headingPrimary": "Selected",
+        "headingSecondary": "Works",
         "description": "A selection of our recent projects in Athens and Attica.",
-        "cta": "View all projects"
+        "grid": "Grid",
+        "list": "List",
+        "filter": "Filter: All",
+        "archive": "View Full Archive",
+        "status": "// SYSTEM STATUS: ONLINE",
+        "ref": "DB_VER: 2.4.0",
+        "cta": "View all projects",
+        "types": {
+            "renovation": "Renovation",
+            "construction": "New Construction",
+            "commercial": "Commercial"
+        }
     },
     "Contact": {
         "label": "CONTACT",
+        "badge": "04 // Initiation Protocol",
         "heading": "Let's create together",
+        "headingPrimary": "Start",
+        "headingSecondary": "Building",
+        "subtitle": "Have a project in mind? Initiate the protocol.\nWe are ready to translate your vision into engineered reality.",
         "description": "Have a project in mind? Get in touch to discuss your needs and plan your next move.",
+        "phoneLabel": "Communication Line",
+        "emailLabel": "Electronic Mail",
+        "addressLabel": "Coordinates",
+        "addressValue": "Agias Lavras 57, Athens 111 41",
         "info": {
             "phone": "Phone",
             "email": "Email",
@@ -75,26 +132,44 @@
         },
         "form": {
             "name": "Full Name",
-            "email": "Email",
+            "namePlaceholder": "John Doe",
+            "email": "Email Address",
+            "emailPlaceholder": "john@example.com",
             "phone": "Phone",
             "type": "Project Type",
+            "typePlaceholder": "Select Type",
             "types": {
                 "renovation": "Renovation",
                 "construction": "New Construction",
+                "consulting": "Engineering Consulting",
                 "other": "Other"
             },
-            "budget": "Budget Range",
+            "budget": "Estimated Budget",
+            "budgetPlaceholder": "Select Range",
             "budgets": {
                 "under-30k": "Up to €30,000",
                 "30k-80k": "€30,000 - €80,000",
                 "80k-150k": "€80.000 - €150.000",
                 "over-150k": "Over €150,000"
             },
-            "message": "Message",
-            "messagePlaceholder": "Describe your project...",
-            "submit": "Send Message",
+            "message": "Additional Details",
+            "messagePlaceholder": "Describe your vision...",
+            "submit": "Submit Protocol",
+            "secure": "// Secure Transmission",
+            "status": "Status: Awaiting Input",
+            "identity": "IDENTITY PROTOCOL",
+            "parameters": "PROJECT PARAMETERS",
+            "transmission": "DATA TRANSMISSION",
             "success": "We received your message. We'll get back to you soon.",
-            "error": "Something went wrong. Please try again."
+            "error": "Something went wrong. Please try again.",
+            "identityBadge": "01",
+            "parametersBadge": "02",
+            "transmissionBadge": "03",
+            "validation": {
+                "nameRequired": "Name is required",
+                "emailRequired": "Email is required",
+                "emailInvalid": "Invalid email address"
+            }
         }
     },
     "Footer": {
@@ -102,12 +177,13 @@
         "contact": "CONTACT",
         "navigation": "NAVIGATION",
         "social": "SOCIAL",
-        "rights": "© 2026 George Apostolidis. All rights reserved.",
+        "rights": "© {year} George Apostolidis. All rights reserved.",
         "privacy": "Privacy Policy",
         "terms": "Terms of Use"
     },
     "Metadata": {
         "title": "George Apostolidis | Technical Office Athens",
+        "siteName": "George Apostolidis",
         "description": "Technical office in Athens. Comprehensive renovation and new construction services. Design, supervision, implementation."
     }
 }

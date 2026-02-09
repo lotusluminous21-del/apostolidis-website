@@ -18,7 +18,7 @@ export function Section({
             className={cn(
                 "py-section-mobile lg:py-section-desktop",
                 dark && "dark-section bg-brand-black text-white",
-                !fullBleed && "px-6 md:px-8 lg:px-12 xl:px-20",
+                !fullBleed && "px-4 md:px-8 lg:px-12 xl:px-20", // Matches tailwind config container
                 className
             )}
             {...props}

@@ -13,7 +13,8 @@ import {
     DURATION,
     scaleX,
     fadeUp,
-    withDelay
+    withDelay,
+    markerPop
 } from "@/lib/animation-variants"
 
 function CapabilityRow({
@@ -30,20 +31,21 @@ function CapabilityRow({
     index: number
 }) {
     const rowRef = useRef(null)
+    const t = useTranslations('Services')
     const isInView = useInView(rowRef, { once: true, margin: "-10%" })
     const baseDelay = SERVICES_TIMELINE.ROW_LINES + (index * 0.2)
 
     return (
         <div
             ref={rowRef}
-            className="group relative grid grid-cols-1 md:grid-cols-12 gap-6 py-10 px-4 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300"
+            className="group relative grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-6 py-8 md:py-10 px-4 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300 border-b border-grid-line/50 md:border-b-0 last:border-b-0"
         >
-            {/* Animated Top Border - Drawing Effect */}
+            {/* Animated Top Border - Drawing Effect (Desktop Only) */}
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 variants={withDelay(scaleX, baseDelay)}
-                className="absolute top-0 left-0 right-0 h-[1px] bg-grid-line group-hover:bg-grid-line/10 transition-colors origin-left"
+                className="absolute top-0 left-0 right-0 h-[1px] bg-grid-line group-hover:bg-grid-line/10 transition-colors origin-left hidden md:block"
             />
 
             {/* Hover Target Marker */}
@@ -102,13 +104,13 @@ function CapabilityRow({
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 variants={withDelay(fadeUp, baseDelay + 0.5)}
-                className="md:col-span-2 flex justify-end items-start"
+                className="md:col-span-2 flex justify-start md:justify-end items-start mt-4 md:mt-0"
             >
                 <Button
                     variant="ghost"
-                    className="opacity-100 md:opacity-0 group-hover:opacity-100 translate-x-0 md:-translate-x-4 group-hover:translate-x-0 transition-all duration-300 rounded-none text-white hover:text-architectural hover:bg-white/5"
+                    className="opacity-100 md:opacity-0 group-hover:opacity-100 translate-x-0 md:-translate-x-4 group-hover:translate-x-0 transition-all duration-300 rounded-none text-architectural md:text-white hover:text-architectural hover:bg-white/5 pl-0 md:pl-4"
                 >
-                    INITIATE <ArrowUpRight className="ml-2 w-4 h-4" />
+                    {t('initiate')} <ArrowUpRight className="ml-2 w-4 h-4" />
                 </Button>
             </motion.div>
         </div>
@@ -121,41 +123,47 @@ export function Services() {
     const isInView = useInView(containerRef, { once: true, margin: "-10%" })
 
     return (
-        <Section className="border-b border-grid-line bg-background lg:py-24" id="services">
+        <Section className="border-b border-grid-line bg-background py-12 lg:py-24" id="services">
             <div ref={containerRef} className="w-full">
 
                 {/* Section Header - Technical Style with Draft Frame */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 relative">
-                    <div className="relative">
+                    <div className="relative w-full md:w-auto">
                         <DraftingFrame
-                            className="border-t border-b border-dashed border-grid-line"
+                            className="border-t border-b border-dashed border-grid-line inset-x-0"
                             delay={SERVICES_TIMELINE.HEADER_DRAFT}
                             showMarkers={['top-left', 'bottom-right']}
-                            label="SEC.02 // CAPABILITIES"
+                            label={t('badge')}
                             labelPosition="top-left"
+                            animateSequentially
                         />
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: SERVICES_TIMELINE.HEADER_REVEAL, duration: DURATION.normal }}
-                            className="py-4 md:py-6 px-2"
+                            className="py-6 px-2 md:py-6"
                         >
-                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-none">
-                                Engineering<br />Capabilities
+                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-[0.9] md:leading-none">
+                                {t('heading1')}<br />{t('heading2')}
                             </h2>
                         </motion.div>
                     </div>
 
-                    <div className="hidden md:flex flex-col items-end gap-1 mb-4 opacity-50">
+                    <motion.div
+                        initial="hidden"
+                        animate={isInView ? "visible" : "hidden"}
+                        variants={withDelay(fadeUp, SERVICES_TIMELINE.HEADER_REVEAL + 0.2)}
+                        className="hidden md:flex flex-col items-end gap-1 mb-4 opacity-50"
+                    >
                         <span className="font-mono text-[10px] text-muted-foreground block tracking-widest">
-                            SYS.STATUS: OPERATIONAL
+                            {t('status')}
                         </span>
                         <div className="flex gap-1">
                             <div className="w-1 h-1 bg-architectural animate-pulse" />
                             <div className="w-1 h-1 bg-grid-line" />
                             <div className="w-1 h-1 bg-grid-line" />
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* Matrix */}
@@ -165,24 +173,14 @@ export function Services() {
                         index={0}
                         title={t('renovation.title')}
                         description={t('renovation.description')}
-                        specs={[
-                            "Structural Assessment",
-                            "Space Optimization",
-                            "MEP Integration",
-                            "High-Fidelity Finishes"
-                        ]}
+                        specs={t.raw('renovation.specs')}
                     />
                     <CapabilityRow
                         id="02"
                         index={1}
                         title={t('construction.title')}
                         description={t('construction.description')}
-                        specs={[
-                            "Site Analysis",
-                            "Regulatory Compliance",
-                            "Concrete Framework",
-                            "Energy Efficiency A+"
-                        ]}
+                        specs={t.raw('construction.specs')}
                     />
                 </div>
 

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('title'),
       description: t('description'),
       url: 'https://georgeapostolidis.gr',
-      siteName: 'George Apostolidis',
+      siteName: t('siteName'),
       locale: locale,
       type: 'website',
     },
@@ -44,6 +44,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t('description'),
     }
   };
+}
+
+export function generateStaticParams() {
+  return [
+    { locale: 'el' },
+    { locale: 'en' }
+  ];
 }
 
 export default async function RootLayout({

@@ -11,10 +11,11 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1.5rem',  // 24px
+        DEFAULT: '1rem',    // 16px - Mobile Reduced
+        sm: '1.5rem',       // 24px
         md: '2rem',         // 32px
         lg: '3rem',         // 48px
-        xl: '5rem',         // 80px
+        xl: '5rem',         // 80px - Matches xl:px-20
       },
       screens: {
         sm: '100%',
@@ -96,7 +97,7 @@ const config: Config = {
       spacing: {
         // Section spacing
         'section-mobile': '4rem',      // 64px
-        'section-desktop': '7.5rem',   // 120px
+        'section-desktop': '7.5rem',   // 120px - Confirmed
         // Component spacing
         '18': '4.5rem',   // 72px
         '22': '5.5rem',   // 88px

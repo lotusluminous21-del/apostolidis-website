@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 interface LogoProps {
     className?: string
@@ -8,6 +9,7 @@ interface LogoProps {
 }
 
 export function Logo({ className, white = false }: LogoProps) {
+    const t = useTranslations('About')
     return (
         <Link
             href="/"
@@ -15,7 +17,7 @@ export function Logo({ className, white = false }: LogoProps) {
                 "flex items-center gap-3 group select-none",
                 className
             )}
-            aria-label="George Apostolidis Homepage"
+            aria-label={`${t('heading')} Homepage`}
         >
             {/* Symbol */}
             <div className={cn(
@@ -42,7 +44,7 @@ export function Logo({ className, white = false }: LogoProps) {
                 "flex flex-col leading-none tracking-wider",
                 white ? "text-white" : "text-brand-black"
             )}>
-                <span className="font-bold text-sm uppercase">George Apostolidis</span>
+                <span className="font-bold text-sm uppercase">{t('heading')}</span>
                 <span className={cn(
                     "text-[0.65rem] font-medium transition-colors",
                     white ? "text-white/60" : "text-brand-gray group-hover:text-architectural"

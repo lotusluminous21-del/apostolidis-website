@@ -107,7 +107,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
             </aside>
 
             {/* TOP BAR - UNIFIED COMMAND CENTER */}
-            <header className="fixed top-0 left-0 md:left-[60px] right-0 h-[60px] bg-background/95 backdrop-blur-md border-b border-grid-line z-40 flex items-center justify-between pl-6 md:pl-12 pr-6 md:pr-12">
+            <header className="fixed top-0 left-0 md:left-[60px] right-0 h-[60px] bg-background/95 backdrop-blur-md border-b border-grid-line z-40 flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12">
 
                 {/* LEFT BLOCK: BRANDING & NAV - Staggered animation */}
                 <motion.div

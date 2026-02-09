@@ -27,6 +27,18 @@ const PROJECTS = {
     }
 }
 
+export function generateStaticParams() {
+    const locales = ['el', 'en'];
+    const slugs = Object.keys(PROJECTS);
+
+    return locales.flatMap(locale =>
+        slugs.map(slug => ({
+            locale,
+            slug
+        }))
+    );
+}
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string, locale: string }> }) {
     const { slug, locale } = await params
     const t = await import(`../../../../../messages/${locale}.json`) // Basic way to get messages server-side if needed, or just use useTranslations on client components or NextIntlClientProvider

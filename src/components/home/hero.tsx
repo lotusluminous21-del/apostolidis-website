@@ -5,6 +5,7 @@ import { ArrowDown, CornerDownRight, Maximize2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import Image from "next/image"
 import { GrainOverlay } from "@/components/ui/grain-overlay"
 import {
     EASE,
@@ -57,15 +58,24 @@ export function Hero() {
         return () => clearTimeout(timeout)
     }, [])
 
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
     return (
-        <section ref={containerRef} className="relative h-auto md:h-[calc(100vh-60px)] w-full flex flex-col md:grid md:grid-cols-2 border-b border-grid-line overflow-hidden group">
+        <section ref={containerRef} className="relative min-h-[calc(100svh-60px)] md:h-[calc(100vh-60px)] w-full flex flex-col md:grid md:grid-cols-2 border-b border-grid-line overflow-hidden group">
 
             <GrainOverlay opacity={0.05} />
 
             {/* LEFT COLUMN: DATA STREAM & CONTENT */}
-            <div className="relative z-10 flex flex-col border-r border-grid-line bg-background/50 backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden">
-
-
+            <div className="relative z-10 flex flex-col border-r border-grid-line bg-background/50 backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-1 md:order-none h-[55svh] md:h-auto">
 
                 {/* Vertical decorative line for alignment - Animated */}
                 <motion.div
@@ -75,9 +85,8 @@ export function Hero() {
                     className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-grid-line hidden md:block origin-top"
                 />
 
-                <div className="flex-1 flex flex-col justify-center p-6 md:p-12 lg:px-12 xl:px-20 relative">
+                <div className="flex-1 flex flex-col justify-center p-4 md:p-12 lg:px-12 xl:px-20 relative">
 
-                    {/* Context Tag - Phase 2 Start */}
                     {/* Context Tag - Phase 2 Start */}
                     <div className="mb-6 hidden md:flex items-center gap-3">
                         {/* Animated Line leading to tag */}
@@ -93,21 +102,21 @@ export function Hero() {
                             transition={{ delay: HERO_TIMELINE.DRAFT_START + 0.2, duration: 0.5 }}
                             className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase"
                         >
-                            01 // Architectural Engineering
+                            {t('badge')}
                         </motion.span>
                     </div>
 
-                    {/* Mobile Context Tag */}
-                    <div className="mb-8 flex md:hidden items-center gap-2">
+                    {/* Mobile Context Tag - Compact */}
+                    <div className="mb-4 flex md:hidden items-center gap-2 absolute top-4 left-4">
                         <span className="w-1 h-1 bg-architectural rounded-full" />
                         <span className="text-[9px] font-mono tracking-widest text-muted-foreground uppercase">
-                            01 // Architectural Engineering
+                            {t('badge')}
                         </span>
                     </div>
 
-                    <div className="space-y-8 md:space-y-8 mb-12 md:mb-0 relative z-20">
+                    <div className="space-y-6 md:space-y-8 mb-0 relative z-20 flex flex-col justify-center h-full md:block md:h-auto">
                         {/* Word-Specific Drafting Frames */}
-                        <h1 className="text-6xl min-[400px]:text-7xl md:text-7xl xl:text-8xl font-bold leading-[0.85] tracking-tighter uppercase relative flex flex-col gap-1 md:block">
+                        <h1 className="text-5xl min-[400px]:text-6xl md:text-7xl xl:text-8xl font-bold leading-[0.85] tracking-tighter uppercase relative flex flex-col gap-1 md:block">
 
                             {/* WORD 1: BUILD */}
                             <div className="relative inline-block w-fit">
@@ -116,6 +125,7 @@ export function Hero() {
                                     delay={HERO_TIMELINE.DRAFT_START}
                                     showMarkers={['top-left', 'bottom-right']}
                                     label="FIG.01"
+                                    animateSequentially
                                 />
                                 <motion.span
                                     initial="hidden"
@@ -123,7 +133,7 @@ export function Hero() {
                                     variants={withDelay(headlineReveal, HERO_TIMELINE.HEADLINE_BASE)}
                                     className="block text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/70 relative z-10"
                                 >
-                                    Build
+                                    {t('word1')}
                                 </motion.span>
                             </div>
 
@@ -136,6 +146,8 @@ export function Hero() {
                                     showMarkers={['bottom-left']}
                                     label="REF"
                                     labelPosition="bottom-right"
+                                    labelClassName="hidden md:block"
+                                    animateSequentially
                                 />
                                 <motion.span
                                     initial="hidden"
@@ -143,7 +155,7 @@ export function Hero() {
                                     variants={withDelay(headlineReveal, HERO_TIMELINE.HEADLINE_BASE + HERO_TIMELINE.HEADLINE_STAGGER)}
                                     className="block text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/70 relative z-10"
                                 >
-                                    For
+                                    {t('word2')}
                                 </motion.span>
                             </div>
 
@@ -155,6 +167,7 @@ export function Hero() {
                                     showMarkers={['top-right', 'bottom-left', 'bottom-right']}
                                     label="FINAL_SPEC"
                                     labelPosition="top-right"
+                                    animateSequentially
                                 />
                                 <motion.span
                                     initial="hidden"
@@ -178,7 +191,7 @@ export function Hero() {
                                     }}
                                     className="block text-architectural relative z-10"
                                 >
-                                    Legacy
+                                    {t('word3')}
                                     {/* Subtle glow pulse after reveal */}
                                     <motion.span
                                         initial={{ opacity: 0 }}
@@ -191,7 +204,7 @@ export function Hero() {
                                         className="absolute inset-0 text-architectural blur-lg pointer-events-none"
                                         aria-hidden="true"
                                     >
-                                        Legacy
+                                        {t('word3')}
                                     </motion.span>
                                 </motion.span>
 
@@ -210,7 +223,7 @@ export function Hero() {
                             initial="hidden"
                             animate="visible"
                             variants={withDelay(scaleX, HERO_TIMELINE.GREEN_LINE)}
-                            className="w-24 h-[2px] bg-architectural origin-left"
+                            className="w-24 h-[2px] bg-architectural origin-left hidden md:block"
                         />
 
                         {/* CTA Buttons */}
@@ -218,16 +231,17 @@ export function Hero() {
                             initial="hidden"
                             animate="visible"
                             variants={withDelay(fadeUp, HERO_TIMELINE.BUTTONS)}
-                            className="pt-2"
+                            className="pt-4 md:pt-2"
                         >
                             {/* Unified button box with shared border */}
-                            <div className="flex flex-col sm:flex-row sm:inline-flex border border-foreground/20 w-full sm:w-auto">
-                                <Button className="h-12 md:h-14 rounded-none bg-foreground text-background hover:bg-architectural hover:text-white transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 border-0 w-full sm:w-auto justify-center">
-                                    <CornerDownRight className="w-4 h-4 mr-3" />
-                                    Initiate Project
+                            <div className="flex flex-col sm:flex-row sm:inline-flex border border-foreground/20 w-fit sm:w-auto">
+                                <Button className="h-10 md:h-14 rounded-none bg-foreground text-background hover:bg-architectural hover:text-white transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 border-0 w-auto justify-center">
+                                    <CornerDownRight className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
+                                    {t('initiate')}
                                 </Button>
-                                <Button variant="outline" className="h-12 md:h-14 rounded-none border-0 border-t sm:border-t-0 sm:border-l border-foreground/20 hover:bg-foreground/5 hover:text-architectural transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 bg-transparent w-full sm:w-auto justify-center">
-                                    Explore Archives
+                                {/* Hide secondary button on mobile to save space if needed, or stack? Let's hide for "shine" and focus */}
+                                <Button variant="outline" className="hidden sm:flex h-12 md:h-14 rounded-none border-0 border-t sm:border-t-0 sm:border-l border-foreground/20 hover:bg-foreground/5 hover:text-architectural transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 bg-transparent w-full sm:w-auto justify-center">
+                                    {t('explore')}
                                 </Button>
                             </div>
                         </motion.div>
@@ -237,30 +251,30 @@ export function Hero() {
                             initial="hidden"
                             animate="visible"
                             variants={withDelay(fadeLeft, HERO_TIMELINE.SUBTITLE)}
-                            className="max-w-sm md:max-w-md"
+                            className="max-w-sm md:max-w-md mt-4 md:mt-0"
                         >
-                            <p className="font-mono text-[11px] md:text-xs text-muted-foreground leading-relaxed tracking-wider">
+                            <p className="font-mono text-[10px] md:text-[11px] lg:text-xs text-muted-foreground leading-relaxed tracking-wider line-clamp-3 md:line-clamp-none">
                                 {t('subtitle')}
                             </p>
                         </motion.div>
                     </div>
                 </div>
 
-                {/* Bottom Status Bar - Phase 4 */}
+                {/* Bottom Status Bar - Phase 4 - Mobile Only version simplified */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={withDelay(slideUp, HERO_TIMELINE.BOTTOM_BAR)}
-                    className="h-[60px] border-t border-grid-line flex items-center justify-between pl-6 md:pl-12 pr-6 md:pr-12 bg-background/80 backdrop-blur-md"
+                    className="h-[40px] md:h-[60px] border-t border-grid-line flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12 bg-background/80 backdrop-blur-md absolute bottom-0 w-full"
                 >
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: HERO_TIMELINE.SCROLL_INDICATOR, duration: 0.4 }}
-                        className="flex items-center gap-8 text-[10px] font-mono text-muted-foreground uppercase tracking-wider"
+                        className="flex items-center gap-8 text-[9px] md:text-[10px] font-mono text-muted-foreground uppercase tracking-wider"
                     >
                         <span className="flex items-center gap-2">
-                            Scroll to Explore
+                            {t('scroll')}
                             <motion.span
                                 animate={{ y: [0, 3, 0] }}
                                 transition={{
@@ -278,12 +292,12 @@ export function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: HERO_TIMELINE.BOTTOM_BAR + 0.2, duration: 0.4 }}
-                        className="flex items-center gap-4 text-[10px] font-mono text-muted-foreground uppercase tracking-wider"
+                        className="flex items-center gap-4 text-[9px] md:text-[10px] font-mono text-muted-foreground uppercase tracking-wider"
                     >
                         <span className="hidden md:inline-block">Est. 1995</span>
                         <div className="w-px h-3 bg-grid-line hidden md:block" />
                         <div className="flex items-center gap-2">
-                            <span>37°58'N 23°43'E</span>
+                            <span>37°58'N</span>
                             <motion.div
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
@@ -296,7 +310,7 @@ export function Hero() {
             </div>
 
             {/* RIGHT COLUMN: VISUAL FEED */}
-            <div className="relative h-[50vh] md:h-auto overflow-hidden bg-brand-charcoal border-t md:border-t-0 md:border-l border-grid-line group/image">
+            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-brand-charcoal border-t md:border-t-0 md:border-l border-grid-line group/image order-2 md:order-none">
 
                 {/* Green Curtain Reveal Overlay */}
                 <motion.div
@@ -313,26 +327,25 @@ export function Hero() {
                             },
                         },
                     }}
-                    className="absolute inset-0 bg-architectural z-30 origin-top"
+                    className="absolute inset-0 bg-architectural z-20 origin-top"
                 />
 
-                <motion.div style={{ y, opacity }} className="absolute inset-0">
-                    <motion.img
-                        initial={{ scale: 1.1 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                            delay: HERO_TIMELINE.IMAGE_CURTAIN,
-                            duration: 1.2,
-                            ease: EASE.smooth,
-                        }}
-                        src="/images/apostolidis_hero_2.png"
-                        className="w-full h-full object-cover object-right opacity-90 group-hover/image:opacity-100 grayscale group-hover/image:grayscale-0 transition-all duration-1000 ease-out scale-x-[-1]"
+                <motion.div
+                    style={{ y: isMobile ? 0 : y, opacity, willChange: "transform, opacity" }}
+                    className="absolute inset-0"
+                >
+                    <Image
+                        src="/images/apostolidis_hero_2.webp"
                         alt="Project Feed"
+                        fill
+                        priority
+                        className="w-full h-full object-cover object-center md:object-right opacity-90 md:grayscale group-hover/image:opacity-100 group-hover/image:grayscale-0 transition-all duration-1000 ease-out"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </motion.div>
 
                 {/* HUD Overlay on Image - Viewport Style */}
-                <div className="absolute inset-0 pointer-events-none p-4 md:p-8 flex flex-col justify-between z-40">
+                <div className="absolute inset-0 pointer-events-none p-4 md:p-8 flex flex-col justify-between z-30">
                     {/* Top HUD - Typewriter Effect */}
                     <div className="flex justify-between items-start">
                         <motion.div
@@ -366,13 +379,13 @@ export function Hero() {
                             duration: 1.5,
                             ease: "easeOut",
                         }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border border-white/20 rounded-full flex items-center justify-center"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] md:w-[200px] md:h-[200px] border border-white/20 rounded-full flex items-center justify-center"
                     >
                         <div className="w-2 h-2 bg-white/50 rounded-full" />
                     </motion.div>
 
                     {/* Persistent crosshair for hover */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border border-white/5 rounded-full flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-700">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] md:w-[200px] md:h-[200px] border border-white/5 rounded-full flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-700">
                         <div className="w-2 h-2 bg-white/50 rounded-full" />
                     </div>
 
@@ -404,16 +417,16 @@ export function Hero() {
                             />
                         </div>
                         <div className="text-white/60 font-mono text-[10px] uppercase tracking-wider">
-                            Rendering Real-time
+                            {t('status')}
                         </div>
                     </motion.div>
                 </div>
 
                 {/* Scanline Effect */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_2px,3px_100%] pointer-events-none opacity-10" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 bg-[length:100%_2px,3px_100%] pointer-events-none opacity-10" />
 
                 {/* Vignette */}
-                <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40 z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40 z-0 pointer-events-none" />
             </div>
 
         </section>
