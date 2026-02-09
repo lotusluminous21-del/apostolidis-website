@@ -1,0 +1,5 @@
+kind: "AppStack"
+apiVersion: "v1"
+runConfig:
+  # Optimal region for Greece/Europe
+  region: "europe-west3"
