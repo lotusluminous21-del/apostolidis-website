@@ -1,8 +1,8 @@
 kind: "AppStack"
 apiVersion: "v1"
 runConfig:
-  # Optimal region for Greece/Europe
-  region: "europe-west3"
+  # Matching actual backend location
+  region: "europe-west4"
 
 env:
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
