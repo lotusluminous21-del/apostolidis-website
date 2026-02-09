@@ -22,6 +22,7 @@ import {
     withDelay,
 } from "@/lib/animation-variants"
 import { DraftingFrame } from "@/components/ui/drafting-frame"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export function Hero() {
     const t = useTranslations('Hero')
@@ -58,16 +59,7 @@ export function Hero() {
         return () => clearTimeout(timeout)
     }, [])
 
-    const [isMobile, setIsMobile] = useState(false)
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-        checkMobile()
-        window.addEventListener('resize', checkMobile)
-        return () => window.removeEventListener('resize', checkMobile)
-    }, [])
+    const isMobile = useIsMobile()
 
     return (
         <section ref={containerRef} className="relative min-h-[calc(100svh-60px)] md:h-[calc(100vh-60px)] w-full flex flex-col md:grid md:grid-cols-2 border-b border-grid-line overflow-hidden group">
@@ -75,7 +67,7 @@ export function Hero() {
             <GrainOverlay opacity={0.05} />
 
             {/* LEFT COLUMN: DATA STREAM & CONTENT */}
-            <div className="relative z-10 flex flex-col border-r border-grid-line bg-background/50 backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-1 md:order-none h-[55svh] md:h-auto">
+            <div className="relative z-10 flex flex-col border-r border-grid-line bg-background/95 md:bg-background/50 md:backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-1 md:order-none h-[55svh] md:h-auto">
 
                 {/* Vertical decorative line for alignment - Animated */}
                 <motion.div
@@ -116,7 +108,7 @@ export function Hero() {
 
                     <div className="space-y-6 md:space-y-8 mb-0 relative z-20 flex flex-col justify-center h-full md:block md:h-auto">
                         {/* Word-Specific Drafting Frames */}
-                        <h1 className="text-5xl min-[400px]:text-6xl md:text-7xl xl:text-8xl font-bold leading-[0.85] tracking-tighter uppercase relative flex flex-col gap-1 md:block">
+                        <h1 className="text-[60px] md:text-7xl xl:text-8xl font-bold leading-[0.85] tracking-tighter uppercase relative flex flex-col gap-1 md:block">
 
                             {/* WORD 1: BUILD */}
                             <div className="relative inline-block w-fit">
