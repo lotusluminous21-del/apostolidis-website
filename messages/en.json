@@ -1,0 +1,113 @@
+{
+    "Navigation": {
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "projects": "Projects",
+        "contact": "Contact",
+        "language": "GR"
+    },
+    "Hero": {
+        "eyebrow": "TECHNICAL OFFICE ATHENS",
+        "title": "Building spaces\nthat stand the test of time",
+        "subtitle": "From design to delivery.\nRenovations and new construction with expertise and aesthetics.",
+        "cta": "View our projects",
+        "ctaSecondary": "Get in touch"
+    },
+    "About": {
+        "sectionLabel": "ABOUT",
+        "heading": "George Apostolidis",
+        "description1": "Based in Athens, George Apostolidis Technical Office provides comprehensive design, supervision, and construction services for over a decade.",
+        "description2": "Our philosophy combines technical excellence with contemporary aesthetics. Every project receives the same attention to detail—whether it's a complete apartment renovation or new building construction.",
+        "description3": "As a licensed civil engineer, George Apostolidis personally oversees every stage of the project, ensuring regulatory compliance and high construction standards.",
+        "stats": {
+            "projects": "Completed\nProjects",
+            "years": "Years of\nExperience",
+            "clients": "Client\nSatisfaction"
+        }
+    },
+    "Services": {
+        "sectionLabel": "SERVICES",
+        "heading": "Comprehensive Solutions",
+        "renovation": {
+            "title": "Renovation",
+            "description": "Complete renovation of residential and commercial spaces. From design study and material selection to final turnkey delivery.",
+            "items": [
+                "Space design study",
+                "Electrical & plumbing work",
+                "Structural interventions",
+                "Material selection & finishes",
+                "Crew coordination",
+                "Project supervision"
+            ],
+            "cta": "Learn more"
+        },
+        "construction": {
+            "title": "New Construction",
+            "description": "Complete implementation of new buildings—from initial design and permitting to construction and delivery. Residences, apartment buildings, and commercial spaces.",
+            "items": [
+                "Architectural & structural study",
+                "Building permit issuance",
+                "Foundation & load-bearing structure",
+                "Masonry & plastering",
+                "Mechanical & electrical installations",
+                "Energy certification"
+            ],
+            "cta": "Learn more"
+        }
+    },
+    "Projects": {
+        "label": "SELECTED PROJECTS",
+        "heading": "Spaces brought to life",
+        "description": "A selection of our recent projects in Athens and Attica.",
+        "cta": "View all projects"
+    },
+    "Contact": {
+        "label": "CONTACT",
+        "heading": "Let's create together",
+        "description": "Have a project in mind? Get in touch to discuss your needs and plan your next move.",
+        "info": {
+            "phone": "Phone",
+            "email": "Email",
+            "address": "Address",
+            "hours": "Hours",
+            "hoursValue": "Monday - Friday: 09:00 - 18:00\nSaturday: By appointment"
+        },
+        "form": {
+            "name": "Full Name",
+            "email": "Email",
+            "phone": "Phone",
+            "type": "Project Type",
+            "types": {
+                "renovation": "Renovation",
+                "construction": "New Construction",
+                "other": "Other"
+            },
+            "budget": "Budget Range",
+            "budgets": {
+                "under-30k": "Up to €30,000",
+                "30k-80k": "€30,000 - €80,000",
+                "80k-150k": "€80.000 - €150.000",
+                "over-150k": "Over €150,000"
+            },
+            "message": "Message",
+            "messagePlaceholder": "Describe your project...",
+            "submit": "Send Message",
+            "success": "We received your message. We'll get back to you soon.",
+            "error": "Something went wrong. Please try again."
+        }
+    },
+    "Footer": {
+        "tagline": "Design · Supervision · Construction",
+        "contact": "CONTACT",
+        "navigation": "NAVIGATION",
+        "social": "SOCIAL",
+        "rights": "© 2026 George Apostolidis. All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use"
+    },
+    "Metadata": {
+        "title": "George Apostolidis | Technical Office Athens",
+        "description": "Technical office in Athens. Comprehensive renovation and new construction services. Design, supervision, implementation."
+    }
+}
