@@ -20,7 +20,7 @@ https://georgeapostolidis.gr/
 | Type | Details |
 |------|---------|
 | **Phone** | +30 694 4141888 |
-| **Email** | info@georgeapostolidis.gr |
+| **Email** | apostolidisconstruction@gmail.com |
 | **Address** | Agias Lavras 57, Athens, Greece |
 
 ### Social Media Links

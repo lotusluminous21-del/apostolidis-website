@@ -142,8 +142,8 @@ export function Contact() {
                                 <span className="w-1.5 h-1.5 border border-brand-black/20 rounded-sm inline-block" />
                                 {t('emailLabel')}
                             </h4>
-                            <a href="mailto:info@georgeapostolidis.gr" className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
-                                info@georgeapostolidis.gr
+                            <a href="mailto:apostolidisconstruction@gmail.com" className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
+                                apostolidisconstruction@gmail.com
                             </a>
                         </motion.div>
 

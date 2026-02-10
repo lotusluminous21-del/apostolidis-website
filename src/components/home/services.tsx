@@ -16,6 +16,7 @@ import {
     withDelay,
     markerPop
 } from "@/lib/animation-variants"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 function CapabilityRow({
     id,
@@ -33,12 +34,28 @@ function CapabilityRow({
     const rowRef = useRef(null)
     const t = useTranslations('Services')
     const isInView = useInView(rowRef, { once: true, margin: "-10%" })
-    const baseDelay = SERVICES_TIMELINE.ROW_LINES + (index * 0.2)
+
+    // Mobile Hover Logic
+    const isMobile = useIsMobile()
+    // Detect when 99% of the row is visible in the viewport
+    const isFullyVisible = useInView(rowRef, { amount: 0.99 })
+    const isActive = isMobile && isFullyVisible
+
+    // Reduced base delay for snappier entrance
+    const baseDelay = SERVICES_TIMELINE.ROW_LINES + (index * 0.1)
+
+    const handleInitiate = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div
             ref={rowRef}
-            className="group relative grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-6 py-8 md:py-10 px-4 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300 border-b border-grid-line/50 md:border-b-0 last:border-b-0"
+            data-mobile-active={isActive}
+            className="group relative grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-6 py-8 md:py-10 px-4 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300 border-b border-grid-line/50 md:border-b-0 last:border-b-0 data-[mobile-active=true]:bg-brand-black"
         >
             {/* Animated Top Border - Drawing Effect (Desktop Only) */}
             <motion.div
@@ -49,49 +66,49 @@ function CapabilityRow({
             />
 
             {/* Hover Target Marker */}
-            <div className="absolute top-4 left-0 w-1 h-0 bg-architectural group-hover:h-full transition-all duration-300 ease-out" />
+            <div className="absolute top-4 left-0 w-1 h-0 bg-architectural group-hover:h-full transition-all duration-300 ease-out group-data-[mobile-active=true]:h-full" />
 
-            {/* COLUMN 1: ID (Span 1) */}
+            {/* ABSOLUTE ID: Moved from column 1 to absolute top-right for better alignment */}
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.2)}
-                className="md:col-span-1"
+                variants={withDelay(fadeUp, baseDelay + 0.1)}
+                className="absolute top-4 right-4 md:top-6 md:right-6"
             >
-                <span className="font-mono text-[10px] text-muted-foreground group-hover:text-white/40 transition-colors tracking-widest">
+                <span className="font-mono text-[10px] text-muted-foreground group-hover:text-white/40 transition-colors tracking-widest group-data-[mobile-active=true]:text-white/40">
                     {id}
                 </span>
             </motion.div>
 
-            {/* COLUMN 2: TITLE (Span 4) */}
+            {/* COLUMN 1: TITLE (Span 5 - expanded to start flush left) */}
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.3)}
-                className="md:col-span-4"
+                variants={withDelay(fadeUp, baseDelay + 0.15)} // Reduced stagger
+                className="md:col-span-5"
             >
-                <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-foreground group-hover:text-white transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-foreground group-hover:text-white transition-colors group-data-[mobile-active=true]:text-white">
                     {title}
                 </h3>
             </motion.div>
 
-            {/* COLUMN 3: CONTENT & SPECS (Span 5) */}
+            {/* COLUMN 2: CONTENT & SPECS (Span 5) */}
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.4)}
+                variants={withDelay(fadeUp, baseDelay + 0.2)} // Reduced stagger
                 className="md:col-span-5 flex flex-col gap-6"
             >
-                <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-white/70 max-w-prose transition-colors">
+                <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-white/70 max-w-prose transition-colors group-data-[mobile-active=true]:text-white/70">
                     {description}
                 </p>
 
                 {/* Specs Mini-Grid */}
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2 pt-2 border-t border-transparent group-hover:border-white/10 transition-colors">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 pt-2 border-t border-transparent group-hover:border-white/10 transition-colors group-data-[mobile-active=true]:border-white/10">
                     {specs.map((spec, i) => (
                         <div key={i} className="flex items-center gap-2">
-                            <div className="w-1 h-1 bg-grid-line group-hover:bg-architectural transition-colors rounded-full" />
-                            <span className="text-[10px] uppercase tracking-wider font-mono text-muted-foreground group-hover:text-white/60 transition-colors">
+                            <div className="w-1 h-1 bg-grid-line group-hover:bg-architectural transition-colors rounded-full group-data-[mobile-active=true]:bg-architectural" />
+                            <span className="text-[10px] uppercase tracking-wider font-mono text-muted-foreground group-hover:text-white/60 transition-colors group-data-[mobile-active=true]:text-white/60">
                                 {spec}
                             </span>
                         </div>
@@ -99,16 +116,17 @@ function CapabilityRow({
                 </div>
             </motion.div>
 
-            {/* COLUMN 4: ACTION (Span 2) */}
+            {/* COLUMN 3: ACTION (Span 2) */}
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.5)}
+                variants={withDelay(fadeUp, baseDelay + 0.25)} // Reduced stagger
                 className="md:col-span-2 flex justify-start md:justify-end items-start mt-4 md:mt-0"
             >
                 <Button
                     variant="ghost"
-                    className="opacity-100 md:opacity-0 group-hover:opacity-100 translate-x-0 md:-translate-x-4 group-hover:translate-x-0 transition-all duration-300 rounded-none text-architectural md:text-white hover:text-architectural hover:bg-white/5 pl-0 md:pl-4"
+                    onClick={handleInitiate}
+                    className="opacity-100 md:opacity-0 group-hover:opacity-100 translate-x-0 md:-translate-x-4 group-hover:translate-x-0 transition-all duration-300 rounded-none text-architectural md:text-white group-data-[mobile-active=true]:text-white hover:text-architectural hover:bg-white/5 pl-0 md:pl-4"
                 >
                     {t('initiate')} <ArrowUpRight className="ml-2 w-4 h-4" />
                 </Button>

@@ -260,3 +260,15 @@ export const imageReality = {
         transition: { duration: 1.2, ease: EASE.smooth, delay: 0.3 },
     },
 };
+
+/** Container specific for project grid staggering */
+export const projectContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2
+        }
+    }
+};

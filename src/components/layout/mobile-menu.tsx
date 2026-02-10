@@ -77,7 +77,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
                 {/* Footer Info */}
                 <div className="mt-8 text-center text-white/60 space-y-2 animate-fade-in" style={{ animationDelay: "300ms", animationFillMode: "forwards", opacity: 0 }}>
                     <p>+30 694 414 1888</p>
-                    <p>info@georgeapostolidis.gr</p>
+                    <p>apostolidisconstruction@gmail.com</p>
                     <div className="flex gap-4 justify-center mt-4 text-sm font-medium">
                         <LanguageSwitcher variant="mobile" />
                     </div>

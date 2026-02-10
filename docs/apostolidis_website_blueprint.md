@@ -495,7 +495,7 @@ the result exceeded our expectations."
 
 [Contact Details]
 📞 +30 694 414 1888
-✉️ info@georgeapostolidis.gr
+✉️ apostolidisconstruction@gmail.com
 📍 Αγίας Λαύρας 57, Αθήνα
 
 [Office Hours]
@@ -517,7 +517,7 @@ and plan your next move.
 
 [Contact Details]
 📞 +30 694 414 1888
-✉️ info@georgeapostolidis.gr
+✉️ apostolidisconstruction@gmail.com
 📍 Agias Lavras 57, Athens
 
 [Office Hours]
@@ -579,7 +579,7 @@ A
 [Contact Column]
 ΕΠΙΚΟΙΝΩΝΙΑ
 +30 694 414 1888
-info@georgeapostolidis.gr
+apostolidisconstruction@gmail.com
 Αγίας Λαύρας 57
 Αθήνα, Ελλάδα
 
@@ -615,7 +615,7 @@ Design · Supervision · Construction
 [Contact Column]
 CONTACT
 +30 694 414 1888
-info@georgeapostolidis.gr
+apostolidisconstruction@gmail.com
 Agias Lavras 57
 Athens, Greece
 
@@ -795,7 +795,7 @@ MOBILE MENU (Full Screen Overlay)
 │             ─────────────────────                       │
 │                                                         │
 │              📞 +30 694 414 1888                        │
-│              ✉️ info@georgeapostolidis.gr               │
+│              ✉️ apostolidisconstruction@gmail.com               │
 │                                                         │
 │                 [IG]  [PIN]  [MED]                      │
 │                                                         │
@@ -1215,7 +1215,7 @@ MOBILE LAYOUT
 │  │  📞  +30 694 414 1888                                   │    │
 │  │     (tap to call - linked)                              │    │
 │  │                                                         │    │
-│  │  ✉️  info@georgeapostolidis.gr                          │    │
+│  │  ✉️  apostolidisconstruction@gmail.com                          │    │
 │  │     (tap to email - linked)                             │    │
 │  │                                                         │    │
 │  │  📍  Αγίας Λαύρας 57, Αθήνα                             │    │
@@ -1294,7 +1294,7 @@ MOBILE LAYOUT
 │                      ΕΠΙΚΟΙΝΩΝΙΑ                                │
 │                                                                 │
 │                   +30 694 414 1888                              │
-│                info@georgeapostolidis.gr                        │
+│                apostolidisconstruction@gmail.com                        │
 │                Αγίας Λαύρας 57, Αθήνα                           │
 │                (centered, white/80%)                            │
 │                                                                 │
@@ -2262,7 +2262,7 @@ export function useInView(threshold = 0.1) {
   "image": "https://image.isu.pub/220923114114-2cc44b1893e7d357a735606c204871e7/jpg/page_1_social_preview.jpg",
   "description": "Τεχνικό γραφείο στην Αθήνα. Ολοκληρωμένες υπηρεσίες ανακαίνισης και νέας κατασκευής.",
   "telephone": "+30-694-414-1888",
-  "email": "info@georgeapostolidis.gr",
+  "email": "apostolidisconstruction@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Αγίας Λαύρας 57",
@@ -2785,7 +2785,7 @@ export const contactFormSchemaEN = z.object({
 
 ```
 Phone:   +30 694 414 1888
-Email:   info@georgeapostolidis.gr
+Email:   apostolidisconstruction@gmail.com
 Address: Αγίας Λαύρας 57, Αθήνα, Ελλάδα
 Hours:   Mon-Fri 09:00-18:00, Sat by appointment
 ```

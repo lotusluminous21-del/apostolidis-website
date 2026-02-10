@@ -302,9 +302,19 @@ export function Hero() {
             </div>
 
             {/* RIGHT COLUMN: VISUAL FEED */}
-            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-brand-charcoal border-t md:border-t-0 md:border-l border-grid-line group/image order-2 md:order-none">
+            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-background border-t md:border-t-0 md:border-l border-grid-line group/image order-2 md:order-none">
 
-                {/* Green Curtain Reveal Overlay */}
+                {/* Drafting Frame - "The Plan" before the Reality */}
+                <DraftingFrame
+                    className="absolute inset-0 z-25 pointer-events-none border-b border-r border-grid-line/50"
+                    delay={HERO_TIMELINE.DRAFT_START}
+                    showMarkers={['top-right', 'bottom-left']}
+                    label="RENDER_QUEUE"
+                    labelPosition="top-right"
+                    animateSequentially
+                />
+
+                {/* White Background Curtain Reveal Overlay (was Green) */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -319,7 +329,7 @@ export function Hero() {
                             },
                         },
                     }}
-                    className="absolute inset-0 bg-architectural z-20 origin-top"
+                    className="absolute inset-0 bg-background z-20 origin-top"
                 />
 
                 <motion.div
@@ -327,7 +337,7 @@ export function Hero() {
                     className="absolute inset-0"
                 >
                     <Image
-                        src="/images/apostolidis_hero_2.webp"
+                        src="/images/post03_img01.webp"
                         alt="Project Feed"
                         fill
                         priority

@@ -78,9 +78,9 @@
     /* tnum for tabular figures (Manrope) */
   }
 
-  /* Smooth scrolling */
+  /* Smooth scrolling handled by Lenis or JS */
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; - Removed to prevent conflict with Next.js scroll restoration */
   }
 
   /* Selection color */

@@ -62,7 +62,7 @@ export function Footer() {
                                     <span className="text-[10px] font-mono text-white/30 uppercase">Main Line</span>
                                 </div>
                                 <div>
-                                    <a href="mailto:info@georgeapostolidis.gr" className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">info@georgeapostolidis.gr</a>
+                                    <a href="mailto:apostolidisconstruction@gmail.com" className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">apostolidisconstruction@gmail.com</a>
                                     <span className="text-[10px] font-mono text-white/30 uppercase">Electronic Mail</span>
                                 </div>
                             </div>
