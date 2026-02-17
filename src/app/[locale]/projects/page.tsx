@@ -43,10 +43,8 @@ export default function ProjectsPage() {
 
     const categories: ProjectCategory[] = [
         'Commercial & Retail',
-        'Residential Renovations',
-        'Villa & Luxury',
-        'Technical Specialty Work',
-        'Architectural Details'
+        'Residential Apartment',
+        'Single-Family Home'
     ]
 
     const filteredProjects = selectedCategory === 'All'

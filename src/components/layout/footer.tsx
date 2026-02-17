@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Facebook, Instagram, Linkedin, ArrowUp } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { useTranslations } from "next-intl"
@@ -42,7 +42,8 @@ export function Footer() {
                             {['home', 'about', 'services', 'projects', 'contact'].map((item) => (
                                 <Link
                                     key={item}
-                                    href={item === 'home' ? '/' : `/${item === 'projects' ? 'projects' : `#${item}`}`}
+                                    href={item === 'home' ? '/' : (item === 'projects' ? '/projects' : `/#${item}`)}
+                                    scroll={false}
                                     className="text-lg font-light text-white/60 hover:text-white transition-colors w-fit group flex items-center gap-2"
                                 >
                                     <span className="w-1 h-1 bg-architectural rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -52,44 +52,32 @@
         "heading2": "Capabilities",
         "status": "SYS.STATUS: OPERATIONAL",
         "initiate": "INITIATE",
-        "renovation": {
-            "title": "Renovation",
-            "description": "Complete renovation of residential and commercial spaces. From design study and material selection to final turnkey delivery.",
-            "items": [
-                "Space design study",
-                "Electrical & plumbing work",
-                "Structural interventions",
-                "Material selection & finishes",
-                "Crew coordination",
-                "Project supervision"
-            ],
-            "specs": [
-                "Structural Assessment",
-                "Space Optimization",
-                "MEP Integration",
-                "High-Fidelity Finishes"
-            ],
-            "cta": "Learn more"
+        "list": {
+            "renovation_residential": "Residential & Apartment Renovations",
+            "arch_studies": "Architectural Proposals & Studies",
+            "renovation_commercial": "Commercial & Retail Reconstruction",
+            "new_buildings": "New Buildings & Completions",
+            "supervision": "Construction Supervision",
+            "permits": "Urban Planning Permits",
+            "permits_building": "Building Permits",
+            "permits_small_scale": "Small Scale Work Approval",
+            "arbitrary_regulation": "Arbitrary Building Regulation",
+            "electronic_identity": "Electronic Building Identity",
+            "energy_certificates": "Energy Performance Certificates (EPA)",
+            "engineer_certificates": "Engineer Certificates"
         },
-        "construction": {
-            "title": "New Construction",
-            "description": "Complete implementation of new buildings—from initial design and permitting to construction and delivery. Residences, apartment buildings, and commercial spaces.",
-            "items": [
-                "Architectural & structural study",
-                "Building permit issuance",
-                "Foundation & load-bearing structure",
-                "Masonry & plastering",
-                "Mechanical & electrical installations",
-                "Energy certification"
-            ],
-            "specs": [
-                "Site Analysis",
-                "Regulatory Compliance",
-                "Concrete Framework",
-                "Energy Efficiency A+"
-            ],
-            "cta": "Learn more"
-        }
+        "items": [
+            "renovation_residential",
+            "arch_studies",
+            "renovation_commercial",
+            "new_buildings",
+            "supervision",
+            "permits",
+            "arbitrary_regulation",
+            "electronic_identity",
+            "energy_certificates",
+            "engineer_certificates"
+        ]
     },
     "Projects": {
         "label": "SELECTED PROJECTS",
@@ -104,10 +92,8 @@
         "categories": {
             "All": "All Projects",
             "Commercial & Retail": "Commercial & Retail",
-            "Residential Renovations": "Residential Renovations",
-            "Villa & Luxury": "Villa & Luxury",
-            "Technical Specialty Work": "Technical Specialty Work",
-            "Architectural Details": "Architectural Details"
+            "Residential Apartment": "Residential Apartment",
+            "Single-Family Home": "Single-Family Home"
         },
         "archive": "View Full Archive",
         "status": "// SYSTEM STATUS: ONLINE",

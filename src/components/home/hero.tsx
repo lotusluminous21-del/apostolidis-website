@@ -5,7 +5,7 @@ import { ArrowDown, CornerDownRight, Maximize2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import Image from "next/image"
+// Image import removed as it is replaced by video
 import { GrainOverlay } from "@/components/ui/grain-overlay"
 import {
     EASE,
@@ -26,7 +26,8 @@ import { useIsMobile } from "@/hooks/use-mobile"
 
 export function Hero() {
     const t = useTranslations('Hero')
-    const containerRef = useRef(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const videoRef = useRef<HTMLVideoElement>(null)
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
@@ -59,6 +60,8 @@ export function Hero() {
         return () => clearTimeout(timeout)
     }, [])
 
+    // Video loop is handled by the loop attribute on the video element
+
     const isMobile = useIsMobile()
 
     return (
@@ -67,7 +70,7 @@ export function Hero() {
             <GrainOverlay opacity={0.05} />
 
             {/* LEFT COLUMN: DATA STREAM & CONTENT */}
-            <div className="relative z-10 flex flex-col border-r border-grid-line bg-background/95 md:bg-background/50 md:backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-1 md:order-none h-[55svh] md:h-auto">
+            <div className="relative z-10 flex flex-col border-t md:border-t-0 border-r border-grid-line bg-background/95 md:bg-background/50 md:backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-2 md:order-none h-[55svh] md:h-auto">
 
                 {/* Vertical decorative line for alignment - Animated */}
                 <motion.div
@@ -302,7 +305,7 @@ export function Hero() {
             </div>
 
             {/* RIGHT COLUMN: VISUAL FEED */}
-            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-background border-t md:border-t-0 md:border-l border-grid-line group/image order-2 md:order-none">
+            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-background md:border-l border-grid-line group/image order-1 md:order-none">
 
                 {/* Drafting Frame - "The Plan" before the Reality */}
                 <DraftingFrame
@@ -336,13 +339,14 @@ export function Hero() {
                     style={{ y: isMobile ? 0 : y, opacity, willChange: "transform, opacity" }}
                     className="absolute inset-0"
                 >
-                    <Image
-                        src="/images/post03_img01.webp"
-                        alt="Project Feed"
-                        fill
-                        priority
-                        className="w-full h-full object-cover object-center md:object-right opacity-90 md:grayscale group-hover/image:opacity-100 group-hover/image:grayscale-0 transition-all duration-1000 ease-out"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                    <video
+                        ref={videoRef}
+                        src="/images/hero_video.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover object-center md:object-right transition-all duration-1000 ease-out"
                     />
                 </motion.div>
 

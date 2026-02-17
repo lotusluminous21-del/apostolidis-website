@@ -134,6 +134,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
                                 <motion.div key={item.href} variants={headerItemVariant}>
                                     <Link
                                         href={item.href}
+                                        scroll={false}
                                         className="relative h-[30px] flex items-center justify-center text-[11px] font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors group overflow-hidden"
                                     >
                                         <span className="relative z-10">{item.label}</span>

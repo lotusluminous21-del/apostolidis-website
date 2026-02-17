@@ -59,6 +59,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
                         <Link
                             key={item.href}
                             href={item.href}
+                            scroll={false}
                             onClick={onClose}
                             className={cn(
                                 "text-2xl font-light tracking-widest hover:text-architectural transition-colors transform translate-y-4 opacity-0 animate-slide-up",

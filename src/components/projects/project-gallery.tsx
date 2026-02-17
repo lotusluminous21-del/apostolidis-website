@@ -29,13 +29,24 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                         }`}
                 >
                     <div className="absolute inset-0 bg-neutral-100">
-                        <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                            sizes={i === 0 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-                        />
+                        {image.src.endsWith('.mp4') || image.src.endsWith('.webm') ? (
+                            <video
+                                src={image.src}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                        ) : (
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                fill
+                                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                sizes={i === 0 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+                            />
+                        )}
                     </div>
 
                     {/* Caption on hover */}

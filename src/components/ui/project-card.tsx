@@ -57,13 +57,24 @@ export function ProjectCard({
                 <div className="relative w-full md:w-48 aspect-[16/9] md:aspect-square overflow-hidden bg-neutral-100 border border-brand-black/10">
                     <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-105 filter grayscale group-hover:grayscale-0 group-data-[mobile-active=true]:scale-105 group-data-[mobile-active=true]:grayscale-0">
                         {image && (
-                            <Image
-                                src={image}
-                                alt={title}
-                                fill
-                                className="object-cover"
-                                sizes="200px"
-                            />
+                            image.endsWith('.mp4') || image.endsWith('.webm') ? (
+                                <video
+                                    src={image}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="object-cover w-full h-full"
+                                />
+                            ) : (
+                                <Image
+                                    src={image}
+                                    alt={title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="200px"
+                                />
+                            )
                         )}
                     </div>
                 </div>
@@ -133,15 +144,27 @@ export function ProjectCard({
                 </div>
 
                 {/* Image */}
+                {/* Media */}
                 <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-105 filter grayscale contrast-[1.1] group-hover:grayscale-0 group-hover:contrast-100 group-data-[mobile-active=true]:scale-105 group-data-[mobile-active=true]:grayscale-0 group-data-[mobile-active=true]:contrast-100">
                     {image && (
-                        <Image
-                            src={image}
-                            alt={title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                        />
+                        image.endsWith('.mp4') || image.endsWith('.webm') ? (
+                            <video
+                                src={image}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="object-cover w-full h-full"
+                            />
+                        ) : (
+                            <Image
+                                src={image}
+                                alt={title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+                        )
                     )}
                 </div>
 

@@ -43,7 +43,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         // We need to store lenis in a ref or context, OR re-structure.
 
         // STANDARD PATTERN:
-        // window.lenis = lenis; // Expose for debugging if needed
+        // @ts-ignore
+        window.lenis = lenis; // Expose for debugging if needed
 
         function raf(time: number) {
             lenis.raf(time)
@@ -60,22 +61,80 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     }, [])
 
     // Global Scroll Manager: Handle Route Changes
-    // This effect runs on every route change
+    // Global Scroll Manager: Handle Route Changes
     useEffect(() => {
         // 1. NATIVE/MOBILE SCROLL RESET
-        // This is crucial for mobile clients or when Lenis is disabled
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        // Only reset if no hash is present or if hash navigation didn't work (fallback)
+        if (!window.location.hash) {
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
 
-        // 2. LENIS SCROLL RESET
-        // If Lenis is active (desktop), we need to tell it to reset too via the global instance we likely exposed 
-        // or by finding a way to communicate. 
-        // Since we didn't use a Context, let's look for the window instance or similar.
+        // 2. LENIS SCROLL RESET or HASH SCROLL
         // @ts-ignore
         if (window.lenis) {
-            // @ts-ignore
-            window.lenis.scrollTo(0, { immediate: true });
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.getElementById(hash.substring(1));
+                if (target) {
+                    // slight delay to allow layout to settle
+                    setTimeout(() => {
+                        // @ts-ignore
+                        window.lenis.scrollTo(target, { immediate: true });
+                    }, 100);
+                    return;
+                }
+            }
+
+            // Only Lenis-reset if no hash
+            if (!hash) {
+                // @ts-ignore
+                window.lenis.scrollTo(0, { immediate: true });
+            }
         }
-    }, [pathname, searchParams]);
+    }, [pathname]);
+
+    // Handle Anchor Links with Lenis
+    useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const anchor = target.closest('a');
+            if (!anchor) return;
+
+            const href = anchor.getAttribute('href');
+            if (!href) return;
+
+            // Resolve the href to a full URL to check against current location
+            const url = new URL(href, window.location.href);
+
+            // Check if it's the same page
+            if (url.origin === window.location.origin && url.pathname === window.location.pathname) {
+                if (url.hash) {
+                    const hash = url.hash;
+                    const element = document.getElementById(hash.substring(1));
+                    if (element) {
+                        e.preventDefault();
+                        // @ts-ignore
+                        if (window.lenis) {
+                            // @ts-ignore
+                            window.lenis.scrollTo(element);
+                        } else {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        // Update URL hash without scroll
+                        window.history.pushState(null, '', hash);
+                    }
+                }
+            } else if (url.hash && url.pathname !== window.location.pathname) {
+                // Navigating to another page with a hash (e.g. /projects -> /#about)
+                // We rely on the useEffect([pathname]) below to handle the scroll after navigation
+            }
+        };
+
+        // Use capture phase to ensure we handle it before Next.js if needed, 
+        // though usually bubbling is fine. Let's try bubbling first but ensure robust checks.
+        document.addEventListener('click', handleClick);
+        return () => document.removeEventListener('click', handleClick);
+    }, []);
 
     return <>{children}</>
 }
