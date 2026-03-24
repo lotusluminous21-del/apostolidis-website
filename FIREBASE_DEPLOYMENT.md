@@ -37,6 +37,27 @@ firebase deploy
 - **No Build Crashes**: We avoid the "Static Export" prerendering issues.
 - **Better SEO**: Dynamic sitemaps and robots.txt can be brought back easily.
 
+## Managing Secrets
+Sensitive information (like the Resend API key) should never be stored in the repository. We use Firebase Secrets to manage these securely.
+
+### Setting a Secret
+To add or update a secret:
+```bash
+firebase functions:secrets:set SECRET_NAME
+```
+Then follow the prompts to enter the value.
+
+### Using Secrets in Functions
+Secrets are accessed via environment variables in your functions. For example, in Python:
+```python
+import os
+from firebase_functions import firestore_fn
+
+@firestore_fn.on_document_created(secrets=["MY_SECRET"])
+def my_function(event):
+    secret_value = os.environ.get("MY_SECRET")
+```
+
 ## Troubleshooting
 
 ### Cloud Functions Region

@@ -8,6 +8,7 @@ interface ConfirmDialogProps {
   message: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  loadingLabel?: string;
   variant?: 'danger' | 'warning';
   onConfirm: () => void;
   onCancel: () => void;
@@ -20,6 +21,7 @@ export function ConfirmDialog({
   message,
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
+  loadingLabel = 'Processing...',
   variant = 'danger',
   onConfirm,
   onCancel,
@@ -58,7 +60,7 @@ export function ConfirmDialog({
             {loading ? (
               <span className="flex items-center gap-2">
                 <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Deleting...
+                {loadingLabel}
               </span>
             ) : (
               confirmLabel

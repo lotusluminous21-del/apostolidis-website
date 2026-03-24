@@ -4,6 +4,7 @@ import { useAuth } from '@/components/admin/auth-provider';
 import { AdminSidebar } from '@/components/admin/admin-sidebar';
 import { BilingualField, BilingualListField } from '@/components/admin/bilingual-field';
 import { ImageUploader, MediaItem } from '@/components/admin/image-uploader';
+import { ConfirmDialog } from '@/components/admin/confirm-dialog';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { collection, doc, setDoc, getDocs, query, orderBy } from 'firebase/firestore';
@@ -73,6 +74,8 @@ export default function NewProjectPage() {
   const [saving, setSaving] = useState(false);
   const [isDrafting, setIsDrafting] = useState(false);
   const [isDraftingScope, setIsDraftingScope] = useState(false);
+  const [showDraftConfirm, setShowDraftConfirm] = useState(false);
+  const [showScopeConfirm, setShowScopeConfirm] = useState(false);
 
   const isBasicInfoPopulated = Boolean(project.title && project.title_el && project.category);
   const isDescriptionsPopulated = Boolean(project.shortDescription && project.shortDescription_el && project.fullDescription && project.fullDescription_el);
@@ -109,21 +112,37 @@ export default function NewProjectPage() {
     updateField('slug', slug);
   }
 
-  async function handleAutoDraftDescriptions() {
+  const hasExistingDescriptions = Boolean(
+    project.shortDescription || 
+    project.shortDescription_el || 
+    project.fullDescription || 
+    project.fullDescription_el
+  );
+
+  function handleAutoDraftDescriptionsClick() {
     if (!isBasicInfoPopulated) {
       alert('Please fill out the Title, Greek Title, and Category first.');
       return;
     }
+    if (hasExistingDescriptions) {
+      setShowDraftConfirm(true);
+    } else {
+      executeAutoDraftDescriptions();
+    }
+  }
+
+  async function executeAutoDraftDescriptions() {
     setIsDrafting(true);
+    setShowDraftConfirm(false);
     try {
       const result = await generateProjectDescriptions(project.title, project.category, project.location);
       if (result) {
         setProject(prev => ({
           ...prev,
-          shortDescription: prev.shortDescription || result.short_en,
-          shortDescription_el: prev.shortDescription_el || result.short_el,
-          fullDescription: prev.fullDescription || result.long_en,
-          fullDescription_el: prev.fullDescription_el || result.long_el,
+          shortDescription: result.short_en,
+          shortDescription_el: result.short_el,
+          fullDescription: result.long_en,
+          fullDescription_el: result.long_el,
         }));
       }
     } catch (e) {
@@ -134,19 +153,30 @@ export default function NewProjectPage() {
     }
   }
 
-  async function handleAutoDraftScope() {
+  const hasExistingScope = project.scopeOfWork.length > 0 || project.scopeOfWork_el.length > 0;
+
+  function handleAutoDraftScopeClick() {
     if (!isDescriptionsPopulated) {
       alert('Please fully populate the descriptions first.');
       return;
     }
+    if (hasExistingScope) {
+      setShowScopeConfirm(true);
+    } else {
+      executeAutoDraftScope();
+    }
+  }
+
+  async function executeAutoDraftScope() {
     setIsDraftingScope(true);
+    setShowScopeConfirm(false);
     try {
       const result = await generateScopeAndFeatures(project.shortDescription, project.fullDescription);
       if (result) {
         setProject(prev => ({
           ...prev,
-          scopeOfWork: prev.scopeOfWork.length ? prev.scopeOfWork : result.scope_en,
-          scopeOfWork_el: prev.scopeOfWork_el.length ? prev.scopeOfWork_el : result.scope_el,
+          scopeOfWork: result.scope_en,
+          scopeOfWork_el: result.scope_el,
         }));
       }
     } catch (e) {
@@ -313,7 +343,7 @@ export default function NewProjectPage() {
               <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider">Descriptions</h2>
               <button
                 type="button"
-                onClick={handleAutoDraftDescriptions}
+                onClick={handleAutoDraftDescriptionsClick}
                 disabled={isDrafting || !isBasicInfoPopulated}
                 className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 rounded-lg text-xs font-semibold transition-all disabled:opacity-50"
               >
@@ -347,7 +377,7 @@ export default function NewProjectPage() {
               <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider">Scope of Work & Features</h2>
               <button
                 type="button"
-                onClick={handleAutoDraftScope}
+                onClick={handleAutoDraftScopeClick}
                 disabled={isDraftingScope || !isDescriptionsPopulated}
                 className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 rounded-lg text-xs font-semibold transition-all disabled:opacity-50"
               >
@@ -395,6 +425,26 @@ export default function NewProjectPage() {
           </div>
         </div>
       </main>
+
+      <ConfirmDialog
+        open={showDraftConfirm}
+        title="Replace Descriptions?"
+        message="Running the auto-generator will replace all existing English and Greek descriptions for this project. This cannot be undone."
+        confirmLabel="Generate & Replace"
+        onConfirm={executeAutoDraftDescriptions}
+        onCancel={() => setShowDraftConfirm(false)}
+        variant="warning"
+      />
+
+      <ConfirmDialog
+        open={showScopeConfirm}
+        title="Replace Scope & Features?"
+        message="Running the auto-generator will replace all existing items in the Scope of Work section. This cannot be undone."
+        confirmLabel="Generate & Replace"
+        onConfirm={executeAutoDraftScope}
+        onCancel={() => setShowScopeConfirm(false)}
+        variant="warning"
+      />
     </div>
   );
 }
