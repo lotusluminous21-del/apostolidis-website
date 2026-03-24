@@ -140,9 +140,20 @@ export function ImageUploader({ images, onChange, storagePath }: ImageUploaderPr
             >
               {/* Media Preview */}
               {isVideo(img.src) ? (
-                <div className="w-full h-full flex items-center justify-center bg-zinc-900">
-                  <Film className="w-8 h-8 text-zinc-600" />
-                  <span className="absolute bottom-1 left-1 text-[9px] bg-black/70 px-1.5 py-0.5 rounded text-zinc-400">MP4</span>
+                <div className="w-full h-full relative bg-zinc-900">
+                  <video
+                    src={img.src}
+                    className="w-full h-full object-cover"
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onMouseOver={(e) => e.currentTarget.play()}
+                    onMouseOut={(e) => {
+                      e.currentTarget.pause();
+                      e.currentTarget.currentTime = 0;
+                    }}
+                  />
+                  <span className="absolute bottom-1 left-1 text-[9px] bg-black/70 px-1.5 py-0.5 rounded text-zinc-400 z-10">MP4</span>
                 </div>
               ) : (
                 <img

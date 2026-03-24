@@ -28,8 +28,6 @@ interface ProjectData {
   fullDescription_el: string;
   scopeOfWork: string[];
   scopeOfWork_el: string[];
-  keyFeatures: string[];
-  materials: string[];
   specs: { label: string; value: string }[];
   specs_el: { label: string; value: string }[];
   images: MediaItem[];
@@ -53,8 +51,6 @@ const defaultProject: ProjectData = {
   fullDescription_el: '',
   scopeOfWork: [],
   scopeOfWork_el: [],
-  keyFeatures: [],
-  materials: [],
   specs: [],
   specs_el: [],
   images: [],

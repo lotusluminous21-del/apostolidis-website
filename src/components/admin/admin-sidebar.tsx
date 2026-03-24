@@ -18,7 +18,7 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/projects', label: 'Projects', icon: FolderKanban },
   { href: '/admin/services', label: 'Services', icon: Wrench },
-  { href: '/admin/settings', label: 'Settings', icon: Settings },
+  { href: '/admin/settings', label: 'Site Content', icon: Settings },
 ];
 
 export function AdminSidebar() {

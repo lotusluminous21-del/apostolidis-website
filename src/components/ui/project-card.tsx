@@ -57,7 +57,7 @@ export function ProjectCard({
                 <div className="relative w-full md:w-48 aspect-[16/9] md:aspect-square overflow-hidden bg-neutral-100 border border-brand-black/10">
                     <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-105 filter grayscale group-hover:grayscale-0 group-data-[mobile-active=true]:scale-105 group-data-[mobile-active=true]:grayscale-0">
                         {image && (
-                            image.endsWith('.mp4') || image.endsWith('.webm') ? (
+                            /\.(mp4|webm|mov|avi)(\?|$)/i.test(image) ? (
                                 <video
                                     src={image}
                                     autoPlay
@@ -147,7 +147,7 @@ export function ProjectCard({
                 {/* Media */}
                 <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-105 filter grayscale contrast-[1.1] group-hover:grayscale-0 group-hover:contrast-100 group-data-[mobile-active=true]:scale-105 group-data-[mobile-active=true]:grayscale-0 group-data-[mobile-active=true]:contrast-100">
                     {image && (
-                        image.endsWith('.mp4') || image.endsWith('.webm') ? (
+                        /\.(mp4|webm|mov|avi)(\?|$)/i.test(image) ? (
                             <video
                                 src={image}
                                 autoPlay

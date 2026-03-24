@@ -27,8 +27,6 @@ interface ProjectData {
   fullDescription_el: string;
   scopeOfWork: string[];
   scopeOfWork_el: string[];
-  keyFeatures: string[];
-  materials: string[];
   specs: { label: string; value: string }[];
   specs_el: { label: string; value: string }[];
   images: MediaItem[];
@@ -63,8 +61,6 @@ export default function NewProjectPage() {
     fullDescription_el: '',
     scopeOfWork: [],
     scopeOfWork_el: [],
-    keyFeatures: [],
-    materials: [],
     specs: [],
     specs_el: [],
     images: [],

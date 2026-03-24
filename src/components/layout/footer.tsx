@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation"
 import { Instagram, Linkedin, ArrowUp } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { useTranslations } from "next-intl"
+import { cn } from "@/lib/utils"
 
 export function Footer() {
     const t = useTranslations('Footer')
@@ -82,13 +83,19 @@ export function Footer() {
                             <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-8">Connect</h3>
                             <div className="flex gap-4">
                                 {[
-                                    { icon: Instagram, label: "Instagram" },
-                                    { icon: Linkedin, label: "LinkedIn" }
+                                    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/apostolidisconstruction/" },
+                                    { icon: Linkedin, label: "LinkedIn", href: null }
                                 ].map((social, idx) => (
                                     <a
                                         key={idx}
-                                        href="#"
-                                        className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full hover:bg-white hover:text-brand-black hover:border-white transition-all duration-300 group"
+                                        href={social.href || '#'}
+                                        onClick={(e) => !social.href && e.preventDefault()}
+                                        className={cn(
+                                            "w-12 h-12 flex items-center justify-center border border-white/10 rounded-full transition-all duration-300 group",
+                                            social.href 
+                                                ? "hover:bg-white hover:text-brand-black hover:border-white" 
+                                                : "opacity-20 cursor-not-allowed pointer-events-none"
+                                        )}
                                         aria-label={social.label}
                                     >
                                         <social.icon className="w-5 h-5 opacity-60 group-hover:opacity-100" />

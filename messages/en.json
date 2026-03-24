@@ -41,8 +41,7 @@
         "approachLabel": "The Details",
         "stats": {
             "projects": "Completed\nProjects",
-            "years": "Years of\nExperience",
-            "clients": "Client\nSatisfaction"
+            "years": "Years of\nExperience"
         }
     },
     "Services": {

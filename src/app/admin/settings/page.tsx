@@ -21,7 +21,6 @@ interface SiteSettingsData {
     description3_el: string;
     statsProjects: string;
     statsYears: string;
-    statsClients: string;
   };
   contact: {
     email: string;
@@ -50,7 +49,6 @@ const defaultSettings: SiteSettingsData = {
     description3_el: '',
     statsProjects: '40+',
     statsYears: '7+',
-    statsClients: '100%',
   },
   contact: {
     email: 'apostolidisconstructions@gmail.com',
@@ -149,7 +147,7 @@ export default function AdminSettingsPage() {
       <main className="ml-64 p-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white">Site Settings</h1>
+            <h1 className="text-3xl font-bold text-white">Site Content</h1>
             <p className="text-zinc-500 mt-1 text-sm">Manage your site's content and configuration</p>
           </div>
           <button
@@ -239,10 +237,6 @@ export default function AdminSettingsPage() {
                     <div>
                       <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Years Experience</label>
                       <input type="text" value={settings.about.statsYears} onChange={(e) => updateAbout('statsYears', e.target.value)} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Client Satisfaction</label>
-                      <input type="text" value={settings.about.statsClients} onChange={(e) => updateAbout('statsClients', e.target.value)} className={inputClass} />
                     </div>
                   </div>
                 </section>

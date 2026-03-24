@@ -11,13 +11,12 @@ import { FolderKanban, Wrench, MessageSquare, ArrowUpRight } from 'lucide-react'
 interface DashboardStats {
   projects: number;
   services: number;
-  inquiries: number;
 }
 
 export default function AdminDashboard() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [stats, setStats] = useState<DashboardStats>({ projects: 0, services: 0, inquiries: 0 });
+  const [stats, setStats] = useState<DashboardStats>({ projects: 0, services: 0 });
   const [statsLoading, setStatsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,15 +28,13 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [projectsSnap, servicesSnap, inquiriesSnap] = await Promise.all([
+        const [projectsSnap, servicesSnap] = await Promise.all([
           getCountFromServer(collection(db, 'projects')),
           getCountFromServer(collection(db, 'services')),
-          getCountFromServer(collection(db, 'contact_inquiries')),
         ]);
         setStats({
           projects: projectsSnap.data().count,
           services: servicesSnap.data().count,
-          inquiries: inquiriesSnap.data().count,
         });
       } catch (err) {
         console.error('Failed to fetch stats:', err);
@@ -71,13 +68,6 @@ export default function AdminDashboard() {
       icon: Wrench,
       href: '/admin/services',
       color: 'from-blue-500 to-cyan-500',
-    },
-    {
-      label: 'Inquiries',
-      value: stats.inquiries,
-      icon: MessageSquare,
-      href: '/admin/settings',
-      color: 'from-emerald-500 to-green-500',
     },
   ];
 

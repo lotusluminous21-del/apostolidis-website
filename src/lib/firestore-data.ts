@@ -29,8 +29,6 @@ export interface Project {
   fullDescription_el?: string;
   scopeOfWork: string[];
   scopeOfWork_el?: string[];
-  keyFeatures: string[];
-  materials?: string[];
   images: ProjectImage[];
   isFeatured?: boolean;
   order?: number;
@@ -56,7 +54,6 @@ export interface SiteSettings {
     description3_el: string;
     statsProjects: string;
     statsYears: string;
-    statsClients: string;
   };
   contact: {
     email: string;

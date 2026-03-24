@@ -196,9 +196,18 @@ export default function AdminProjectsPage() {
                 <div className="w-20 h-14 rounded-lg overflow-hidden bg-zinc-800 flex-shrink-0">
                   {project.images?.[0] ? (
                     isVideo(project.images[0].src) ? (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Film className="w-5 h-5 text-zinc-600" />
-                      </div>
+                      <video
+                        src={project.images[0].src}
+                        className="w-full h-full object-cover"
+                        muted
+                        playsInline
+                        preload="metadata"
+                        onMouseOver={(e) => e.currentTarget.play()}
+                        onMouseOut={(e) => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }}
+                      />
                     ) : (
                       <img
                         src={project.images[0].src}
