@@ -72,160 +72,8 @@ export function About() {
             {/* Content Container - Responsive Drafting Layout */}
             <div ref={containerRef} className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-x-16 items-start">
 
-                {/* LEFT: PERSONNEL IMAGE - "Drafted" Container */}
-                <div className="lg:col-span-5 relative mt-8 lg:mt-0 pt-4 px-2 lg:px-0 order-2 lg:order-none">
-                    {/* The "Draft" Border Container */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : {}}
-                        transition={{ duration: 1, delay: ABOUT_TIMELINE.IMAGE_BASE, ease: EASE.smooth }}
-                        className="relative p-2 lg:p-3"
-                    >
-                        {/* 1. MAIN FRAME LINES (The "Overshoot" Box) */}
-                        {/* Top Line */}
-                        <motion.div
-                            initial={{ scaleX: 0, originX: 0 }}
-                            animate={isInView ? { scaleX: 1 } : {}}
-                            transition={{ duration: 1.2, delay: ABOUT_TIMELINE.IMAGE_BASE, ease: EASE.sharp }}
-                            className="absolute -top-[1px] -left-2 -right-2 lg:-left-8 lg:-right-8 h-[1px] bg-brand-black/30"
-                        />
-                        {/* Bottom Line */}
-                        <motion.div
-                            initial={{ scaleX: 0, originX: 1 }}
-                            animate={isInView ? { scaleX: 1 } : {}}
-                            transition={{ duration: 1.2, delay: ABOUT_TIMELINE.IMAGE_BASE + 0.1, ease: EASE.sharp }}
-                            className="absolute -bottom-[1px] -left-2 -right-2 lg:-left-8 lg:-right-8 h-[1px] bg-brand-black/30"
-                        />
-                        {/* Left Line */}
-                        <motion.div
-                            initial={{ scaleY: 0, originY: 0 }}
-                            animate={isInView ? { scaleY: 1 } : {}}
-                            transition={{ duration: 1.2, delay: ABOUT_TIMELINE.IMAGE_BASE + 0.2, ease: EASE.sharp }}
-                            className="absolute -top-2 -bottom-2 -left-[1px] lg:-top-8 lg:-bottom-8 w-[1px] bg-brand-black/30"
-                        />
-                        {/* Right Line */}
-                        <motion.div
-                            initial={{ scaleY: 0, originY: 1 }}
-                            animate={isInView ? { scaleY: 1 } : {}}
-                            transition={{ duration: 1.2, delay: ABOUT_TIMELINE.IMAGE_BASE + 0.3, ease: EASE.sharp }}
-                            className="absolute -top-2 -bottom-2 -right-[1px] lg:-top-8 lg:-bottom-8 w-[1px] bg-brand-black/30"
-                        />
-
-                        {/* 2. TECHNICAL MARKERS (Crosshairs & Corners) - Animated */}
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(markerPop, ABOUT_TIMELINE.IMAGE_BASE + 0.4)}
-                            className="absolute -top-1.5 -left-1.5 lg:-top-3 lg:-left-3 w-3 h-3 lg:w-6 lg:h-6 border-l border-t border-brand-black/40 z-30"
-                        />
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(markerPop, ABOUT_TIMELINE.IMAGE_BASE + 0.5)}
-                            className="absolute -top-1.5 -right-1.5 lg:-top-3 lg:-right-3 w-3 h-3 lg:w-6 lg:h-6 border-r border-t border-brand-black/40 z-30"
-                        />
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(markerPop, ABOUT_TIMELINE.IMAGE_BASE + 0.6)}
-                            className="absolute -bottom-1.5 -left-1.5 lg:-bottom-3 lg:-left-3 w-3 h-3 lg:w-6 lg:h-6 border-l border-b border-brand-black/40 z-30"
-                        />
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(markerPop, ABOUT_TIMELINE.IMAGE_BASE + 0.7)}
-                            className="absolute -bottom-1.5 -right-1.5 lg:-bottom-3 lg:-right-3 w-3 h-3 lg:w-6 lg:h-6 border-r border-b border-brand-black/40 z-30"
-                        />
-
-                        {/* Crosshairs at intersections */}
-                        <div className="absolute -top-[5px] -left-[5px] text-[8px] lg:text-[10px] text-brand-black/20 leading-none hidden lg:block">+</div>
-                        <div className="absolute -top-[5px] -right-[5px] text-[8px] lg:text-[10px] text-brand-black/20 leading-none hidden lg:block">+</div>
-                        <div className="absolute -bottom-[5px] -left-[5px] text-[8px] lg:text-[10px] text-brand-black/20 leading-none hidden lg:block">+</div>
-                        <div className="absolute -bottom-[5px] -right-[5px] text-[8px] lg:text-[10px] text-brand-black/20 leading-none hidden lg:block">+</div>
-
-
-                        {/* 3. MEASUREMENT SCALES */}
-                        {/* Vertical Scale (Left) */}
-                        <div className="absolute -left-4 lg:-left-6 top-10 bottom-10 w-2 hidden lg:flex flex-col justify-between items-end opacity-30">
-                            {Array.from({ length: 11 }).map((_, i) => (
-                                <div key={i} className={`h-[1px] bg-brand-black ${i % 5 === 0 ? 'w-full' : 'w-1/2'}`} />
-                            ))}
-                        </div>
-
-                        {/* Image Frame */}
-                        <div className="relative aspect-[3/4] w-full bg-background overflow-hidden border border-brand-black/10">
-                            {/* Inner Technical Markers */}
-                            <div className="absolute top-4 left-4 w-2 h-2 border-t border-l border-brand-black/30 z-20" />
-                            <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-brand-black/30 z-20" />
-                            <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-brand-black/30 z-20" />
-                            <div className="absolute bottom-4 right-4 w-2 h-2 border-b border-r border-brand-black/30 z-20" />
-
-                            {/* Center Crosshair */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 z-20 opacity-30">
-                                <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-black" />
-                                <div className="absolute left-1/2 top-0 h-full w-[1px] bg-brand-black" />
-                            </div>
-
-                            {/* Scanner Line */}
-                            <motion.div
-                                initial={{ top: "0%", opacity: 0 }}
-                                animate={isInView ? { opacity: 1 } : {}}
-                                transition={{ delay: ABOUT_TIMELINE.IMAGE_REVEAL + 0.5 }}
-                                className="absolute inset-x-0 h-full overflow-hidden pointer-events-none z-20"
-                            >
-                                <motion.div
-                                    animate={{ top: ["0%", "100%", "0%"] }}
-                                    transition={{ duration: 8, ease: "linear", repeat: Infinity, repeatDelay: 2 }}
-                                    className="absolute left-0 right-0 h-[1px] bg-architectural/60 shadow-[0_0_8px_rgba(var(--architectural-rgb),0.5)]"
-                                />
-                            </motion.div>
-
-                            {isInView && (
-                                <ImageReveal direction="left" duration={1.2} className="w-full h-full">
-                                    <motion.div
-                                        initial={{ filter: "grayscale(100%) contrast(1.25)" }}
-                                        animate={{
-                                            filter: isMobile ? "grayscale(0%) contrast(1)" : "grayscale(100%) contrast(1.25)",
-                                            transition: {
-                                                duration: 0.5,
-                                                ease: EASE.smooth,
-                                                delay: hasRevealed ? 0 : ABOUT_TIMELINE.IMAGE_REVEAL + 0.8
-                                            }
-                                        }}
-                                        whileHover={!isMobile ? {
-                                            filter: "grayscale(0%) contrast(1)",
-                                            transition: { duration: 0.4, ease: EASE.smooth }
-                                        } : {}}
-                                        className="w-full h-full"
-                                    >
-                                        <Image
-                                            src="/images/profile_2.webp"
-                                            alt={`${t('heading')} - ${t('specValue')}`}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 100vw, 40vw"
-                                        />
-                                    </motion.div>
-                                </ImageReveal>
-                            )}
-                        </div>
-
-                        {/* Footer Data */}
-                        <div className="flex justify-between items-center pt-3 mt-1 border-t border-brand-black/30 relative">
-                            {/* Diagonal Hatch Marking (Bottom Right) */}
-                            <div className="absolute -bottom-4 -right-4 lg:-bottom-8 lg:-right-8 w-8 h-8 lg:w-16 lg:h-16 opacity-10"
-                                style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent)', backgroundSize: '4px 4px' }}
-                            />
-
-                            <span className="font-mono text-[9px] text-brand-black font-semibold uppercase tracking-widest">{t('figLabel')}</span>
-                            <span className="font-mono text-[9px] text-brand-black/60 uppercase tracking-widest">{t('scale')}</span>
-                        </div>
-                    </motion.div>
-                </div>
-
-                {/* RIGHT: CONTENT - THE HARD GRID (Technical Data Sheet) */}
-                {/* Note: `mt-0` ensures top alignment with image container */}
-                <div className="lg:col-span-7 flex flex-col h-full pl-0 lg:pl-0 relative min-h-auto lg:min-h-[600px] mt-0 lg:mt-0 order-1 lg:order-none">
+                {/* CONTENT - THE HARD GRID (Technical Data Sheet) */}
+                <div className="w-full lg:col-span-12 flex flex-col h-full pl-0 lg:pl-0 relative min-h-auto lg:min-h-[600px] mt-0 lg:mt-0">
 
                     {/* MAIN VERTICAL SPINE - Animated */}
                     <motion.div
@@ -329,7 +177,7 @@ export function About() {
                     </div>
 
                     {/* SECTION 3: PERFORMANCE METRICS (Stats) - REMOVED BACKGROUND */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 border-b border-brand-black/10 relative">
+                    <div className="grid grid-cols-2 md:grid-cols-2 border-b border-brand-black/10 relative">
                         {/* Decorative Corner for Stats Area */}
                         <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-brand-black/20" />
                         {/* Small Index Number */}
@@ -337,7 +185,7 @@ export function About() {
 
                         <TechnicalStat
                             code="EXP"
-                            value="15+"
+                            value="10+"
                             label={t('stats.years')}
                             delay={ABOUT_TIMELINE.STATS_POP}
                         />
@@ -347,14 +195,25 @@ export function About() {
                             label={t('stats.projects')}
                             delay={ABOUT_TIMELINE.STATS_POP + 0.1}
                         />
-                        {/* Last item needs careful border handling if we want strict grid */}
-                        <TechnicalStat
-                            code="SAT"
-                            value="100%"
-                            label={t('stats.clients')}
-                            delay={ABOUT_TIMELINE.STATS_POP + 0.2}
-                        />
                     </div>
+
+                    {/* SECTION 4: INITIATION OUTLOOK (The "Pitch") */}
+                    <motion.div variants={fadeUp} className="group relative pt-8 pb-4 border-b border-brand-black/0">
+                        {/* Connecting Line (Top) */}
+                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-brand-black/10 origin-left transition-transform duration-700 ease-out" style={{ transform: isInView ? 'scaleX(1)' : 'scaleX(0)' }} />
+
+                        <div className="flex flex-col items-center justify-center text-center gap-6 mt-4">
+                            <div className="max-w-xl">
+                                <h4 className="flex items-center justify-center gap-2 text-[9px] font-mono tracking-widest text-brand-black/40 uppercase mb-4">
+                                    <span className="w-1.5 h-1.5 bg-architectural/20 rounded-sm inline-block" />
+                                    {t('approachLabel', { defaultMessage: 'The Details' })}
+                                </h4>
+                                <p className="text-brand-black/60 text-sm font-light leading-relaxed">
+                                    {t('description3')}
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
 
                     {/* EMPTY SPACE DECORATION (Replaces Footer) */}
                     <div className="lg:pl-8 pt-8 pb-4 relative h-24 flex items-end justify-between opacity-50">

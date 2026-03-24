@@ -1,6 +1,6 @@
 "use client"
 
-import { Project } from "@/data/projects"
+import { Project } from "@/lib/firestore-data"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 

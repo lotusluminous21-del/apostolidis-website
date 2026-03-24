@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { getProjectBySlug, projects } from "@/data/projects"
+import { getProjectBySlug, getProjects, type Project } from "@/lib/firestore-data"
 import { ProjectDetailHeader } from "@/components/projects/project-detail-header"
 import { ProjectGallery } from "@/components/projects/project-gallery"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,7 @@ import { ScrollToTop } from "@/components/layout/scroll-to-top"
 
 // Generate static params for all projects
 export async function generateStaticParams() {
+    const projects = await getProjects()
     return projects.map((project) => ({
         slug: project.slug,
     }))
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string, locale: string }> }) {
     const { slug, locale } = await params
-    const project = getProjectBySlug(slug)
+    const project = await getProjectBySlug(slug)
 
     if (!project) {
         notFound()

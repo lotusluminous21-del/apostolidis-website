@@ -1,5 +1,56 @@
 [
   {
+    "id": "nea-filothei",
+    "slug": "nea-filothei",
+    "code": "AP-016",
+    "title": "Nea Filothei",
+    "title_el": "Νέα Φιλοθέη",
+    "category": "Residential Apartment",
+    "category_el": "Ανακαίνιση Διαμερίσματος",
+    "location": "Nea Filothei, Athens",
+    "status": "Completed",
+    "specs": [],
+    "specs_el": [],
+    "shortDescription": "Complete residential renovation in Nea Filothei.",
+    "shortDescription_el": "Πλήρης ανακαίνιση κατοικίας στη Νέα Φιλοθέη.",
+    "fullDescription": "A modern renovation combining comfort and aesthetic details.",
+    "fullDescription_el": "Μια σύγχρονη ανακαίνιση που συνδυάζει την άνεση με ιδιαίτερες αισθητικές λεπτομέρειες, αναβαθμίζοντας τον χώρο συνολικά.",
+    "scopeOfWork": ["Complete renovation", "Interior design"],
+    "scopeOfWork_el": ["Πλήρης ανακαίνιση", "Interior design"],
+    "keyFeatures": [],
+    "images": [
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_01.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_02.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_03.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_04.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_05.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_06.webp",
+        "alt": "Nea Filothei project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Νέα_Φιλοθέη/νέα_φιλοθέη_07.webp",
+        "alt": "Nea Filothei project image"
+      }
+    ],
+    "isFeatured": true
+  },
+  {
     "id": "filmiki-old-hq",
     "slug": "filmiki-old-hq",
     "code": "AP-001",
@@ -14,7 +65,7 @@
     "shortDescription": "Renovation of Filmiki's original headquarters into a functional and refined office environment.",
     "shortDescription_el": "Ανακαίνιση των αρχικών γραφείων της Filmiki σε ένα λειτουργικό και εκλεπτυσμένο εργασιακό περιβάλλον.",
     "fullDescription": "This project involved the renovation of Filmiki's original headquarters, transforming an existing commercial space into a functional and aesthetically refined office environment. The challenge was to create a workspace that reflected the company's creative identity while optimizing the layout for day-to-day operations. Our team delivered a comprehensive interior renovation that balanced practical workspace requirements with contemporary design elements, ensuring the space would serve as an inspiring hub for the Filmiki team.",
-    "fullDescription_el": "Αυτό το έργο αφορούσε την ανακαίνιση των αρχικών γραφείων της Filmiki, μετατρέποντας έναν υφιστάμενο εμπορικό χώρο σε ένα λειτουργικό και αισθητικά εκλεπτυσμένο εργασιακό περιβάλλον. Η πρόκληση ήταν να δημιουργηθεί ένας χώρος εργασίας που να αντικατοπτρίζει τη δημιουργική ταυτότητα της εταιρείας, βελτιστοποιώντας παράλληλα τη διαρρύθμιση για τις καθημερινές λειτουργίες. Η ομάδα μας παρέδωσε μια ολοκληρωμένη εσωτερική ανακαίνιση που ισορρόπησε τις πρακτικές απαιτήσεις του χώρου εργασίας με σύγχρονα σχεδιαστικά στοιχεία, διασφαλίζοντας ότι ο χώρος θα λειτουργεί ως ένας εμπνευσμένος κόμβος για την ομάδα της Filmiki.",
+    "fullDescription_el": "Αυτό το έργο αφορούσε την ανακαίνιση των αρχικών γραφείων της Filmiki, μετατρέποντας έναν υφιστάμενο εμπορικό χώρο σε ένα λειτουργικό και αισθητικά εκλεπτυσμένο εργασιακό περιβάλλον. Η πρόκληση ήταν να δημιουργηθεί ένας χώρος εργασίας που να αντικατοπτρίζει τη δημιουργική ταυτότητα της εταιρείας, βελτιστοποιώντας παράλληλα τη διαρρύθμιση για τις καθημερινές λειτουργίες. Η ομάδα μας ολοκλήρωσε μια πλήρη εσωτερική ανακαίνιση που ισορρόπησε τις πρακτικές απαιτήσεις του χώρου εργασίας με σύγχρονα σχεδιαστικά στοιχεία, διασφαλίζοντας ότι ο χώρος θα λειτουργεί ως ένας εμπνευσμένος κόμβος για την ομάδα της Filmiki.",
     "scopeOfWork": [
       "Complete interior demolition and spatial reconfiguration",
       "New partition walls and space planning",
@@ -164,7 +215,7 @@
     "shortDescription": "Transforming a raw commercial space into a sophisticated professional environment.",
     "shortDescription_el": "Μετατροπή ενός ακατέργαστου εμπορικού χώρου σε ένα εκλεπτυσμένο επαγγελματικό περιβάλλον.",
     "fullDescription": "The ΥΛΗ office project required transforming a raw commercial space into a sophisticated professional environment. The design brief called for a workspace that would embody the company's values while providing a comfortable and productive setting for their team. Our approach focused on maximizing natural light, creating flexible work zones, and incorporating high-quality materials throughout. The result is a modern office space that seamlessly blends form and function.",
-    "fullDescription_el": "Το έργο γραφείων ΥΛΗ απαιτούσε τη μετατροπή ενός ακατέργαστου εμπορικού χώρου σε ένα εκλεπτυσμένο επαγγελματικό περιβάλλον. Το brief σχεδιασμού ζητούσε έναν χώρο εργασίας που θα ενσάρκωνε τις αξίες της εταιρείας παρέχοντας παράλληλα ένα άνετο και παραγωγικό περιβάλλον για την ομάδα τους. Η προσέγγισή μας επικεντρώθηκε στη μεγιστοποίηση του φυσικού φωτός, τη δημιουργία ευέλικτων ζωνών εργασίας και την ενσωμάτωση υλικών υψηλής ποιότητας παντού. Το αποτέλεσμα είναι ένας σύγχρονος χώρος γραφείων που συνδυάζει άψογα τη μορφή και τη λειτουργία.",
+    "fullDescription_el": "Το έργο γραφείων ΥΛΗ αφορούσε τη μετατροπή ενός ακατέργαστου εμπορικού χώρου σε ένα εκλεπτυσμένο επαγγελματικό περιβάλλον. Το brief σχεδιασμού ζητούσε έναν χώρο εργασίας που θα ενσάρκωνε τις αξίες της εταιρείας παρέχοντας παράλληλα ένα άνετο και παραγωγικό περιβάλλον για την ομάδα τους. Η προσέγγισή μας επικεντρώθηκε στη μεγιστοποίηση του φυσικού φωτός, τη δημιουργία ευέλικτων ζωνών εργασίας και την ενσωμάτωση υλικών υψηλής ποιότητας παντού. Το αποτέλεσμα είναι ένας σύγχρονος χώρος γραφείων που συνδυάζει άψογα τη μορφή και τη λειτουργία.",
     "scopeOfWork": [
       "Interior space planning and partition construction",
       "Complete electrical installation with modern panel",
@@ -243,7 +294,7 @@
     "shortDescription": "A retail space designed to stand out and showcase a unique product line.",
     "shortDescription_el": "Ένας χώρος λιανικής σχεδιασμένος να ξεχωρίζει και να αναδεικνύει μια μοναδική σειρά προϊόντων.",
     "fullDescription": "Ode To Socks required a retail space that would stand out in the competitive Athens retail landscape while showcasing their unique product line. The challenge was to create an inviting shopping environment that would draw customers in and provide an memorable brand experience. Our team delivered a complete retail fit-out that maximizes display potential, incorporates clever storage solutions, and creates an atmosphere that perfectly complements the brand's playful identity.",
-    "fullDescription_el": "Το Ode To Socks χρειαζόταν έναν χώρο λιανικής που θα ξεχώριζε στο ανταγωνιστικό τοπίο λιανικής της Αθήνας, αναδεικνύοντας παράλληλα τη μοναδική σειρά προϊόντων τους. Η πρόκληση ήταν να δημιουργηθεί ένα φιλόξενο περιβάλλον αγορών που θα προσέλκυε πελάτες και θα παρείχε μια αξέχαστη εμπειρία brand. Η ομάδα μας παρέδωσε μια ολοκληρωμένη διαμόρφωση του χώρου που μεγιστοποιεί τις δυνατότητες προβολής, ενσωματώνει έξυπνες λύσεις αποθήκευσης και δημιουργεί μια ατμόσφαιρα που συμπληρώνει τέλεια την παιχνιδιάρικη ταυτότητα του brand.",
+    "fullDescription_el": "Το Ode To Socks χρειαζόταν έναν χώρο λιανικής που θα ξεχώριζε στο ανταγωνιστικό τοπίο λιανικής της Αθήνας, αναδεικνύοντας παράλληλα τη μοναδική σειρά προϊόντων τους. Η πρόκληση ήταν να δημιουργηθεί ένα φιλόξενο περιβάλλον αγορών που θα προσέλκυε πελάτες και θα παρείχε μια αξέχαστη εμπειρία brand. Η ομάδα μας δημιούργησε μια ολοκληρωμένη διαμόρφωση του χώρου που μεγιστοποιεί τις δυνατότητες προβολής, ενσωματώνει έξυπνες λύσεις αποθήκευσης και δημιουργεί μια ατμόσφαιρα που συμπληρώνει τέλεια την παιχνιδιάρικη ταυτότητα του brand.",
     "scopeOfWork": [
       "Complete retail space renovation",
       "Custom display fixture installation",
@@ -348,7 +399,7 @@
     "shortDescription": "A commercial space embodying the concept of 'love of beauty' with refined aesthetics.",
     "shortDescription_el": "Ένας εμπορικός χώρος που ενσαρκώνει την έννοια της \"φιλοκαλίας\" με εκλεπτυσμένη αισθητική.",
     "fullDescription": "The Philocaly Project presented an exciting opportunity to create a commercial space that embodies the concept of \"love of beauty\" inherent in its name. This project demanded meticulous attention to detail and a refined aesthetic approach, transforming the space into an environment that would inspire both staff and visitors. Our team executed a comprehensive renovation that harmonizes elegant design elements with practical commercial requirements, resulting in a space that truly reflects the Philocaly brand philosophy.",
-    "fullDescription_el": "Το Philocaly Project παρουσίασε μια συναρπαστική ευκαιρία να δημιουργηθεί ένας εμπορικός χώρος που ενσαρκώνει την έννοια της \"φιλοκαλίας\" (αγάπη για το ωραίο) που ενυπάρχει στο όνομά του. Αυτό το έργο απαιτούσε σχολαστική προσοχή στη λεπτομέρεια και μια εκλεπτυσμένη αισθητική προσέγγιση, μεταμορφώνοντας τον χώρο σε ένα περιβάλλον που θα εμπνέει τόσο το προσωπικό όσο και τους επισκέπτες. Η ομάδα μας εκτέλεσε μια ολοκληρωμένη ανακαίνιση που εναρμονίζει κομψά σχεδιαστικά στοιχεία με πρακτικές εμπορικές απαιτήσεις, με αποτέλεσμα έναν χώρο που αντικατοπτρίζει αληθινά τη φιλοσοφία του Philocaly.",
+    "fullDescription_el": "Το Philocaly Project παρουσίασε μια συναρπαστική ευκαιρία να δημιουργηθεί ένας εμπορικός χώρος που ενσαρκώνει την έννοια της \"φιλοκαλίας\" (αγάπη για το ωραίο) που ενυπάρχει στο όνομά του. Αυτό το έργο χρειάστηκε σχολαστική προσοχή στη λεπτομέρεια και μια εκλεπτυσμένη αισθητική προσέγγιση, μεταμορφώνοντας τον χώρο σε ένα περιβάλλον που θα εμπνέει τόσο το προσωπικό όσο και τους επισκέπτες. Η ομάδα μας εκτέλεσε μια ολοκληρωμένη ανακαίνιση που εναρμονίζει κομψά σχεδιαστικά στοιχεία με πρακτικές εμπορικές απαιτήσεις, με αποτέλεσμα έναν χώρο που αντικατοπτρίζει αληθινά τη φιλοσοφία του Philocaly.",
     "scopeOfWork": [
       "Complete interior demolition and preparation",
       "Architectural modifications and space optimization",
@@ -441,7 +492,7 @@
     "shortDescription": "Full apartment renovation transforming a dated unit into a modern home.",
     "shortDescription_el": "Πλήρης ανακαίνιση διαμερίσματος που μεταμορφώνει μια παλαιωμένη μονάδα σε ένα σύγχρονο σπίτι.",
     "fullDescription": "This full apartment renovation in Kaisariani transformed a dated residential unit into a modern, comfortable home. The project required a complete overhaul of all systems and finishes, addressing both aesthetic and functional deficiencies accumulated over decades. Working within the constraints of an existing building, our team successfully delivered a comprehensive renovation that includes new electrical and plumbing systems, contemporary finishes, and an optimized layout that maximizes the available space.",
-    "fullDescription_el": "Αυτή η πλήρης ανακαίνιση διαμερίσματος στην Καισαριανή μεταμόρφωσε μια παλαιωμένη οικιστική μονάδα σε ένα σύγχρονο, άνετο σπίτι. Το έργο απαιτούσε πλήρη αναθεώρηση όλων των συστημάτων και των φινιρισμάτων, αντιμετωπίζοντας τόσο τις αισθητικές όσο και τις λειτουργικές ελλείψεις που είχαν συσσωρευτεί με τις δεκαετίες. Δουλεύοντας εντός των περιορισμών ενός υφιστάμενου κτιρίου, η ομάδα μας παρέδωσε με επιτυχία μια ολοκληρωμένη ανακαίνιση που περιλαμβάνει νέα ηλεκτρολογικά και υδραυλικά συστήματα, σύγχρονα φινιρίσματα και μια βελτιστοποιημένη διαρρύθμιση που μεγιστοποιεί τον διαθέσιμο χώρο.",
+    "fullDescription_el": "Αυτή η πλήρης ανακαίνιση διαμερίσματος στην Καισαριανή μεταμόρφωσε μια παλαιωμένη οικιστική μονάδα σε ένα σύγχρονο, άνετο σπίτι. Το έργο προϋπέθετε πλήρη αναθεώρηση όλων των συστημάτων και των φινιρισμάτων, αντιμετωπίζοντας τόσο τις αισθητικές όσο και τις λειτουργικές ελλείψεις που είχαν συσσωρευτεί με τις δεκαετίες. Δουλεύοντας εντός των περιορισμών ενός υφιστάμενου κτιρίου, η ομάδα μας ολοκλήρωσε με επιτυχία μια ολοκληρωμένη ανακαίνιση που περιλαμβάνει νέα ηλεκτρολογικά και υδραυλικά συστήματα, σύγχρονα φινιρίσματα και μια βελτιστοποιημένη διαρρύθμιση που μεγιστοποιεί τον διαθέσιμο χώρο.",
     "scopeOfWork": [
       "Complete demolition of existing finishes",
       "New electrical installation with modern panel",
@@ -514,7 +565,7 @@
     "shortDescription": "Upscale apartment renovation in the prestigious Kolonaki neighborhood.",
     "shortDescription_el": "Ανακαίνιση διαμερίσματος υψηλών προδιαγραφών στην αριστοκρατική γειτονιά του Κολωνακίου.",
     "fullDescription": "Located in the prestigious Kolonaki neighborhood, this apartment renovation demanded a design approach befitting its upscale address. The project involved a complete transformation of the living space, balancing the expectations of sophisticated urban living with practical functionality. Our team delivered a renovation that incorporates premium materials and finishes appropriate for this distinguished Athens location, while ensuring all modern conveniences are seamlessly integrated.",
-    "fullDescription_el": "Τοποθετημένο στην αριστοκρατική γειτονιά του Κολωνακίου, αυτή η ανακαίνιση διαμερίσματος απαιτούσε μια σχεδιαστική προσέγγιση αντάξια της πολυτελούς διεύθυνσής του. Το έργο αφορούσε μια πλήρη μεταμόρφωση του χώρου διαβίωσης, εξισορροπώντας τις προσδοκίες της εκλεπτυσμένης αστικής διαβίωσης με την πρακτική λειτουργικότητα. Η ομάδα μας παρέδωσε μια ανακαίνιση που ενσωματώνει υλικά και φινιρίσματα υψηλής ποιότητας κατάλληλα για αυτή τη διακεκριμένη τοποθεσία της Αθήνας, διασφαλίζοντας παράλληλα ότι όλες οι σύγχρονες ανέσεις ενσωματώνονται άψογα.",
+    "fullDescription_el": "Τοποθετημένο στην αριστοκρατική γειτονιά του Κολωνακίου, αυτή η ανακαίνιση διαμερίσματος είχε ως γνώμονα μια σχεδιαστική προσέγγιση αντάξια της πολυτελούς διεύθυνσής του. Το έργο αφορούσε μια πλήρη μεταμόρφωση του χώρου διαβίωσης, εξισορροπώντας τις προσδοκίες της εκλεπτυσμένης αστικής διαβίωσης με την πρακτική λειτουργικότητα. Η ομάδα μας πέτυχε μια ανακαίνιση που ενσωματώνει υλικά και φινιρίσματα υψηλής ποιότητας κατάλληλα για αυτή τη διακεκριμένη τοποθεσία της Αθήνας, διασφαλίζοντας παράλληλα ότι όλες οι σύγχρονες ανέσεις ενσωματώνονται άψογα.",
     "scopeOfWork": [
       "Full interior demolition and debris removal",
       "Complete electrical system upgrade",
@@ -549,10 +600,7 @@
         "src": "/apostolidis_highlights/Κολωνάκι _2_/Κολωνάκι _2__05.mp4",
         "alt": "Kolonaki 2 project image"
       },
-      {
-        "src": "/apostolidis_highlights/Κολωνάκι _2_/Κολωνάκι _2__01.webp",
-        "alt": "Kolonaki 2 project image"
-      },
+
       {
         "src": "/apostolidis_highlights/Κολωνάκι _2_/Κολωνάκι _2__02.mp4",
         "alt": "Kolonaki 2 project image"
@@ -653,6 +701,14 @@
       {
         "src": "/apostolidis_highlights/Κολωνάκι/Κολωνάκι_08.webp",
         "alt": "Kolonaki project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Κολωνάκι _2_/Κολωνάκι _2__01.webp",
+        "alt": "Kolonaki project image"
+      },
+      {
+        "src": "/apostolidis_highlights/Κολωνάκι _2_/Κολωνάκι _2__02.mp4",
+        "alt": "Kolonaki project image"
       }
     ],
     "isFeatured": true
@@ -672,7 +728,7 @@
     "shortDescription": "Comprehensive renovation transforming a residential unit into a modern family home.",
     "shortDescription_el": "Ολοκληρωμένη ανακαίνιση που μεταμορφώνει μια οικιστική μονάδα σε ένα σύγχρονο οικογενειακό σπίτι.",
     "fullDescription": "This comprehensive apartment renovation in Chalandri required transforming a complete residential unit into a modern family home. The project scope extended to every corner of the apartment, demanding careful planning and coordination across all construction trades. Our team delivered a full renovation that addresses contemporary living requirements, featuring updated systems, modern finishes, and a refreshed layout that enhances both daily functionality and aesthetic appeal.",
-    "fullDescription_el": "Αυτή η ολοκληρωμένη ανακαίνιση διαμερίσματος στο Χαλάνδρι απαιτούσε τη μετατροπή μιας πλήρους οικιστικής μονάδας σε ένα σύγχρονο οικογενειακό σπίτι. Το εύρος του έργου επεκτάθηκε σε κάθε γωνιά του διαμερίσματος, απαιτώντας προσεκτικό σχεδιασμό και συντονισμό μεταξύ όλων των τεχνικών επαγγελμάτων. Η ομάδα μας παρέδωσε μια πλήρη ανακαίνιση που ανταποκρίνεται στις σύγχρονες απαιτήσεις διαβίωσης, διαθέτοντας ενημερωμένα συστήματα, μοντέρνα φινιρίσματα και μια ανανεωμένη διαρρύθμιση που ενισχύει τόσο την καθημερινή λειτουργικότητα όσο και την αισθητική.",
+    "fullDescription_el": "Αυτή η ολοκληρωμένη ανακαίνιση διαμερίσματος στο Χαλάνδρι είχε σκοπό τη μετατροπή μιας πλήρους οικιστικής μονάδας σε ένα σύγχρονο οικογενειακό σπίτι. Το εύρος του έργου επεκτάθηκε σε κάθε γωνιά του διαμερίσματος, προϋποθέτοντας προσεκτικό σχεδιασμό και συντονισμό μεταξύ όλων των τεχνικών επαγγελμάτων. Η ομάδα μας υλοποίησε μια πλήρη ανακαίνιση που ανταποκρίνεται στις σύγχρονες απαιτήσεις διαβίωσης, διαθέτοντας ενημερωμένα συστήματα, μοντέρνα φινιρίσματα και μια ανανεωμένη διαρρύθμιση που ενισχύει τόσο την καθημερινή λειτουργικότητα όσο και την αισθητική.",
     "scopeOfWork": [
       "Complete demolition of all existing finishes",
       "Full electrical rewiring with new distribution panel",
@@ -945,7 +1001,7 @@
     "shortDescription": "Efficient quality renovation of a residential unit in Pefki.",
     "shortDescription_el": "Αποδοτική και ποιοτική ανακαίνιση μιας οικιστικής μονάδας στην Πεύκη.",
     "fullDescription": "The Pefki apartment renovation showcases our ability to deliver quality results efficiently. This project involved the complete renovation of a residential unit in the northern Athens suburb, requiring coordination of multiple trades within a defined timeline. Our team executed a comprehensive transformation that updated all aspects of the living space, from infrastructure to finishes, creating a comfortable modern home.",
-    "fullDescription_el": "Η ανακαίνιση του διαμερίσματος στην Πεύκη αναδεικνύει την ικανότητά μας να παραδίδουμε ποιοτικά αποτελέσματα αποδοτικά. Αυτό το έργο αφορούσε την πλήρη ανακαίνιση μιας οικιστικής μονάδας στο βόρειο προάστιο της Αθήνας, απαιτώντας τον συντονισμό πολλαπλών συνεργείων εντός ενός καθορισμένου χρονοδιαγράμματος. Η ομάδα μας εκτέλεσε μια ολοκληρωμένη μεταμόρφωση που αναβάθμισε όλες τις πτυχές του χώρου διαβίωσης, από τις υποδομές έως τα φινιρίσματα, δημιουργώντας ένα άνετο σύγχρονο σπίτι.",
+    "fullDescription_el": "Η ανακαίνιση του διαμερίσματος στην Πεύκη αναδεικνύει την ικανότητά μας να παραδίδουμε ποιοτικά αποτελέσματα αποδοτικά. Αυτό το έργο αφορούσε την πλήρη ανακαίνιση μιας οικιστικής μονάδας στο βόρειο προάστιο της Αθήνας, με τον συντονισμό πολλαπλών συνεργείων εντός ενός καθορισμένου χρονοδιαγράμματος. Η ομάδα μας εκτέλεσε μια ολοκληρωμένη μεταμόρφωση που αναβάθμισε όλες τις πτυχές του χώρου διαβίωσης, από τις υποδομές έως τα φινιρίσματα, δημιουργώντας ένα άνετο σύγχρονο σπίτι.",
     "scopeOfWork": [
       "Demolition and site preparation",
       "Electrical system modernization",
@@ -1006,7 +1062,7 @@
     "shortDescription": "Complete modernization of an apartment near the heart of Athens.",
     "shortDescription_el": "Πλήρης εκσυγχρονισμός ενός διαμερίσματος κοντά στην καρδιά της Αθήνας.",
     "fullDescription": "Located in the Ilisia district near the heart of Athens, this apartment renovation required sensitivity to the urban context while delivering a complete modernization of the living space. The project scope encompassed all aspects of residential renovation, from infrastructure upgrades to final aesthetic touches. Our team delivered a transformation that respects the apartment's central Athens location while providing all the comforts and conveniences of contemporary living.",
-    "fullDescription_el": "Τοποθετημένο στην περιοχή των Ιλισίων κοντά στην καρδιά της Αθήνας, αυτή η ανακαίνιση διαμερίσματος απαιτούσε ευαισθησία στο αστικό πλαίσιο, ενώ ταυτόχρονα προσέφερε έναν πλήρη εκσυγχρονισμό του χώρου διαβίωσης. Το εύρος του έργου περιλάμβανε όλες τις πτυχές της οικιστικής ανακαίνισης, από την αναβάθμιση των υποδομών έως τις τελικές αισθητικές πινελιές. Η ομάδα μας παρέδωσε μια μεταμόρφωση που σέβεται την κεντρική τοποθεσία του διαμερίσματος στην Αθήνα, παρέχοντας παράλληλα όλες τις ανέσεις και τις ευκολίες της σύγχρονης διαβίωσης.",
+    "fullDescription_el": "Τοποθετημένο στην περιοχή των Ιλισίων κοντά στην καρδιά της Αθήνας, αυτή η ανακαίνιση διαμερίσματος είχε ως προαπαιτούμενο την ευαισθησία στο αστικό πλαίσιο, ενώ ταυτόχρονα προσέφερε έναν πλήρη εκσυγχρονισμό του χώρου διαβίωσης. Το εύρος του έργου περιλάμβανε όλες τις πτυχές της οικιστικής ανακαίνισης, από την αναβάθμιση των υποδομών έως τις τελικές αισθητικές πινελιές. Η ομάδα μας ολοκλήρωσε μια μεταμόρφωση που σέβεται την κεντρική τοποθεσία του διαμερίσματος στην Αθήνα, παρέχοντας παράλληλα όλες τις ανέσεις και τις ευκολίες της σύγχρονης διαβίωσης.",
     "scopeOfWork": [
       "Complete interior demolition",
       "Full electrical rewiring",
@@ -1091,7 +1147,7 @@
     "shortDescription": "Comprehensive renovation of a single-family home in an exclusive residential area.",
     "shortDescription_el": "Ολοκληρωμένη ανακαίνιση μονοκατοικίας σε μια αποκλειστική οικιστική περιοχή.",
     "fullDescription": "The Ekali project represents our capabilities in single-family home renovation within one of Athens' most exclusive residential areas. This prestigious location demanded an approach that would honor the high standards expected in Ekali while delivering a comprehensive renovation of the residence. The project scope extended across the entire property, requiring expertise in both interior and exterior works. Our team rose to the challenge, delivering a renovation that enhances both the functionality and aesthetic appeal of this distinguished home.",
-    "fullDescription_el": "Το έργο στην Εκάλη αντιπροσωπεύει τις δυνατότητές μας στην ανακαίνιση μονοκατοικιών σε μία από τις πιο αποκλειστικές οικιστικές περιοχές της Αθήνας. Αυτή η αριστοκρατική τοποθεσία απαιτούσε μια προσέγγιση που θα τιμούσε τα υψηλά πρότυπα που αναμένονται στην Εκάλη, παρέχοντας παράλληλα μια ολοκληρωμένη ανακαίνιση της κατοικίας. Το εύρος του έργου επεκτάθηκε σε ολόκληρο το ακίνητο, απαιτώντας τεχνογνωσία τόσο σε εσωτερικές όσο και σε εξωτερικές εργασίες. Η ομάδα μας ανταποκρίθηκε στην πρόκληση, παραδίδοντας μια ανακαίνιση που ενισχύει τόσο τη λειτουργικότητα όσο και την αισθητική έλξη αυτού του διακεκριμένου σπιτιού.",
+    "fullDescription_el": "Το έργο στην Εκάλη αντιπροσωπεύει τις δυνατότητές μας στην ανακαίνιση μονοκατοικιών σε μία από τις πιο αποκλειστικές οικιστικές περιοχές της Αθήνας. Αυτή η αριστοκρατική τοποθεσία χρειαζόταν μια προσέγγιση που θα τιμούσε τα υψηλά πρότυπα που αναμένονται στην Εκάλη, παρέχοντας παράλληλα μια ολοκληρωμένη ανακαίνιση της κατοικίας. Το εύρος του έργου επεκτάθηκε σε ολόκληρο το ακίνητο, προϋποθέτοντας τεχνογνωσία τόσο σε εσωτερικές όσο και σε εξωτερικές εργασίες. Η ομάδα μας ανταποκρίθηκε στην πρόκληση, ολοκληρώνοντας μια ανακαίνιση που ενισχύει τόσο τη λειτουργικότητα όσο και την αισθητική έλξη αυτού του διακεκριμένου σπιτιού.",
     "scopeOfWork": [
       "Comprehensive demolition and preparation",
       "Complete electrical system upgrade",
@@ -1173,6 +1229,77 @@
       {
         "src": "/apostolidis_highlights/Εκάλη/Εκάλη_13.webp",
         "alt": "Ekali project image"
+      }
+    ],
+    "isFeatured": false
+  },
+  {
+    "id": "photis-deli",
+    "slug": "photis-deli",
+    "code": "AP-015",
+    "title": "Photis Deli",
+    "title_el": "Photis Deli",
+    "category": "Commercial & Retail",
+    "category_el": "Επαγγελματικοί Χώροι",
+    "location": "Athens, Greece",
+    "status": "Completed",
+    "specs": [],
+    "specs_el": [],
+    "shortDescription": "A sophisticated retail space designed for a premium delicatessen experience.",
+    "shortDescription_el": "Ένας εκλεπτυσμένος χώρος λιανικής, σχεδιασμένος για μια premium εμπειρία delicatessen.",
+    "fullDescription": "Photis Deli stands as a modern take on the traditional delicatessen. The project required the creation of a retail environment that highlights the premium quality of the products while offering a welcoming atmosphere for customers. Our team focused on bespoke displays, optimized lighting, and high-quality finishes to deliver a functional and aesthetically pleasing commercial space.",
+    "fullDescription_el": "Το Photis Deli αποτελεί μια σύγχρονη εκδοχή του παραδοσιακού delicatessen. Το έργο είχε ως γνώμονα τη δημιουργία ενός περιβάλλοντος λιανικής που αναδεικνύει την premium ποιότητα των προϊόντων, προσφέροντας παράλληλα μια φιλόξενη ατμόσφαιρα στους πελάτες. Η ομάδα μας επικεντρώθηκε σε ειδικές προθήκες, βελτιστοποιημένο φωτισμό και φινιρίσματα υψηλής ποιότητας για να δημιουργήσει έναν λειτουργικό και αισθητικά ευχάριστο επαγγελματικό χώρο.",
+    "scopeOfWork": [
+      "Complete retail space renovation",
+      "Custom display and shelving installation",
+      "Specialized lighting design for food products",
+      "Flooring and wall treatments",
+      "Electrical and plumbing upgrades"
+    ],
+    "scopeOfWork_el": [
+      "Πλήρης ανακαίνιση καταστήματος λιανικής",
+      "Εγκατάσταση ειδικών προθηκών και ραφιών",
+      "Εξειδικευμένος σχεδιασμός φωτισμού για τρόφιμα",
+      "Επεξεργασία δαπέδων και τοίχων",
+      "Ηλεκτρολογικές και υδραυλικές αναβαθμίσεις"
+    ],
+    "keyFeatures": [],
+    "images": [
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_01.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_02.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_03.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_04.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_05.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_06.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_07.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_08.webp",
+        "alt": "Photis Deli project image"
+      },
+      {
+        "src": "/apostolidis_highlights/photis_deli/photis_deli_09.webp",
+        "alt": "Photis Deli project image"
       }
     ],
     "isFeatured": false

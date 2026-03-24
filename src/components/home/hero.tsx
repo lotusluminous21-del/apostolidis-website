@@ -5,6 +5,7 @@ import { ArrowDown, CornerDownRight, Maximize2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import { Link } from "@/i18n/navigation"
 // Image import removed as it is replaced by video
 import { GrainOverlay } from "@/components/ui/grain-overlay"
 import {
@@ -230,13 +231,17 @@ export function Hero() {
                         >
                             {/* Unified button box with shared border */}
                             <div className="flex flex-col sm:flex-row sm:inline-flex border border-foreground/20 w-fit sm:w-auto">
-                                <Button className="h-10 md:h-14 rounded-none bg-foreground text-background hover:bg-architectural hover:text-white transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 border-0 w-auto justify-center">
-                                    <CornerDownRight className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
-                                    {t('initiate')}
+                                <Button asChild className="h-10 md:h-14 rounded-none bg-foreground text-background hover:bg-architectural hover:text-white transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 border-0 w-auto justify-center">
+                                    <Link href="/projects">
+                                        <CornerDownRight className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
+                                        {t('initiate')}
+                                    </Link>
                                 </Button>
                                 {/* Hide secondary button on mobile to save space if needed, or stack? Let's hide for "shine" and focus */}
-                                <Button variant="outline" className="hidden sm:flex h-12 md:h-14 rounded-none border-0 border-t sm:border-t-0 sm:border-l border-foreground/20 hover:bg-foreground/5 hover:text-architectural transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 bg-transparent w-full sm:w-auto justify-center">
-                                    {t('explore')}
+                                <Button asChild variant="outline" className="hidden sm:flex h-12 md:h-14 rounded-none border-0 border-t sm:border-t-0 sm:border-l border-foreground/20 hover:bg-foreground/5 hover:text-architectural transition-colors duration-300 font-mono text-[10px] md:text-xs tracking-widest uppercase px-6 md:px-8 bg-transparent w-full sm:w-auto justify-center">
+                                    <a href="#about">
+                                        {t('explore')}
+                                    </a>
                                 </Button>
                             </div>
                         </motion.div>
@@ -289,7 +294,7 @@ export function Hero() {
                         transition={{ delay: HERO_TIMELINE.BOTTOM_BAR + 0.2, duration: 0.4 }}
                         className="flex items-center gap-4 text-[9px] md:text-[10px] font-mono text-muted-foreground uppercase tracking-wider"
                     >
-                        <span className="hidden md:inline-block">Est. 1995</span>
+                        <span className="hidden md:inline-block">Est. 2018</span>
                         <div className="w-px h-3 bg-grid-line hidden md:block" />
                         <div className="flex items-center gap-2">
                             <span>37°58'N</span>

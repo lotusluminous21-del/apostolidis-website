@@ -1,13 +1,13 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import { Section } from "@/components/ui/section"
 import { Button } from "@/components/ui/button"
 import { useTranslations, useLocale } from "next-intl"
 import { ProjectCard } from "@/components/ui/project-card"
 import { ArrowUpRight } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import { getFeaturedProjects } from "@/data/projects"
+import { getFeaturedProjects, type Project } from "@/lib/firestore-data"
 import { SplitText } from "@/components/ui/split-text"
 import { motion, useInView } from "framer-motion"
 import { staggerContainer, fadeUp } from "@/lib/animation-variants"
@@ -16,19 +16,25 @@ export function Projects() {
     const t = useTranslations('Projects')
     const locale = useLocale()
 
-    // View mode state removed as per request - always grid
-
     const containerRef = useRef(null)
     const isInView = useInView(containerRef, { once: true, margin: "-10% 0px" })
 
-    const projects = getFeaturedProjects().slice(0, 3).map(p => ({
-        code: p.code,
-        title: locale === 'el' ? (p.title_el || p.title) : p.title,
-        type: locale === 'el' ? (p.category_el || p.category) : p.category,
-        image: p.images[0]?.src,
-        specs: (locale === 'el' && p.specs_el ? p.specs_el : p.specs).slice(0, 2), // Show only first 2 specs
-        slug: p.slug
-    }))
+    const [featuredProjects, setFeaturedProjects] = useState<{ code: string; title: string; type: string; image: string; specs: any[]; slug: string }[]>([])
+
+    useEffect(() => {
+        getFeaturedProjects().then((data) => {
+            setFeaturedProjects(
+                data.map(p => ({
+                    code: p.code,
+                    title: locale === 'el' ? (p.title_el || p.title) : p.title,
+                    type: locale === 'el' ? (p.category_el || p.category) : p.category,
+                    image: p.images[0]?.src,
+                    specs: (locale === 'el' && p.specs_el ? p.specs_el : p.specs).slice(0, 2),
+                    slug: p.slug
+                }))
+            )
+        })
+    }, [locale])
 
     return (
         <Section className="relative border-b border-grid-line bg-background text-brand-black overflow-hidden" id="projects">
@@ -82,14 +88,14 @@ export function Projects() {
                     </div>
                 </div>
 
-                {/* PROJECTS GRID - REMOVED HEAVY BORDERS FOR CLEAN LOOK */}
+                {/* PROJECTS GRID */}
                 <motion.div
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     variants={staggerContainer(0.05, 0.2)}
                     className="grid gap-x-8 gap-y-8 md:gap-y-12 transition-all duration-300 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
                 >
-                    {projects.map((project, index) => (
+                    {featuredProjects.map((project, index) => (
                         <motion.div variants={fadeUp} key={project.code}>
                             <Link href={`/projects/${project.slug}`}>
                                 <ProjectCard

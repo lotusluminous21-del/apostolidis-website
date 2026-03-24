@@ -1,4 +1,10 @@
 {
+    "firestore": {
+        "rules": "firestore.rules"
+    },
+    "storage": {
+        "rules": "storage.rules"
+    },
     "hosting": {
         "public": "out",
         "ignore": [
@@ -8,5 +14,15 @@
         ],
         "cleanUrls": true,
         "trailingSlash": true
+    },
+    "functions": {
+        "source": "functions",
+        "ignore": [
+            "venv",
+            ".git",
+            "firebase-debug.log",
+            "firebase-debug.*.log",
+            "*.local"
+        ]
     }
 }

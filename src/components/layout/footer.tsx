@@ -1,7 +1,7 @@
 "use client"
 
 import { Link } from "@/i18n/navigation"
-import { Facebook, Instagram, Linkedin, ArrowUp } from "lucide-react"
+import { Instagram, Linkedin, ArrowUp } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { useTranslations } from "next-intl"
 
@@ -31,7 +31,7 @@ export function Footer() {
                         </div>
                         <div className="mt-8">
                             <span className="block text-[10px] font-mono text-white/20 uppercase tracking-widest mb-1">Established</span>
-                            <span className="text-xl font-light text-white">2008</span>
+                            <span className="text-xl font-light text-white">2018</span>
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@ export function Footer() {
                         <div className="mt-8">
                             <address className="not-italic text-white/60 text-sm font-light leading-relaxed">
                                 Αγίας Λαύρας 57<br />
-                                Αθήνα 111 41, Ελλάδα
+                                Αθήνα & Θεσσαλονίκη, Ελλάδα
                             </address>
                         </div>
                     </div>
@@ -83,7 +83,6 @@ export function Footer() {
                             <div className="flex gap-4">
                                 {[
                                     { icon: Instagram, label: "Instagram" },
-                                    { icon: Facebook, label: "Facebook" },
                                     { icon: Linkedin, label: "LinkedIn" }
                                 ].map((social, idx) => (
                                     <a

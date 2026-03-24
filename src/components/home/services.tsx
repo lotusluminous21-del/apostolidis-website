@@ -2,10 +2,10 @@
 
 import { Section } from "@/components/ui/section"
 import { Button } from "@/components/ui/button"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { ArrowUpRight } from "lucide-react"
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import { DraftingFrame } from "@/components/ui/drafting-frame"
 import {
     SERVICES_TIMELINE,
@@ -17,6 +17,7 @@ import {
     markerPop
 } from "@/lib/animation-variants"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { getServices, type ServiceItem } from "@/lib/firestore-data"
 
 function CapabilityRow({
     id,
@@ -55,7 +56,7 @@ function CapabilityRow({
         <div
             ref={rowRef}
             data-mobile-active={isActive}
-            className="group relative grid grid-cols-1 md:grid-cols-12 gap-y-2 md:gap-6 py-4 md:py-10 px-3 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300 border-b border-grid-line/50 md:border-b-0 last:border-b-0 data-[mobile-active=true]:bg-brand-black"
+            className="group relative grid grid-cols-1 md:grid-cols-12 gap-y-2 md:gap-6 py-2 md:py-4 px-3 md:px-6 items-start overflow-hidden hover:bg-brand-black transition-colors duration-300 border-b border-grid-line/50 md:border-b-0 last:border-b-0 data-[mobile-active=true]:bg-brand-black"
         >
             {/* Animated Top Border - Drawing Effect (Desktop Only) */}
             <motion.div
@@ -84,10 +85,10 @@ function CapabilityRow({
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.15)} // Reduced stagger
+                variants={withDelay(fadeUp, baseDelay + 0.15)}
                 className="md:col-span-5"
             >
-                <h3 className="text-xl md:text-3xl font-bold uppercase tracking-tight text-foreground group-hover:text-white transition-colors group-data-[mobile-active=true]:text-white pr-8">
+                <h3 className="text-lg md:text-2xl font-normal uppercase tracking-tight text-foreground group-hover:text-white transition-colors group-data-[mobile-active=true]:text-white pr-8">
                     {title}
                 </h3>
             </motion.div>
@@ -96,17 +97,13 @@ function CapabilityRow({
             <motion.div
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.2)} // Reduced stagger
+                variants={withDelay(fadeUp, baseDelay + 0.2)}
                 className="md:col-span-5 flex flex-col gap-4 md:gap-6"
             >
                 <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-white/70 max-w-prose transition-colors group-data-[mobile-active=true]:text-white/70 hidden md:block">
                     {description}
                 </p>
 
-                {/* Specs Mini-Grid (Hidden on mobile for compactness if really needed, but keeping for now per request "compact") 
-                    Actually, let's keep specs but maybe tighter or ensure they don't take too much space.
-                    The user didn't say remove them.
-                */}
                 {/* Specs Mini-Grid */}
                 <div className="grid grid-cols-2 gap-x-4 gap-y-1 pt-2 border-t border-transparent group-hover:border-white/10 transition-colors group-data-[mobile-active=true]:border-white/10 opacity-0 h-0 overflow-hidden group-data-[mobile-active=true]:opacity-100 group-data-[mobile-active=true]:h-auto group-data-[mobile-active=true]:py-2 duration-300 md:opacity-100 md:h-auto md:py-2">
                     {specs.map((spec, i) => (
@@ -120,32 +117,25 @@ function CapabilityRow({
                 </div>
             </motion.div>
 
-            {/* COLUMN 3: ACTION (Span 2) */}
-            <motion.div
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={withDelay(fadeUp, baseDelay + 0.25)} // Reduced stagger
-                className="md:col-span-2 flex justify-start md:justify-end items-start mt-2 md:mt-0"
-            >
-                <Button
-                    variant="ghost"
-                    onClick={handleInitiate}
-                    className="opacity-100 md:opacity-0 group-hover:opacity-100 translate-x-0 md:-translate-x-4 group-hover:translate-x-0 transition-all duration-300 rounded-none text-architectural md:text-white group-data-[mobile-active=true]:text-white hover:text-architectural hover:bg-white/5 pl-0 md:pl-4 h-auto py-0 text-xs tracking-wider"
-                >
-                    {t('initiate')} <ArrowUpRight className="ml-1 w-3 h-3" />
-                </Button>
-            </motion.div>
         </div>
     )
 }
 
 export function Services() {
     const t = useTranslations('Services')
+    const locale = useLocale()
     const containerRef = useRef(null)
     const isInView = useInView(containerRef, { once: true, margin: "-10%" })
 
-    // Get the list of service keys
-    const serviceKeys = t.raw('items') as string[]
+    const [services, setServices] = useState<ServiceItem[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getServices().then((data) => {
+            setServices(data)
+            setLoading(false)
+        })
+    }, [])
 
     return (
         <Section className="border-b border-grid-line bg-background py-12 lg:py-24" id="services">
@@ -168,7 +158,7 @@ export function Services() {
                             transition={{ delay: SERVICES_TIMELINE.HEADER_REVEAL, duration: DURATION.normal }}
                             className="py-6 px-2 md:py-6"
                         >
-                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-[0.9] md:leading-none">
+                            <h2 className="text-3xl md:text-5xl font-medium uppercase tracking-tighter leading-[0.9] md:leading-none">
                                 {t('heading1')}<br />{t('heading2')}
                             </h2>
                         </motion.div>
@@ -193,12 +183,12 @@ export function Services() {
 
                 {/* List of Services */}
                 <div className="border-t border-grid-line/50">
-                    {serviceKeys.map((key: string, index: number) => (
+                    {services.map((svc, index) => (
                         <CapabilityRow
-                            key={key}
+                            key={svc.id}
                             id={`0${index + 1}`}
                             index={index}
-                            title={t(`list.${key}`)}
+                            title={locale === 'el' ? svc.name_el : svc.name_en}
                             description=""
                             specs={[]}
                         />

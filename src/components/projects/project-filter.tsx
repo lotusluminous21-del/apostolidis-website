@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { ProjectCategory } from "@/data/projects"
+type ProjectCategory = 'Commercial & Retail' | 'Residential Apartment' | 'Single-Family Home';
 
 import { useTranslations } from "next-intl"
 

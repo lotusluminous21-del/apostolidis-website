@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: check if the requesting user is the admin
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == '6pfsZmKFRhQzQZuy2SFdkaLIAEx2';
+    }
+
+    // Contact inquiries — anyone can submit, only admin can read
+    match /contact_inquiries/{document=**} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Projects — public read, admin-only write
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Services — public read, admin-only write
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Site settings — public read, admin-only write
+    match /site_settings/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Everything else defaults to deny all.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

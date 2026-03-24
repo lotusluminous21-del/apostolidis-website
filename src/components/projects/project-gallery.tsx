@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { ProjectImage } from "@/data/projects"
+import { ProjectImage } from "@/lib/firestore-data"
 import { motion } from "framer-motion"
 import { fadeUp } from "@/lib/animation-variants"
 
@@ -29,7 +29,7 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                         }`}
                 >
                     <div className="absolute inset-0 bg-neutral-100">
-                        {image.src.endsWith('.mp4') || image.src.endsWith('.webm') ? (
+                        {image.src.match(/\.(mp4|webm)(\?|$)/i) ? (
                             <video
                                 src={image.src}
                                 autoPlay

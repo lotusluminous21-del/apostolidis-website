@@ -1,9 +1,11 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import { db } from "@/lib/firebase/config"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { Section } from "@/components/ui/section"
 import { Button } from "@/components/ui/button"
-import { useForm, Controller } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 import { SplitText } from "@/components/ui/split-text"
@@ -13,7 +15,7 @@ import { ArrowLeft, ArrowRight, CornerDownRight, Mail, MapPin, Phone, ChevronDow
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
 
 const CONTACT_TIMELINE = {
     FRAME_START: 0.1,
@@ -35,13 +37,29 @@ const slideFromLeft = {
 
 export function Contact() {
     const t = useTranslations('Contact')
-    const { register, handleSubmit, control, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const containerRef = useRef(null)
     const isInView = useInView(containerRef, { once: true, margin: "-10% 0px" })
 
-    const onSubmit = (data: any) => {
-        console.log(data)
-        // Handle submission
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
+
+    const onSubmit = async (data: any) => {
+        setIsSubmitting(true)
+        try {
+            await addDoc(collection(db, 'contact_inquiries'), {
+                ...data,
+                status: 'unread',
+                createdAt: serverTimestamp(),
+            });
+            reset()
+            setIsSuccess(true)
+        } catch (error) {
+            console.error('Error submitting form:', error)
+            alert('Something went wrong. Please try again or use the email directly.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -130,16 +148,6 @@ export function Contact() {
                         <motion.div variants={fadeUp} className="group border-t border-brand-black/5 pt-4">
                             <h4 className="flex items-center gap-2 text-[9px] font-mono tracking-widest text-brand-black/40 uppercase mb-1">
                                 <span className="w-1.5 h-1.5 border border-brand-black/20 rounded-sm inline-block" />
-                                {t('phoneLabel')}
-                            </h4>
-                            <a href="tel:+306944141888" className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
-                                +30 694 414 1888
-                            </a>
-                        </motion.div>
-
-                        <motion.div variants={fadeUp} className="group border-t border-brand-black/5 pt-4">
-                            <h4 className="flex items-center gap-2 text-[9px] font-mono tracking-widest text-brand-black/40 uppercase mb-1">
-                                <span className="w-1.5 h-1.5 border border-brand-black/20 rounded-sm inline-block" />
                                 {t('emailLabel')}
                             </h4>
                             <a href="mailto:apostolidisconstruction@gmail.com" className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
@@ -161,7 +169,69 @@ export function Contact() {
 
                 {/* RIGHT: FORM - DISTINCT MODULE */}
                 <div className="lg:col-span-7 w-full relative bg-brand-black/[0.02] border border-brand-black/10 p-5 md:p-6 lg:p-8">
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                    {isSuccess ? (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, ease: EASE.smooth }}
+                            className="flex flex-col items-center justify-center text-center h-full min-h-[400px] md:min-h-[500px] space-y-8 py-10"
+                        >
+                            <div className="relative">
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                                    className="w-20 h-20 rounded-full bg-architectural/10 flex items-center justify-center text-architectural relative z-10"
+                                >
+                                    <Mail className="w-10 h-10" />
+                                </motion.div>
+                                <motion.div 
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 1.5, opacity: 0 }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                                    className="absolute inset-0 rounded-full bg-architectural/20 z-0"
+                                />
+                            </div>
+                            
+                            <div className="space-y-4 max-w-md">
+                                <motion.h3 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black"
+                                >
+                                    {t('form.successHeading')}
+                                </motion.h3>
+                                <motion.p 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="text-brand-black/60 leading-relaxed font-medium text-sm md:text-base border-l-2 border-architectural/20 pl-4 text-left"
+                                >
+                                    {t('form.successBody')}
+                                </motion.p>
+                            </div>
+                            
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="pt-6 w-full max-w-sm"
+                            >
+                                <Button 
+                                    onClick={() => setIsSuccess(false)}
+                                    type="button"
+                                    className="h-12 w-full bg-transparent border border-brand-black/20 text-brand-black hover:bg-brand-black hover:text-white transition-colors rounded-none flex items-center justify-center gap-3 group"
+                                >
+                                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] relative top-[1px]">
+                                        {t('form.submitAnother')}
+                                    </span>
+                                </Button>
+                            </motion.div>
+                        </motion.div>
+                    ) : (
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 
                         {/* Section 1: Identity */}
                         <motion.div
@@ -214,71 +284,11 @@ export function Contact() {
                             </div>
                         </motion.div>
 
-                        {/* Section 2: Specs */}
+                        {/* Section 2: Brief */}
                         <motion.div
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
                             variants={withDelay(slideFromLeft, CONTACT_TIMELINE.FORM_START + 0.15)}
-                            className="space-y-6"
-                        >
-                            <div className="border-b border-brand-black/10 pb-3 mb-5">
-                                <h3 className="flex items-center gap-3 text-base font-bold text-brand-black uppercase tracking-tight">
-                                    <span className="font-mono text-[10px] text-architectural border border-architectural/30 px-1.5 py-0.5 rounded-none">{t('form.parametersBadge')}</span>
-                                    {t('form.parameters')}
-                                </h3>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-                                <div className="group relative space-y-1">
-                                    <Label htmlFor="type">{t('form.type')}</Label>
-                                    <Controller
-                                        name="type"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ field }) => (
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder={t('form.typePlaceholder')} />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="renovation">{t('form.types.renovation')}</SelectItem>
-                                                    <SelectItem value="construction">{t('form.types.construction')}</SelectItem>
-                                                    <SelectItem value="consulting">{t('form.types.consulting')}</SelectItem>
-                                                    <SelectItem value="other">{t('form.types.other')}</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        )}
-                                    />
-                                </div>
-                                <div className="group relative space-y-1">
-                                    <Label htmlFor="budget">{t('form.budget')}</Label>
-                                    <Controller
-                                        name="budget"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ field }) => (
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder={t('form.budgetPlaceholder')} />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="under-30k">{t('form.budgets.under-30k')}</SelectItem>
-                                                    <SelectItem value="30k-80k">{t('form.budgets.30k-80k')}</SelectItem>
-                                                    <SelectItem value="80k-150k">{t('form.budgets.80k-150k')}</SelectItem>
-                                                    <SelectItem value="over-150k">{t('form.budgets.over-150k')}</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        )}
-                                    />
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Section 3: Brief */}
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(slideFromLeft, CONTACT_TIMELINE.FORM_START + 0.3)}
                             className="space-y-6"
                         >
                             <div className="border-b border-brand-black/10 pb-3 mb-5">
@@ -301,11 +311,13 @@ export function Contact() {
                         <motion.div
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
-                            variants={withDelay(slideFromLeft, CONTACT_TIMELINE.FORM_START + 0.45)}
+                            variants={withDelay(slideFromLeft, CONTACT_TIMELINE.FORM_START + 0.3)}
                             className="pt-2"
                         >
-                            <Button type="submit" className="h-12 px-8 bg-brand-black text-white hover:bg-architectural transition-colors rounded-none w-full flex items-center justify-between group relative overflow-hidden">
-                                <span className="font-mono text-[10px] uppercase tracking-[0.2em] relative z-10">{t('form.submit')}</span>
+                            <Button disabled={isSubmitting || isSuccess} type="submit" className="h-12 px-8 bg-brand-black text-white hover:bg-architectural transition-colors rounded-none w-full flex items-center justify-between group relative overflow-hidden">
+                                <span className="font-mono text-[10px] uppercase tracking-[0.2em] relative z-10">
+                                    {isSubmitting ? 'Sending...' : isSuccess ? 'Message Sent!' : t('form.submit')}
+                                </span>
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
 
                                 {/* Button Hover Effect Layer */}
@@ -319,7 +331,8 @@ export function Contact() {
                             </div>
                         </motion.div>
 
-                    </form>
+                        </form>
+                    )}
                 </div>
             </div>
         </Section>
