@@ -40,7 +40,7 @@ export function Footer() {
                     <div className="py-12 lg:px-12 lg:border-r border-white/10 flex flex-col">
                         <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-8">Navigation</h3>
                         <nav className="flex flex-col gap-4">
-                            {['home', 'about', 'services', 'projects', 'contact'].map((item) => (
+                            {['home', 'about', 'projects', 'services', 'contact'].map((item) => (
                                 <Link
                                     key={item}
                                     href={item === 'home' ? '/' : (item === 'projects' ? '/projects' : `/#${item}`)}
@@ -59,10 +59,6 @@ export function Footer() {
                         <div>
                             <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-8">Contact</h3>
                             <div className="space-y-8">
-                                <div>
-                                    <a href="tel:+306944141888" className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">+30 694 414 1888</a>
-                                    <span className="text-[10px] font-mono text-white/30 uppercase">Main Line</span>
-                                </div>
                                 <div>
                                     <a href="mailto:apostolidisconstruction@gmail.com" className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">apostolidisconstruction@gmail.com</a>
                                     <span className="text-[10px] font-mono text-white/30 uppercase">Electronic Mail</span>

@@ -30,8 +30,8 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
 
     const NAV_ITEMS = [
         { label: t('about'), href: "/#about" },
-        { label: t('services'), href: "/#services" },
         { label: t('projects'), href: "/projects" },
+        { label: t('services'), href: "/#services" },
         { label: t('contact'), href: "/#contact" },
     ];
 
