@@ -9,7 +9,7 @@ interface LogoProps {
 }
 
 export function Logo({ className, white = false }: LogoProps) {
-    const t = useTranslations('About')
+    const t = useTranslations('Metadata')
     return (
         <Link
             href="/"
@@ -17,7 +17,7 @@ export function Logo({ className, white = false }: LogoProps) {
                 "flex items-center gap-3 group select-none",
                 className
             )}
-            aria-label={`${t('heading')} Homepage`}
+            aria-label={`${t('siteName')} Homepage`}
         >
             {/* Symbol */}
             <div className={cn(
@@ -44,12 +44,12 @@ export function Logo({ className, white = false }: LogoProps) {
                 "flex flex-col leading-none tracking-wider",
                 white ? "text-white" : "text-brand-black"
             )}>
-                <span className="font-bold text-sm uppercase">{t('heading')}</span>
+                <span className="font-bold text-sm uppercase">{t('siteName')}</span>
                 <span className={cn(
                     "text-[0.65rem] font-medium transition-colors",
                     white ? "text-white/60" : "text-brand-gray group-hover:text-architectural"
                 )}>
-                    ΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ
+                    {t('tagline')}
                 </span>
             </div>
         </Link>

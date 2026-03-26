@@ -174,13 +174,14 @@
         "contact": "CONTACT",
         "navigation": "NAVIGATION",
         "social": "SOCIAL",
-        "rights": "© {year} George Apostolidis. All rights reserved.",
+        "rights": "© {year} Apostolidis Constructions. All rights reserved.",
         "privacy": "Privacy Policy",
         "terms": "Terms of Use"
     },
     "Metadata": {
-        "title": "George Apostolidis | Technical Office Athens",
-        "siteName": "George Apostolidis",
+        "title": "Apostolidis Constructions | Engineering & Construction",
+        "siteName": "Apostolidis Constructions",
+        "tagline": "TECHNICAL OFFICE",
         "description": "Technical office in Athens. Comprehensive renovation and new construction services. Design, supervision, implementation."
     }
 }

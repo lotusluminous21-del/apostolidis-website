@@ -27,8 +27,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('title'),
     description: t('description'),
+    metadataBase: new URL('https://apostolidisconstructions.gr'),
+    alternates: {
+      canonical: '/',
+      languages: {
+        'el-GR': '/el',
+        'en-US': '/en',
+      },
+    },
+    manifest: '/site.webmanifest',
     icons: {
-      icon: '/favicon.ico',
+      icon: [
+        { url: '/favicon.ico?v=2', sizes: 'any' },
+        { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
+      ],
+      apple: '/apple-touch-icon.png?v=2',
+      shortcut: '/favicon-32x32.png?v=2',
     },
     openGraph: {
       title: t('title'),
@@ -37,11 +51,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: t('siteName'),
       locale: locale,
       type: 'website',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: t('title'),
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: ['/og-image.png'],
     }
   };
 }
