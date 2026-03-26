@@ -51,7 +51,7 @@ const defaultSettings: SiteSettingsData = {
     statsYears: '7+',
   },
   contact: {
-    email: 'apostolidisconstructions@gmail.com',
+    email: 'apostolidisconstruction@gmail.com',
     phone: '',
     address_en: '',
     address_el: '',

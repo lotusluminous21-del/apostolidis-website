@@ -224,7 +224,7 @@ async function seedSiteSettings() {
       statsClients: '100%',
     },
     contact: {
-      email: 'apostolidisconstructions@gmail.com',
+      email: 'apostolidisconstruction@gmail.com',
       phone: '',
       address_en: en.Contact.addressValue,
       address_el: el.Contact.addressValue,

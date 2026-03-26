@@ -25,7 +25,7 @@ def on_contact_inquiry_created(event: firestore_fn.Event[firestore_fn.DocumentSn
     
     params = {
         "from": "New Lead <info@apostolidisconstructions.gr>",
-        "to": "apostolidisconstructions@gmail.com",
+        "to": "apostolidisconstruction@gmail.com",
         "reply_to": email,
         "subject": f"New Contact Inquiry from {name}",
         "html": html_content
