@@ -71,15 +71,9 @@ export function Hero() {
             <GrainOverlay opacity={0.05} />
 
             {/* LEFT COLUMN: DATA STREAM & CONTENT */}
-            <div className="relative z-10 flex flex-col border-t md:border-t-0 border-r border-grid-line bg-background/95 md:bg-background/50 md:backdrop-blur-sm md:bg-transparent transition-colors duration-700 overflow-hidden order-2 md:order-none h-[55svh] md:h-auto">
+            <div className="relative z-10 flex flex-col border-t md:border-t-0 border-r border-grid-line bg-background/95 md:bg-background/[0.97] transition-colors duration-700 overflow-hidden order-2 md:order-none h-[55svh] md:h-auto">
 
-                {/* Vertical decorative line for alignment - Animated */}
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={withDelay(scaleY, HERO_TIMELINE.VERTICAL_LINE)}
-                    className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-grid-line hidden md:block origin-top"
-                />
+
 
                 <div className="flex-1 flex flex-col justify-center p-4 md:p-12 lg:px-12 xl:px-20 relative">
 
@@ -110,7 +104,7 @@ export function Hero() {
                         </span>
                     </div>
 
-                    <div className="space-y-6 md:space-y-8 mb-0 relative z-20 flex flex-col justify-center h-full md:block md:h-auto">
+                    <div className="space-y-6 md:space-y-8 mb-0 relative z-20 flex flex-col justify-center h-full md:block md:h-auto md:-ml-4">
                         {/* Word-Specific Drafting Frames */}
                         <h1 className="text-[60px] md:text-7xl xl:text-8xl font-bold leading-[0.85] tracking-tighter uppercase relative flex flex-col gap-1 md:block">
 
@@ -204,13 +198,7 @@ export function Hero() {
                                     </motion.span>
                                 </motion.span>
 
-                                {/* Extra decorative line for Legacy - Only on desktop or repositioned? Keep for now but maybe hide on mobile if it clashes */}
-                                <motion.div
-                                    initial={{ scaleX: 0 }}
-                                    animate={{ scaleX: 1 }}
-                                    transition={{ delay: HERO_TIMELINE.DRAFT_START + 0.6, duration: 0.8 }}
-                                    className="absolute -bottom-2 left-0 w-full h-[1px] bg-architectural/20"
-                                />
+
                             </div>
                         </h1>
 
@@ -265,7 +253,7 @@ export function Hero() {
                     initial="hidden"
                     animate="visible"
                     variants={withDelay(slideUp, HERO_TIMELINE.BOTTOM_BAR)}
-                    className="h-[40px] md:h-[60px] border-t border-grid-line flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12 bg-background/80 backdrop-blur-md absolute bottom-0 w-full"
+                    className="h-[40px] md:h-[60px] border-t border-grid-line flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12 bg-background/[0.92] absolute bottom-0 w-full"
                 >
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -363,7 +351,7 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: HERO_TIMELINE.HUD_TOP - 0.1, duration: 0.2 }}
-                            className="text-white/80 font-mono text-[10px] px-3 py-1 bg-black/40 backdrop-blur-md border border-white/10 uppercase tracking-widest min-w-[110px]"
+                            className="text-white/80 font-mono text-[10px] px-3 py-1 bg-black/60 border border-white/10 uppercase tracking-widest min-w-[110px]"
                         >
                             {hudText}
                             <motion.span

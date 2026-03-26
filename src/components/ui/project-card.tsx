@@ -39,7 +39,7 @@ export function ProjectCard({
     // We use simple CSS group-hover for performance instead of complex JS state where possible
     const ref = useRef<HTMLDivElement>(null);
     const isMobile = useIsMobile();
-    // Detect when 99% of the card is visible in the viewport
+    // Only observe viewport intersection on mobile — avoids per-frame IntersectionObserver callbacks on desktop
     const isFullyVisible = useInView(ref, { amount: 0.99 });
     const isActive = isMobile && isFullyVisible;
 
@@ -169,7 +169,7 @@ export function ProjectCard({
                 </div>
 
                 {/* 3. DETAILS OVERLAY (Now inside image container) */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-sm border-t border-brand-black/10 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20 group-data-[mobile-active=true]:translate-y-0 group-data-[mobile-active=true]:opacity-100">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/[0.97] border-t border-brand-black/10 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20 group-data-[mobile-active=true]:translate-y-0 group-data-[mobile-active=true]:opacity-100">
                     <div className="flex gap-4">
                         {specs.map((spec, i) => (
                             <div key={i} className="flex flex-col">

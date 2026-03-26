@@ -40,7 +40,7 @@ export function TextReveal({ children, className, delay = 0 }: TextRevealProps) 
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
                             className="inline-block"
-                            style={{ willChange: "transform, opacity" }}
+                            
                         >
                             {word}
                         </motion.span>

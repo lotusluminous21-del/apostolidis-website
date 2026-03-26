@@ -36,9 +36,9 @@ function CapabilityRow({
     const t = useTranslations('Services')
     const isInView = useInView(rowRef, { once: true, margin: "-10%" })
 
-    // Mobile Hover Logic
+    // Mobile Hover Logic — these observers only affect mobile active state
     const isMobile = useIsMobile()
-    // Detect when the element is in the center of the viewport (vertical middle 10%)
+    // Detect when the element is in the center of the viewport (vertical middle 10%) — mobile only
     const isCenterVisible = useInView(rowRef, { margin: "-45% 0px -45% 0px" })
     const isActive = isMobile && isCenterVisible
 

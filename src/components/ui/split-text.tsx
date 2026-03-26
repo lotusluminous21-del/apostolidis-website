@@ -60,7 +60,7 @@ export function SplitText({
         <motion.span
             ref={ref}
             className={`inline-block overflow-hidden ${className}`} // overflow-hidden is key
-            style={{ willChange: "transform, opacity" }}
+
             variants={container}
             initial="hidden"
             animate={controls}

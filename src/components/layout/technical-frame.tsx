@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
@@ -17,14 +17,29 @@ import {
     withDelay,
 } from "@/lib/animation-variants";
 
+// Isolated clock component — prevents 1s re-renders from propagating to entire page tree
+const Clock = memo(function Clock() {
+    const [time, setTime] = useState("");
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+        const interval = setInterval(() => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString("en-GB", { hour12: false }));
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return <>{isMounted ? time : "00:00:00"} UTC+2</>;
+});
+
 interface TechnicalFrameProps {
     children: React.ReactNode;
 }
 
 export function TechnicalFrame({ children }: TechnicalFrameProps) {
     const t = useTranslations('Navigation');
-    const [time, setTime] = useState("");
-    const [isMounted, setIsMounted] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
@@ -35,14 +50,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
         { label: t('contact'), href: "/#contact" },
     ];
 
-    useEffect(() => {
-        setIsMounted(true);
-        const interval = setInterval(() => {
-            const now = new Date();
-            setTime(now.toLocaleTimeString("en-GB", { hour12: false }));
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
+
 
     // Animation variants for staggered header items
     const headerItemVariant = {
@@ -107,7 +115,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
             </aside>
 
             {/* TOP BAR - UNIFIED COMMAND CENTER */}
-            <header className="fixed top-0 left-0 md:left-[60px] right-0 h-[60px] bg-background/95 backdrop-blur-md border-b border-grid-line z-40 flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12">
+            <header className="fixed top-0 left-0 md:left-[60px] right-0 h-[60px] bg-background/[0.97] border-b border-grid-line z-40 flex items-center justify-between pl-4 md:pl-12 pr-4 md:pr-12">
 
                 {/* LEFT BLOCK: BRANDING & NAV - Staggered animation */}
                 <motion.div
@@ -165,7 +173,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
                         variants={headerItemVariant}
                         className="hidden md:block text-[12px] font-mono tabular-nums text-muted-foreground"
                     >
-                        {isMounted ? time : "00:00:00"} UTC+2
+                        <Clock />
                     </motion.div>
 
                     <motion.div

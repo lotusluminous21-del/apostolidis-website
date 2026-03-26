@@ -22,38 +22,23 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
             gestureOrientation: "vertical",
             smoothWheel: true,
             wheelMultiplier: 1,
-            // smoothTouch: false, // deprecated
             touchMultiplier: 2,
         })
 
-        // Global Scroll Manager for Desktop (Lenis)
-        // We attach the scroll reset logic to the lenis instance
-        const resetScroll = () => {
-            lenis.scrollTo(0, { immediate: true })
-        }
-
-        // Expose reset for the effect below if needed, or better yet, just handle it here?
-        // Actually, we can just use the pathname dependency here if we want, 
-        // BUT Lenis instance is created here.
-        // Let's keep it simple: We need to access 'lenis' when pathname changes.
-
-        // OPTION: We can't easily access 'lenis' from outside unless we ref it.
-        // Let's put the route change listener INSIDE this effect? 
-        // No, pathname changes won't re-run this effect because dependency is empty [].
-        // We need to store lenis in a ref or context, OR re-structure.
-
-        // STANDARD PATTERN:
         // @ts-ignore
-        window.lenis = lenis; // Expose for debugging if needed
+        window.lenis = lenis;
+
+        let rafId: number;
 
         function raf(time: number) {
             lenis.raf(time)
-            requestAnimationFrame(raf)
+            rafId = requestAnimationFrame(raf)
         }
 
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
 
         return () => {
+            cancelAnimationFrame(rafId)
             lenis.destroy()
             // @ts-ignore
             delete window.lenis;
