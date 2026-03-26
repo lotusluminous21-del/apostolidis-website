@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: 'https://georgeapostolidis.gr',
+      url: 'https://apostolidisconstructions.gr',
       siteName: t('siteName'),
       locale: locale,
       type: 'website',

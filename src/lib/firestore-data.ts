@@ -77,10 +77,15 @@ let cachedProjects: Project[] | null = null;
 export async function getProjects(): Promise<Project[]> {
   if (cachedProjects) return cachedProjects;
 
-  const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
-  const snap = await getDocs(q);
-  cachedProjects = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Project));
-  return cachedProjects;
+  try {
+    const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
+    const snap = await getDocs(q);
+    cachedProjects = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Project));
+    return cachedProjects;
+  } catch (err) {
+    console.error('Failed to fetch projects from Firestore:', err);
+    return [];
+  }
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
