@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/section"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { cn } from "@/lib/utils"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { SplitText } from "@/components/ui/split-text"
 import { motion, useInView } from "framer-motion"
 import { fadeUp, staggerContainer, EASE, withDelay, scaleX, markerPop } from "@/lib/animation-variants"
@@ -35,8 +35,9 @@ const slideFromLeft = {
     }
 }
 
-export function Contact() {
+export function Contact({ settings }: { settings?: any }) {
     const t = useTranslations('Contact')
+    const locale = useLocale()
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const containerRef = useRef(null)
     const isInView = useInView(containerRef, { once: true, margin: "-10% 0px" })
@@ -150,8 +151,8 @@ export function Contact() {
                                 <span className="w-1.5 h-1.5 border border-brand-black/20 rounded-sm inline-block" />
                                 {t('emailLabel')}
                             </h4>
-                            <a href="mailto:apostolidisconstruction@gmail.com" className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
-                                apostolidisconstruction@gmail.com
+                            <a href={`mailto:${settings?.contact?.email || 'apostolidisconstruction@gmail.com'}`} className="text-lg font-bold text-brand-black group-hover:text-architectural transition-colors flex items-center justify-between w-full">
+                                {settings?.contact?.email || 'apostolidisconstruction@gmail.com'}
                             </a>
                         </motion.div>
 
@@ -160,8 +161,8 @@ export function Contact() {
                                 <span className="w-1.5 h-1.5 border border-brand-black/20 rounded-sm inline-block" />
                                 {t('addressLabel')}
                             </h4>
-                            <p className="text-sm font-medium text-brand-black/80">
-                                {t('addressValue')}
+                            <p className="text-sm font-medium text-brand-black/80 whitespace-pre-line">
+                                {locale === 'el' ? settings?.contact?.address_el || t('addressValue') : settings?.contact?.address_en || t('addressValue')}
                             </p>
                         </motion.div>
                     </motion.div>

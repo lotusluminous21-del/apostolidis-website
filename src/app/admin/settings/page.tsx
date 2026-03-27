@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { Save, Check } from 'lucide-react';
+import { triggerRevalidation } from '@/lib/revalidate';
 
 interface SiteSettingsData {
   about: {
@@ -100,6 +101,7 @@ export default function AdminSettingsPage() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'site_settings', 'main'), settings);
+      await triggerRevalidation();
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {

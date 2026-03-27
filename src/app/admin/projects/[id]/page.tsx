@@ -11,6 +11,7 @@ import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { ArrowLeft, Save, Trash2, ExternalLink, Sparkles, Loader2 } from 'lucide-react';
 import { generateProjectDescriptions, generateScopeAndFeatures } from '@/lib/ai/agent';
+import { triggerRevalidation } from '@/lib/revalidate';
 
 interface ProjectData {
   id: string;
@@ -198,6 +199,7 @@ export default function EditProjectPage() {
     try {
       const { id, ...data } = project;
       await updateDoc(doc(db, 'projects', projectId), data as Record<string, unknown>);
+      await triggerRevalidation(['/projects', `/projects/${project.slug}`]);
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
@@ -211,6 +213,7 @@ export default function EditProjectPage() {
     setDeleting(true);
     try {
       await deleteDoc(doc(db, 'projects', projectId));
+      await triggerRevalidation(['/projects', `/projects/${project.slug}`]);
       router.push('/admin/projects');
     } catch (err) {
       console.error('Failed to delete:', err);

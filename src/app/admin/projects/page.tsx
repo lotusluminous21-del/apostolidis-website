@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs, deleteDoc, doc, orderBy, query, writeBatch } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { Plus, GripVertical, Star, StarOff, Pencil, Trash2, Film, Image as ImageIcon } from 'lucide-react';
+import { triggerRevalidation } from '@/lib/revalidate';
 
 interface ProjectListItem {
   id: string;
@@ -62,6 +63,7 @@ export default function AdminProjectsPage() {
     setDeleting(true);
     try {
       await deleteDoc(doc(db, 'projects', deleteTarget.id));
+      await triggerRevalidation();
       setProjects((prev) => prev.filter((p) => p.id !== deleteTarget.id));
       setDeleteTarget(null);
     } catch (err) {
@@ -77,6 +79,7 @@ export default function AdminProjectsPage() {
       await updateDoc(doc(db, 'projects', project.id), {
         isFeatured: !project.isFeatured,
       });
+      await triggerRevalidation();
       setProjects((prev) =>
         prev.map((p) =>
           p.id === project.id ? { ...p, isFeatured: !p.isFeatured } : p
@@ -95,6 +98,7 @@ export default function AdminProjectsPage() {
         batch.update(doc(db, 'projects', p.id), { order: i });
       });
       await batch.commit();
+      await triggerRevalidation();
       setHasOrderChanges(false);
     } catch (err) {
       console.error('Failed to save order:', err);

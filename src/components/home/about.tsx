@@ -1,7 +1,7 @@
 "use client"
 
 import { Section } from "@/components/ui/section"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { SplitText } from "@/components/ui/split-text"
 import { ImageReveal } from "@/components/ui/image-reveal"
 import Image from "next/image"
@@ -40,8 +40,9 @@ function TechnicalStat({ label, value, code, delay = 0 }: { label: string, value
     )
 }
 
-export function About() {
+export function About({ settings }: { settings?: any }) {
     const t = useTranslations('About')
+    const locale = useLocale()
     const containerRef = useRef(null)
     const isInView = useInView(containerRef, { once: true, margin: "-10% 0px -10% 0px" })
     const [isMobile, setIsMobile] = useState(false)
@@ -159,9 +160,9 @@ export function About() {
                                 initial="hidden"
                                 animate={isInView ? "visible" : "hidden"}
                                 variants={withDelay(fadeUp, ABOUT_TIMELINE.BIO_LOAD)}
-                                className="text-lg leading-relaxed text-brand-black font-light text-balance"
+                                className="text-lg leading-relaxed text-brand-black font-light text-balance whitespace-pre-line"
                             >
-                                {t('description1')}
+                                {locale === 'el' ? settings?.about?.description1_el || t('description1') : settings?.about?.description1_en || t('description1')}
                             </motion.p>
                             <motion.div
                                 initial="hidden"
@@ -169,8 +170,8 @@ export function About() {
                                 variants={withDelay(fadeUp, ABOUT_TIMELINE.BIO_LOAD + 0.1)}
                                 className="relative"
                             >
-                                <p className="text-sm leading-relaxed text-muted-foreground font-light">
-                                    {t('description2')}
+                                <p className="text-sm leading-relaxed text-muted-foreground font-light whitespace-pre-line">
+                                    {locale === 'el' ? settings?.about?.description2_el || t('description2') : settings?.about?.description2_en || t('description2')}
                                 </p>
                             </motion.div>
                         </div>
@@ -185,13 +186,13 @@ export function About() {
 
                         <TechnicalStat
                             code="EXP"
-                            value="10+"
+                            value={settings?.about?.statsYears || "10+"}
                             label={t('stats.years')}
                             delay={ABOUT_TIMELINE.STATS_POP}
                         />
                         <TechnicalStat
                             code="PRJ"
-                            value="50+"
+                            value={settings?.about?.statsProjects || "50+"}
                             label={t('stats.projects')}
                             delay={ABOUT_TIMELINE.STATS_POP + 0.1}
                         />
@@ -208,8 +209,8 @@ export function About() {
                                     <span className="w-1.5 h-1.5 bg-architectural/20 rounded-sm inline-block" />
                                     {t('approachLabel', { defaultMessage: 'The Details' })}
                                 </h4>
-                                <p className="text-brand-black/60 text-sm font-light leading-relaxed">
-                                    {t('description3')}
+                                <p className="text-brand-black/60 text-sm font-light leading-relaxed whitespace-pre-line">
+                                    {locale === 'el' ? settings?.about?.description3_el || t('description3') : settings?.about?.description3_en || t('description3')}
                                 </p>
                             </div>
                         </div>

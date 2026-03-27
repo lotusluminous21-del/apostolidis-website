@@ -11,6 +11,7 @@ import { collection, doc, setDoc, getDocs, query, orderBy } from 'firebase/fires
 import { db } from '@/lib/firebase/config';
 import { ArrowLeft, Save, Sparkles, Loader2 } from 'lucide-react';
 import { generateProjectDescriptions, generateScopeAndFeatures } from '@/lib/ai/agent';
+import { triggerRevalidation } from '@/lib/revalidate';
 
 interface ProjectData {
   code: string;
@@ -192,6 +193,7 @@ export default function NewProjectPage() {
         ...project,
         id: docId,
       });
+      await triggerRevalidation(['/projects', `/projects/${docId}`]);
       router.push('/admin/projects');
     } catch (err) {
       console.error('Failed to create project:', err);

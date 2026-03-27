@@ -72,16 +72,11 @@ export interface SiteSettings {
 
 // ── Projects ─────────────────────────────────────────────────────────────
 
-let cachedProjects: Project[] | null = null;
-
 export async function getProjects(): Promise<Project[]> {
-  if (cachedProjects) return cachedProjects;
-
   try {
     const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
     const snap = await getDocs(q);
-    cachedProjects = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Project));
-    return cachedProjects;
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Project));
   } catch (err) {
     console.error('Failed to fetch projects from Firestore:', err);
     return [];
@@ -105,16 +100,11 @@ export async function getFeaturedProjects(): Promise<Project[]> {
 
 // ── Services ─────────────────────────────────────────────────────────────
 
-let cachedServices: ServiceItem[] | null = null;
-
 export async function getServices(): Promise<ServiceItem[]> {
-  if (cachedServices) return cachedServices;
-
   try {
     const q = query(collection(db, 'services'), orderBy('order', 'asc'));
     const snap = await getDocs(q);
-    cachedServices = snap.docs.map((d) => ({ id: d.id, ...d.data() } as ServiceItem));
-    return cachedServices;
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() } as ServiceItem));
   } catch (err) {
     console.error('Failed to fetch services from Firestore:', err);
     return [];
@@ -123,28 +113,15 @@ export async function getServices(): Promise<ServiceItem[]> {
 
 // ── Site Settings ────────────────────────────────────────────────────────
 
-let cachedSettings: SiteSettings | null = null;
-
 export async function getSiteSettings(): Promise<SiteSettings | null> {
-  if (cachedSettings) return cachedSettings;
-
   try {
     const snap = await getDoc(doc(db, 'site_settings', 'main'));
     if (snap.exists()) {
-      cachedSettings = snap.data() as SiteSettings;
-      return cachedSettings;
+      return snap.data() as SiteSettings;
     }
     return null;
   } catch (err) {
     console.error('Failed to fetch site settings:', err);
     return null;
   }
-}
-
-// ── Cache Invalidation ──────────────────────────────────────────────────
-
-export function invalidateCache() {
-  cachedProjects = null;
-  cachedServices = null;
-  cachedSettings = null;
 }

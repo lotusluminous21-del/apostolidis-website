@@ -36,9 +36,10 @@ const Clock = memo(function Clock() {
 
 interface TechnicalFrameProps {
     children: React.ReactNode;
+    settings?: any;
 }
 
-export function TechnicalFrame({ children }: TechnicalFrameProps) {
+export function TechnicalFrame({ children, settings }: TechnicalFrameProps) {
     const t = useTranslations('Navigation');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
@@ -231,6 +232,7 @@ export function TechnicalFrame({ children }: TechnicalFrameProps) {
                 isOpen={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 navItems={NAV_ITEMS}
+                settings={settings}
             />
 
             {/* RIGHT SCROLL BAR (Deco) */}

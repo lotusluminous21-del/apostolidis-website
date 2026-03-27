@@ -3,12 +3,13 @@
 import { Link } from "@/i18n/navigation"
 import { Instagram, Linkedin, ArrowUp } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { cn } from "@/lib/utils"
 
-export function Footer() {
+export function Footer({ settings }: { settings?: any }) {
     const t = useTranslations('Footer')
     const tNav = useTranslations('Navigation')
+    const locale = useLocale()
     const currentYear = new Date().getFullYear()
 
     const scrollToTop = () => {
@@ -26,13 +27,13 @@ export function Footer() {
                     <div className="py-12 lg:pr-12 lg:border-r border-white/10 flex flex-col justify-between min-h-[300px]">
                         <div>
                             <Logo white className="w-40 mb-8" />
-                            <p className="text-white/40 text-sm font-light leading-relaxed max-w-xs">
-                                {t('tagline')}
+                            <p className="text-white/40 text-sm font-light leading-relaxed max-w-xs whitespace-pre-line">
+                                {locale === 'el' ? settings?.footer?.tagline_el || t('tagline') : settings?.footer?.tagline_en || t('tagline')}
                             </p>
                         </div>
                         <div className="mt-8">
                             <span className="block text-[10px] font-mono text-white/20 uppercase tracking-widest mb-1">Established</span>
-                            <span className="text-xl font-light text-white">2018</span>
+                            <span className="text-xl font-light text-white">{settings?.footer?.establishedYear || '2018'}</span>
                         </div>
                     </div>
 
@@ -60,15 +61,14 @@ export function Footer() {
                             <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-8">Contact</h3>
                             <div className="space-y-8">
                                 <div>
-                                    <a href="mailto:apostolidisconstruction@gmail.com" className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">apostolidisconstruction@gmail.com</a>
+                                    <a href={`mailto:${settings?.contact?.email || 'apostolidisconstruction@gmail.com'}`} className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">{settings?.contact?.email || 'apostolidisconstruction@gmail.com'}</a>
                                     <span className="text-[10px] font-mono text-white/30 uppercase">Electronic Mail</span>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-8">
-                            <address className="not-italic text-white/60 text-sm font-light leading-relaxed">
-                                Αγίας Λαύρας 57<br />
-                                Αθήνα & Θεσσαλονίκη, Ελλάδα
+                            <address className="not-italic text-white/60 text-sm font-light leading-relaxed whitespace-pre-line">
+                                {locale === 'el' ? settings?.contact?.address_el || 'Αγίας Λαύρας 57\nΑθήνα & Θεσσαλονίκη, Ελλάδα' : settings?.contact?.address_en || 'Agias Lavras 57\nAthens & Thessaloniki, Greece'}
                             </address>
                         </div>
                     </div>

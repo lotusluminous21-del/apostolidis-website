@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import "../globals.css";
 
 import { Footer } from "@/components/layout/footer";
+import { getSiteSettings } from "@/lib/firestore-data";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
@@ -85,6 +86,7 @@ export default async function RootLayout({
 }>) {
   const { locale } = await params;
   const messages = await getMessages();
+  const settings = await getSiteSettings();
 
   return (
     <html lang={locale}>
@@ -93,9 +95,9 @@ export default async function RootLayout({
           <SmoothScroll>
             {/* Precision Grid is now part of the frame or background, but we can keep it for the inner content too */}
 
-            <TechnicalFrame>
+            <TechnicalFrame settings={settings}>
               {children}
-              <Footer />
+              <Footer settings={settings} />
             </TechnicalFrame>
           </SmoothScroll>
         </NextIntlClientProvider>

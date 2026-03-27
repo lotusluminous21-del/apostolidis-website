@@ -10,9 +10,10 @@ interface MobileMenuProps {
     isOpen: boolean
     onClose: () => void
     navItems: { label: string; href: string }[]
+    settings?: any;
 }
 
-export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, navItems, settings }: MobileMenuProps) {
     const [visible, setVisible] = useState(false)
 
     // Handle animation logic (mount/unmount)
@@ -77,7 +78,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 
                 {/* Footer Info */}
                 <div className="mt-8 text-center text-white/60 space-y-2 animate-fade-in" style={{ animationDelay: "300ms", animationFillMode: "forwards", opacity: 0 }}>
-                    <p>apostolidisconstruction@gmail.com</p>
+                    <p>{settings?.contact?.email || 'apostolidisconstruction@gmail.com'}</p>
                     <div className="flex gap-4 justify-center mt-4 text-sm font-medium">
                         <LanguageSwitcher variant="mobile" />
                     </div>

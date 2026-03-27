@@ -7,6 +7,12 @@ import { Link } from "@/i18n/navigation"
 import { ArrowLeft } from "lucide-react"
 import { ScrollToTop } from "@/components/layout/scroll-to-top"
 
+// Allow new slugs created via the CMS to be rendered on-demand
+export const dynamicParams = true;
+
+// ISR safety-net: revalidate every hour even without on-demand trigger
+export const revalidate = 3600;
+
 // Generate static params for all projects
 export async function generateStaticParams() {
     const projects = await getProjects()

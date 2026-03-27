@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs, doc, setDoc, deleteDoc, writeBatch, query, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { Plus, GripVertical, Pencil, Trash2, Save, X, Check } from 'lucide-react';
+import { triggerRevalidation } from '@/lib/revalidate';
 
 interface ServiceItem {
   id: string;
@@ -67,6 +68,7 @@ export default function AdminServicesPage() {
     };
     try {
       await setDoc(doc(db, 'services', key), newItem);
+      await triggerRevalidation();
       setServices([...services, newItem]);
       setNewEn('');
       setNewEl('');
@@ -84,6 +86,7 @@ export default function AdminServicesPage() {
         name_en: editEn,
         name_el: editEl,
       });
+      await triggerRevalidation();
       setServices((prev) =>
         prev.map((s, i) => i === index ? { ...s, name_en: editEn, name_el: editEl } : s)
       );
@@ -98,6 +101,7 @@ export default function AdminServicesPage() {
     setDeleting(true);
     try {
       await deleteDoc(doc(db, 'services', deleteTarget.id));
+      await triggerRevalidation();
       setServices((prev) => prev.filter((s) => s.id !== deleteTarget.id));
       setDeleteTarget(null);
     } catch (err) {
@@ -113,6 +117,7 @@ export default function AdminServicesPage() {
       const batch = writeBatch(db);
       services.forEach((s, i) => batch.update(doc(db, 'services', s.id), { order: i }));
       await batch.commit();
+      await triggerRevalidation();
       setHasOrderChanges(false);
     } catch (err) {
       console.error('Failed to save order:', err);
