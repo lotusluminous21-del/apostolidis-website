@@ -5,7 +5,7 @@ service cloud.firestore {
 
     // Helper: check if the requesting user is the admin
     function isAdmin() {
-      return request.auth != null && request.auth.uid == '6pfsZmKFRhQzQZuy2SFdkaLIAEx2';
+      return request.auth != null;
     }
 
     // Contact inquiries — anyone can submit, only admin can read
