@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('title'),
     description: t('description'),
-    metadataBase: new URL('https://apostolidisconstructions.gr'),
+    metadataBase: new URL('https://apostolidisconstruction.gr'),
     alternates: {
       canonical: '/',
       languages: {
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: 'https://apostolidisconstructions.gr',
+      url: 'https://apostolidisconstruction.gr',
       siteName: t('siteName'),
       locale: locale,
       type: 'website',

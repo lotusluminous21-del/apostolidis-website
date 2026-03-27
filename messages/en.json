@@ -8,7 +8,7 @@
         "language": "GR"
     },
     "Hero": {
-        "eyebrow": "CONSTRUCTIONS ATHENS",
+        "eyebrow": "CONSTRUCTION ATHENS",
         "badge": "01 // Architectural Engineering",
         "title": "Building spaces\nthat stand the test of time",
         "subtitle": "From design to delivery.\nRenovations and new construction with expertise and aesthetics.",
@@ -28,7 +28,7 @@
         "firstName": "George",
         "lastName": "Apostolidis",
         "heading": "George Apostolidis",
-        "description1": "Based in Athens & Thessaloniki, George Apostolidis Constructions provides comprehensive design, supervision, and construction services for over a decade.",
+        "description1": "Based in Athens & Thessaloniki, George Apostolidis Construction provides comprehensive design, supervision, and construction services for over a decade.",
         "description2": "Our philosophy combines technical excellence with contemporary aesthetics. Every project receives the same attention to detail—whether it's a complete apartment renovation or new building construction.",
         "description3": "As a licensed civil engineer, George Apostolidis personally oversees every stage of the project, ensuring regulatory compliance and high construction standards.",
         "roleLabel": "Role ID",
@@ -174,14 +174,14 @@
         "contact": "CONTACT",
         "navigation": "NAVIGATION",
         "social": "SOCIAL",
-        "rights": "© {year} Apostolidis Constructions. All rights reserved.",
+        "rights": "© {year} Apostolidis Construction. All rights reserved.",
         "privacy": "Privacy Policy",
         "terms": "Terms of Use"
     },
     "Metadata": {
-        "title": "Apostolidis Constructions | Engineering & Construction",
+        "title": "Apostolidis Construction | Engineering & Construction",
         "siteName": "APOSTOLIDIS",
-        "tagline": "CONSTRUCTIONS",
+        "tagline": "CONSTRUCTION",
         "description": "Technical office in Athens. Comprehensive renovation and new construction services. Design, supervision, implementation."
     }
 }

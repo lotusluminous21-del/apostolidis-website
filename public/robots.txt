@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://apostolidisconstructions.gr/sitemap.xml
+Sitemap: https://apostolidisconstruction.gr/sitemap.xml
