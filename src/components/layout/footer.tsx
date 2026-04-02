@@ -61,7 +61,7 @@ export function Footer({ settings }: { settings?: any }) {
                             <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-8">Contact</h3>
                             <div className="space-y-8">
                                 <div>
-                                    <a href={`mailto:${settings?.contact?.email || 'apostolidisconstruction@gmail.com'}`} className="block text-xl text-white hover:text-architectural transition-colors font-light mb-1">{settings?.contact?.email || 'apostolidisconstruction@gmail.com'}</a>
+                                    <a href={`mailto:${settings?.contact?.email || 'apostolidisconstruction@gmail.com'}`} className="block text-sm text-white hover:text-architectural transition-colors font-bold mb-1">{settings?.contact?.email || 'apostolidisconstruction@gmail.com'}</a>
                                     <span className="text-[10px] font-mono text-white/30 uppercase">Electronic Mail</span>
                                 </div>
                             </div>
