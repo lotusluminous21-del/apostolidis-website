@@ -6,6 +6,7 @@ import { ProjectImage } from "@/lib/firestore-data"
 import { motion, AnimatePresence } from "framer-motion"
 import { fadeUp } from "@/lib/animation-variants"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 
 interface ProjectGalleryProps {
     images: ProjectImage[]
@@ -147,14 +148,28 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                                         className="w-full h-full object-contain"
                                     />
                                 ) : (
-                                    <Image
-                                        src={images[selectedImageIndex].src}
-                                        alt={images[selectedImageIndex].alt}
-                                        fill
-                                        className="object-contain"
-                                        sizes="100vw"
-                                        priority
-                                    />
+                                    <TransformWrapper
+                                        initialScale={1}
+                                        minScale={1}
+                                        maxScale={4}
+                                        centerOnInit
+                                        wheel={{ step: 0.1 }}
+                                    >
+                                        <TransformComponent
+                                            wrapperClass="!w-full !h-full flex items-center justify-center"
+                                            contentClass="!w-full !h-full cursor-grab active:cursor-grabbing"
+                                        >
+                                            <Image
+                                                src={images[selectedImageIndex].src}
+                                                alt={images[selectedImageIndex].alt}
+                                                fill
+                                                className="object-contain"
+                                                sizes="100vw"
+                                                priority
+                                                draggable={false}
+                                            />
+                                        </TransformComponent>
+                                    </TransformWrapper>
                                 )}
                             </div>
                             

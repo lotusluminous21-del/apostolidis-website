@@ -16,6 +16,51 @@ interface ImageUploaderProps {
   storagePath: string; // e.g. "projects/filmiki-old-hq"
 }
 
+const convertToWebP = (file: File): Promise<File> => {
+  return new Promise((resolve) => {
+    // If it's already a webp or it's a video, just return the original file
+    if (file.type === 'image/webp' || file.type.startsWith('video/')) {
+      return resolve(file);
+    }
+    
+    // Only process images
+    if (!file.type.startsWith('image/')) {
+        return resolve(file);
+    }
+    
+    const image = new window.Image();
+    const objectUrl = URL.createObjectURL(file);
+    image.src = objectUrl;
+    
+    image.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        URL.revokeObjectURL(objectUrl);
+        return resolve(file); // fallback
+      }
+      ctx.drawImage(image, 0, 0);
+      canvas.toBlob((blob) => {
+        URL.revokeObjectURL(objectUrl);
+        if (!blob) return resolve(file); // fallback
+        
+        const originalName = file.name.replace(/\.[^/.]+$/, "");
+        const newFile = new File([blob], `${originalName}.webp`, {
+          type: 'image/webp',
+          lastModified: Date.now(),
+        });
+        resolve(newFile);
+      }, 'image/webp', 0.85); // 0.85 is a good balance between quality and size
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      resolve(file); // fallback
+    };
+  });
+};
+
 export function ImageUploader({ images, onChange, storagePath }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -30,7 +75,8 @@ export function ImageUploader({ images, onChange, storagePath }: ImageUploaderPr
     const newImages: MediaItem[] = [];
 
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
+      const originalFile = files[i];
+      const file = await convertToWebP(originalFile);
       const fileName = `${Date.now()}_${file.name}`;
       const storageRef = ref(storage, `${storagePath}/${fileName}`);
 
