@@ -1,7 +1,11 @@
-import { Link } from "@/i18n/navigation"
+"use client"
+
+import type { MouseEvent } from "react"
+import { Link, usePathname } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { scrollToTopSmooth } from "@/lib/scroll-utils"
 
 interface LogoProps {
     className?: string
@@ -10,9 +14,22 @@ interface LogoProps {
 
 export function Logo({ className, white = false }: LogoProps) {
     const t = useTranslations('Metadata')
+    const pathname = usePathname()
+
+    const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+        if (pathname !== "/") return
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+        e.preventDefault()
+        scrollToTopSmooth()
+        const { pathname: p, search } = window.location
+        window.history.replaceState(null, "", p + search)
+    }
+
     return (
         <Link
             href="/"
+            scroll={false}
+            onClick={handleClick}
             className={cn(
                 "flex items-center gap-3 group select-none",
                 className

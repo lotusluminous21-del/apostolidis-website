@@ -57,7 +57,7 @@ export function GrainOverlay({ opacity = 0.05 }: { opacity?: number }) {
     <>
       <div
         ref={containerRef}
-        className="pointer-events-none fixed inset-0 z-[9999] mix-blend-overlay hidden md:block"
+        className="pointer-events-none absolute inset-0 z-0 mix-blend-overlay hidden md:block"
         style={{ opacity }}
       >
         <div className="absolute inset-[-100%] w-[300%] h-[300%] animate-grain opacity-100" style={{ transform: 'translate3d(0,0,0)' }} />

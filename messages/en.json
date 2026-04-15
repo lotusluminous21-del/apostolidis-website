@@ -20,7 +20,9 @@
         "scroll": "Scroll to Explore",
         "status": "Rendering Real-time",
         "cta": "View our projects",
-        "ctaSecondary": "Get in touch"
+        "ctaSecondary": "Get in touch",
+        "expandVideo": "Expand hero video to full width",
+        "collapseVideo": "Restore split layout"
     },
     "About": {
         "sectionLabel": "ABOUT",

@@ -20,7 +20,9 @@
         "scroll": "Πλοήγηση",
         "status": "Online",
         "cta": "Πλοήγηση στα έργα",
-        "ctaSecondary": "Επικοινωνία"
+        "ctaSecondary": "Επικοινωνία",
+        "expandVideo": "Πλήρης προβολή βίντεο στο hero",
+        "collapseVideo": "Επαναφορά προβολής με κείμενο"
     },
     "About": {
         "sectionLabel": "ΤΟ ΓΡΑΦΕΙΟ",

@@ -1,10 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowDown, CornerDownRight, Maximize2 } from "lucide-react"
+import { ArrowDown, CornerDownRight, Maximize2, Minimize2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useRef, useState, useEffect } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 import { Link } from "@/i18n/navigation"
 // Image import removed as it is replaced by video
 import { GrainOverlay } from "@/components/ui/grain-overlay"
@@ -24,6 +24,11 @@ import {
 } from "@/lib/animation-variants"
 import { DraftingFrame } from "@/components/ui/drafting-frame"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { cn } from "@/lib/utils"
+
+/** Hero expand/collapse: short ease-out only — avoids spring layout thrash */
+const HERO_EXPAND_DURATION = 0.28
+const HERO_EXPAND_EASE = EASE.sharp
 
 export function Hero() {
     const t = useTranslations('Hero')
@@ -63,19 +68,63 @@ export function Hero() {
 
     // Video loop is handled by the loop attribute on the video element
 
+    const [isHeroVideoExpanded, setIsHeroVideoExpanded] = useState(false)
+
+    useEffect(() => {
+        if (!isHeroVideoExpanded) return
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setIsHeroVideoExpanded(false)
+        }
+        document.addEventListener("keydown", onKeyDown)
+        return () => document.removeEventListener("keydown", onKeyDown)
+    }, [isHeroVideoExpanded])
+
     const isMobile = useIsMobile()
+    const prefersReducedMotion = useReducedMotion()
+
+    const expandTransition =
+        prefersReducedMotion === true
+            ? { duration: 0 }
+            : { duration: HERO_EXPAND_DURATION, ease: HERO_EXPAND_EASE }
 
     return (
-        <section ref={containerRef} className="relative min-h-[calc(100svh-60px)] md:h-[calc(100vh-60px)] w-full flex flex-col md:grid md:grid-cols-2 border-b border-grid-line overflow-hidden group">
+        <section
+            ref={containerRef}
+            className="relative flex min-h-[calc(100svh-60px)] w-full flex-col overflow-hidden border-b border-grid-line group md:h-[calc(100vh-60px)] md:flex-row"
+        >
 
-            <GrainOverlay opacity={0.05} />
+            {/* LEFT COLUMN: DATA STREAM & CONTENT — grain scoped here so the hero video stays clean */}
+            <motion.div
+                key={`hero-left-${isMobile ? "sm" : "md"}`}
+                className={cn(
+                    "relative z-10 order-2 flex flex-col overflow-hidden border-t bg-background/95 transition-colors duration-700 md:order-none md:min-h-0 md:h-full md:bg-background/[0.97]",
+                    isHeroVideoExpanded
+                        ? "pointer-events-none border-r-0 md:border-t-0"
+                        : "border-r border-grid-line md:border-t-0"
+                )}
+                initial={false}
+                animate={
+                    isMobile
+                        ? {
+                              height: isHeroVideoExpanded ? 0 : "55svh",
+                              flexBasis: "auto",
+                          }
+                        : {
+                              flexBasis: isHeroVideoExpanded ? "0%" : "50%",
+                              height: "auto",
+                          }
+                }
+                transition={expandTransition}
+                style={
+                    isMobile
+                        ? undefined
+                        : { flexGrow: 0, flexShrink: 0, minWidth: 0 }
+                }
+                aria-hidden={isHeroVideoExpanded}
+            >
+                <GrainOverlay opacity={0.04} />
 
-            {/* LEFT COLUMN: DATA STREAM & CONTENT */}
-            <div className="relative z-10 flex flex-col border-t md:border-t-0 border-r border-grid-line bg-background/95 md:bg-background/[0.97] transition-colors duration-700 overflow-hidden order-2 md:order-none h-[55svh] md:h-auto">
-
-
-
-                <div className="flex-1 flex flex-col justify-center p-4 md:p-12 lg:px-12 xl:px-20 relative">
+                <div className="relative z-10 flex-1 flex flex-col justify-center p-4 md:p-12 lg:px-12 xl:px-20">
 
                     {/* Context Tag - Phase 2 Start */}
                     <div className="mb-6 hidden md:flex items-center gap-3">
@@ -295,10 +344,38 @@ export function Hero() {
                         </div>
                     </motion.div>
                 </motion.div>
-            </div>
+            </motion.div>
 
             {/* RIGHT COLUMN: VISUAL FEED */}
-            <div className="relative h-[45svh] md:h-auto overflow-hidden bg-background md:border-l border-grid-line group/image order-1 md:order-none">
+            <motion.div
+                key={`hero-video-${isMobile ? "sm" : "md"}`}
+                className={cn(
+                    "group/image relative order-1 overflow-hidden bg-background md:order-none md:min-h-0 md:h-full",
+                    isHeroVideoExpanded
+                        ? "z-20 md:border-l-0"
+                        : "md:border-l md:border-grid-line"
+                )}
+                initial={false}
+                animate={
+                    isMobile
+                        ? {
+                              height: isHeroVideoExpanded
+                                  ? "calc(100svh - 60px)"
+                                  : "45svh",
+                              flexBasis: "auto",
+                          }
+                        : {
+                              flexBasis: isHeroVideoExpanded ? "100%" : "50%",
+                              height: "auto",
+                          }
+                }
+                transition={expandTransition}
+                style={
+                    isMobile
+                        ? undefined
+                        : { flexGrow: 0, flexShrink: 0, minWidth: 0 }
+                }
+            >
 
                 {/* Drafting Frame - "The Plan" before the Reality */}
                 <DraftingFrame
@@ -329,17 +406,23 @@ export function Hero() {
                 />
 
                 <motion.div
-                    style={{ y: isMobile ? 0 : y, opacity, willChange: "transform, opacity" }}
+                    style={
+                        isHeroVideoExpanded
+                            ? { y: 0, opacity: 1 }
+                            : { y: isMobile ? 0 : y, opacity, willChange: "transform, opacity" }
+                    }
                     className="absolute inset-0"
                 >
                     <video
                         ref={videoRef}
-                        src="/images/hero_video.mp4"
+                        src="/images/apostolidis_hero_video_alt.mp4"
+                        poster="/images/apostolidis_hero_video_alt_poster.webp"
+                        preload="auto"
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover object-center md:object-right transition-all duration-1000 ease-out"
+                        className="w-full h-full object-cover object-[50%_center] md:object-[70%_center] transition-all duration-1000 ease-out"
                     />
                 </motion.div>
 
@@ -361,11 +444,26 @@ export function Hero() {
                             />
                         </motion.div>
                         <motion.div
+                            className="hidden md:block"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: HERO_TIMELINE.HUD_TOP + 0.3, duration: 0.3 }}
                         >
-                            <Maximize2 className="w-4 h-4 text-white/50" />
+                            <button
+                                type="button"
+                                className="pointer-events-auto rounded p-1 text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                                aria-expanded={isHeroVideoExpanded}
+                                aria-label={
+                                    isHeroVideoExpanded ? t("collapseVideo") : t("expandVideo")
+                                }
+                                onClick={() => setIsHeroVideoExpanded((v) => !v)}
+                            >
+                                {isHeroVideoExpanded ? (
+                                    <Minimize2 className="w-4 h-4" aria-hidden />
+                                ) : (
+                                    <Maximize2 className="w-4 h-4" aria-hidden />
+                                )}
+                            </button>
                         </motion.div>
                     </div>
 
@@ -426,7 +524,7 @@ export function Hero() {
 
                 {/* Vignette */}
                 <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40 z-0 pointer-events-none" />
-            </div>
+            </motion.div>
 
         </section>
     )

@@ -2,11 +2,11 @@
 
 import { ReactNode, useEffect } from "react"
 import Lenis from "lenis"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
+import { scrollToTopImmediate } from "@/lib/scroll-utils"
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
 
     // Only run Lenis on desktop to save resources on mobile
     useEffect(() => {
@@ -15,15 +15,20 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
         if (isMobile) return;
 
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-            orientation: "vertical",
-            gestureOrientation: "vertical",
-            smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2,
-        })
+        let lenis: Lenis
+        try {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+                orientation: "vertical",
+                gestureOrientation: "vertical",
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                touchMultiplier: 2,
+            })
+        } catch {
+            return
+        }
 
         // @ts-ignore
         window.lenis = lenis;
@@ -51,7 +56,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         // 1. NATIVE/MOBILE SCROLL RESET
         // Only reset if no hash is present or if hash navigation didn't work (fallback)
         if (!window.location.hash) {
-            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+            scrollToTopImmediate();
         }
 
         // 2. LENIS SCROLL RESET or HASH SCROLL
