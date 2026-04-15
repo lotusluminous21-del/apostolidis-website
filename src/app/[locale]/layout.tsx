@@ -10,6 +10,7 @@ import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { PrecisionGrid } from "@/components/ui/precision-grid";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { TechnicalFrame } from "@/components/layout/technical-frame";
+import { BootProvider } from "@/contexts/boot-context";
 
 const inter = Inter({
   subsets: ["latin", "greek"],
@@ -54,9 +55,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       images: [
         {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
+          url: '/images/apostolidis_hero_video_alt_poster.webp',
+          width: 1280,
+          height: 720,
           alt: t('title'),
         },
       ],
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/og-image.png'],
+      images: ['/images/apostolidis_hero_video_alt_poster.webp'],
     }
   };
 }
@@ -92,14 +93,16 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${inter.variable} ${manrope.variable} min-h-screen bg-background font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <SmoothScroll>
-            {/* Precision Grid is now part of the frame or background, but we can keep it for the inner content too */}
+          <BootProvider>
+            <SmoothScroll>
+              {/* Precision Grid is now part of the frame or background, but we can keep it for the inner content too */}
 
-            <TechnicalFrame settings={settings}>
-              {children}
-              <Footer settings={settings} />
-            </TechnicalFrame>
-          </SmoothScroll>
+              <TechnicalFrame settings={settings}>
+                {children}
+                <Footer settings={settings} />
+              </TechnicalFrame>
+            </SmoothScroll>
+          </BootProvider>
         </NextIntlClientProvider>
       </body>
     </html>

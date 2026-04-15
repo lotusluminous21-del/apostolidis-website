@@ -18,6 +18,8 @@ interface DraftingFrameProps {
     labelClassName?: string
     /** When true, uses "drawing" animation style (clip-path reveal from origin) */
     animateSequentially?: boolean
+    /** When true, holds motion at initial state (e.g. until site boot completes) */
+    paused?: boolean
     children?: React.ReactNode
 }
 
@@ -29,6 +31,7 @@ export function DraftingFrame({
     labelPosition = "top-left",
     labelClassName = "",
     animateSequentially = false,
+    paused = false,
     children
 }: DraftingFrameProps) {
 
@@ -48,10 +51,14 @@ export function DraftingFrame({
                             clipPath: "inset(0 100% 100% 0)", // Start hidden (reveal from top-left)
                             opacity: 0
                         }}
-                        animate={{
-                            clipPath: "inset(0 0% 0% 0)", // Fully revealed
-                            opacity: 1
-                        }}
+                        animate={
+                            paused
+                                ? false
+                                : {
+                                      clipPath: "inset(0 0% 0% 0)", // Fully revealed
+                                      opacity: 1,
+                                  }
+                        }
                         transition={{
                             delay,
                             duration: DURATION.reveal * 1.5,
@@ -64,7 +71,7 @@ export function DraftingFrame({
                         {showMarkers.includes('top-left') && (
                             <motion.div
                                 initial="hidden"
-                                animate="visible"
+                                animate={paused ? false : "visible"}
                                 variants={withDelay(markerPop, markersDelay)}
                                 className="absolute top-0 left-0 w-2 h-2 border-l border-t border-current opacity-80"
                             />
@@ -72,7 +79,7 @@ export function DraftingFrame({
                         {showMarkers.includes('top-right') && (
                             <motion.div
                                 initial="hidden"
-                                animate="visible"
+                                animate={paused ? false : "visible"}
                                 variants={withDelay(markerPop, markersDelay + 0.05)}
                                 className="absolute top-0 right-0 w-2 h-2 border-r border-t border-current opacity-80"
                             />
@@ -80,7 +87,7 @@ export function DraftingFrame({
                         {showMarkers.includes('bottom-left') && (
                             <motion.div
                                 initial="hidden"
-                                animate="visible"
+                                animate={paused ? false : "visible"}
                                 variants={withDelay(markerPop, markersDelay + 0.1)}
                                 className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-current opacity-80"
                             />
@@ -88,7 +95,7 @@ export function DraftingFrame({
                         {showMarkers.includes('bottom-right') && (
                             <motion.div
                                 initial="hidden"
-                                animate="visible"
+                                animate={paused ? false : "visible"}
                                 variants={withDelay(markerPop, markersDelay + 0.15)}
                                 className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-current opacity-80"
                             />
@@ -101,7 +108,11 @@ export function DraftingFrame({
                     {label && (
                         <motion.div
                             initial={{ opacity: 0, x: -5 }}
-                            animate={{ opacity: 0.6, x: 0 }}
+                            animate={
+                                paused
+                                    ? false
+                                    : { opacity: 0.6, x: 0 }
+                            }
                             transition={{ delay: labelDelay, duration: DURATION.fast, ease: EASE.smooth }}
                             className={`absolute text-[8px] font-mono tracking-widest uppercase whitespace-nowrap
                                 ${labelPosition === 'top-left' ? '-top-3 left-0' : ''}
@@ -119,7 +130,7 @@ export function DraftingFrame({
                 // DEFAULT MODE: Original behavior (scale + fade)
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    animate={paused ? false : { opacity: 1, scale: 1 }}
                     transition={{ delay, duration: DURATION.normal, ease: EASE.sharp }}
                     className="w-full h-full relative"
                 >
